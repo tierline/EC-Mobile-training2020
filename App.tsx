@@ -9,30 +9,24 @@
  */
 
 import React from 'react';
+import Header from './src/Header'
 import {
-  SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
   Text,
-  StatusBar,
 } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 
 declare const global: { HermesInternal: null | {} };
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.main}>Hello World!</Text>
-      <Text style={styles.main}>React Native!</Text>
+    <View>
+      <View style={styles.container}>
+        <Header></Header>
+        <Text style={styles.main}>Hello World!</Text>
+        <Text style={styles.main}>React Native!</Text>
+      </View>
     </View>
   );
 };
