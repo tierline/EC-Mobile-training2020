@@ -10,6 +10,7 @@
 
 import React from 'react';
 import Header from './src/Header'
+import Main from './src/Main'
 import {
   StyleSheet,
   View,
@@ -23,9 +24,8 @@ const App = () => {
   return (
     <View>
       <View style={styles.container}>
-        <Header></Header>
-        <Text style={styles.main}>Hello World!</Text>
-        <Text style={styles.main}>React Native!</Text>
+        <Header />
+        <Main />
       </View>
     </View>
   );
