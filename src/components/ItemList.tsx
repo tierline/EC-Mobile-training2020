@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import {StyleSheet, Image} from 'react-native';
 import {
   Content,
@@ -11,7 +11,7 @@ import {
   Right,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 const ItemList = () => {
   const navigation = useNavigation();
@@ -22,8 +22,6 @@ const ItemList = () => {
           <Left>
             <Body>
               <Text>商品名</Text>
-              <Icon name="home" size={50} />
-
               <Text note>価格</Text>
             </Body>
           </Left>
@@ -50,6 +48,9 @@ const ItemList = () => {
               <Icon name="chatbubbles" />
               <Text>詳細</Text>
             </Button>
+            <Button onPress={() => fetchProduct()}>
+              <Text>test</Text>
+            </Button>
           </Right>
         </CardItem>
       </Card>
@@ -57,6 +58,20 @@ const ItemList = () => {
   );
 };
 
-const styles = StyleSheet.create({});
+// useEffect(() => {
+//   fetchProduct()
+// })
+const url = 'http://10.0.2.2:8085/api/products';
+const fetchProduct = async () => {
+      console.log()
+      const response = await  axios.get(url);
+      const result = await response.data;
+      console.log('a:', response);
+      console.log('b:', result);
+    }
+    // .catch((error) => {
+    //   console.log('-----error-----');
+    // });
+    const styles = StyleSheet.create({});
 
 export default ItemList;

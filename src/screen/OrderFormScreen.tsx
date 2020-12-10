@@ -1,20 +1,20 @@
 import React from 'react';
 import {Container, Content, Input, Text, Button} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
-
+import AddressForm from '../components/AddressForm';
 const OrderFormScreen = () => {
   const navigation = useNavigation();
   return (
     <Container>
       <Content>
-        <Text>form画面</Text>
-        <Input />
+        <AddressForm />
       </Content>
-      <Content>
-      </Content>
-        <Button full danger onPress={() => navigation.navigate('Complete')}>
-          <Text>注文を確定する</Text>
-        </Button>
+      <Button full danger onPress={() => navigation.navigate('Complete')}>
+        <Text>注文を確定する</Text>
+      </Button>
+      <Button full onPress={() => navigation.goBack()}>
+        <Text>戻る</Text>
+      </Button>
     </Container>
   );
 };
