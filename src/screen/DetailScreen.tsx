@@ -10,14 +10,13 @@ import {
   Content,
   CardItem,
   Card,
-  Right,
 } from 'native-base';
-import {useNavigation} from '@react-navigation/native';
+import {Route} from '../interface/Routet';
 import NavBarBottom from '../components/NavBarBottom';
-import BackButton from '../components/BackButton';
 
-const DetailsScreen = () => {
-  const navigation = useNavigation();
+const DetailsScreen = ({route}: Route) => {
+  // const navigation = useNavigation();
+  const {name, price, description} = route.params;
   return (
     <Container>
       <Content>
@@ -25,7 +24,8 @@ const DetailsScreen = () => {
           <CardItem>
             <Left>
               <Body>
-                <Text>商品名</Text>
+                <Text>商品名{name}</Text>
+                <Text>値段{price}円</Text>
               </Body>
             </Left>
           </CardItem>
@@ -39,19 +39,16 @@ const DetailsScreen = () => {
                 }}
               />
               <Text>商品説明</Text>
+              <Text>{description}</Text>
             </Body>
           </CardItem>
           <CardItem>
-            <Left>
+            <Body>
               <Button rounded danger>
                 <Icon name="logo-github" />
                 <Text>カートに入れる</Text>
-                
               </Button>
-            </Left>
-            <Right>
-              <BackButton/>
-            </Right>
+            </Body>
           </CardItem>
         </Card>
       </Content>

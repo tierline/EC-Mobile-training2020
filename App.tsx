@@ -7,12 +7,14 @@ import DetailScreen from './src/screen/DetailScreen';
 import OrderScreen from './src/screen/OrderScreen';
 import OrderFormScreen from './src/screen/OrderFormScreen';
 import CompleteScreen from './src/screen/CompleteScreen';
+import LoginScreen from './src/screen/LoginScreen';
 
 const App = () => {
   const Stack = createStackNavigator();
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Login" component={LoginScreen}/>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Detail" component={DetailScreen} />
         <Stack.Screen name="Cart" component={CartScreen} />

@@ -17,7 +17,7 @@ const NavBarBottom = () => {
         <Button dark onPress={() => navigation.navigate('Order')}>
           <Text>Order</Text>
         </Button>
-        <Button dark>
+        <Button dark disabled>
           <Text>Mypage</Text>
         </Button>
       </FooterTab>

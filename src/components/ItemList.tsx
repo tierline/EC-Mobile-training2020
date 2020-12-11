@@ -1,5 +1,5 @@
-import React, {Component, useEffect} from 'react';
-import {StyleSheet, Image} from 'react-native';
+import React, {Component, useEffect, useState} from 'react';
+import {StyleSheet, Image, Alert} from 'react-native';
 import {
   Content,
   Card,
@@ -9,69 +9,81 @@ import {
   Left,
   Body,
   Right,
+  Item,
 } from 'native-base';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
+import {FlatList} from 'react-native';
+import {fetchProduct} from './Fetch';
+
 const ItemList = () => {
   const navigation = useNavigation();
-  return (
-    <Content>
+  const [items, setItems] = useState([]);
+  useEffect(() => {
+    fetchProduct()
+      .then((products) => {
+        setItems(products);
+      })
+      .catch(() => {
+        console.log('-----error-----');
+      });
+  }, []);
+
+  const renderItems = ({item}: {item: any} /**interface */) => {
+    return (
       <Card>
         <CardItem>
           <Left>
             <Body>
-              <Text>商品名</Text>
-              <Text note>価格</Text>
+              <Text>商品名:{item.name}</Text>
+              <Text>価格:{item.price}円</Text>
+              <Text>{item.image_path}</Text>
             </Body>
           </Left>
         </CardItem>
         <CardItem cardBody>
+          {/* <Image
+        style={{height: 200, width: 200, flex: 1}}
+       source={require('./image/'+item.image_path)}
+       /> */}
           <Image
             style={{height: 200, width: 200, flex: 1}}
-            source={{
-              uri:
-                'https://i.gzn.jp/img/2020/06/05/instagram-threw-embedding-api-copyright/00.jpg',
-            }}
+            source={require('./image/ramune.jpeg')}
           />
-          {/* <Image source={require('../../assets/po.jpg')} style={{height: 200, width: 200, flex: 1}}/> */}
         </CardItem>
         <CardItem>
           <Left>
-            <Button rounded danger>
-              <Icon name="thumbs-up" />
+            <Button danger>
               <Text>カートに入れる</Text>
             </Button>
           </Left>
           <Right>
-            <Button rounded onPress={() => navigation.navigate('Detail')}>
-              <Icon name="chatbubbles" />
+            <Button
+              onPress={() =>
+                navigation.navigate('Detail', {
+                  name: item.name,
+                  price: item.price,
+                  description: item.description,
+                })
+              }>
               <Text>詳細</Text>
-            </Button>
-            <Button onPress={() => fetchProduct()}>
-              <Text>test</Text>
             </Button>
           </Right>
         </CardItem>
       </Card>
+    );
+  };
+
+  return (
+    <Content style={styles.list}>
+      <FlatList data={items} renderItem={renderItems} />
     </Content>
   );
 };
 
-// useEffect(() => {
-//   fetchProduct()
-// })
-const url = 'http://10.0.2.2:8085/api/products';
-const fetchProduct = async () => {
-      console.log()
-      const response = await  axios.get(url);
-      const result = await response.data;
-      console.log('a:', response);
-      console.log('b:', result);
-    }
-    // .catch((error) => {
-    //   console.log('-----error-----');
-    // });
-    const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  list: {
+    margin: 10,
+  },
+});
 
 export default ItemList;
