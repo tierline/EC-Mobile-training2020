@@ -16,7 +16,7 @@ import NavBarBottom from '../components/NavBarBottom';
 
 const DetailsScreen = ({route}: Route) => {
   // const navigation = useNavigation();
-  const {name, price, description} = route.params;
+  const {name, price, description, imagePath} = route.params;
   return (
     <Container>
       <Content>
@@ -33,9 +33,9 @@ const DetailsScreen = ({route}: Route) => {
             <Body>
               <Image
                 style={{height: 300, width: '100%', flex: 1}}
+                resizeMode={'contain'}
                 source={{
-                  uri:
-                    'https://i.gzn.jp/img/2020/06/05/instagram-threw-embedding-api-copyright/00.jpg',
+                  uri: imagePath,
                 }}
               />
               <Text>商品説明</Text>

@@ -1,9 +1,10 @@
 import React from 'react';
-import {Container, Content} from 'native-base';
+import {Button, Container, Content, Text} from 'native-base';
 import NavBar from '../components/NavBar';
 import ItemList from '../components/ItemList';
 import NavBarBottom from '../components/NavBarBottom';
 import {useNavigation} from '@react-navigation/native';
+import Storage from '../components/Storage';
 const HomeScreen = () => {
   const navigation = useNavigation();
   return (
@@ -12,7 +13,18 @@ const HomeScreen = () => {
       <Content>
         <ItemList />
       </Content>
-      <NavBarBottom />
+      {Storage.getAuth() ? (
+        <NavBarBottom />
+      ) : (
+        <Button
+          dark
+          full
+          onPress={() => {
+            navigation.goBack();
+          }}>
+          <Text>ログイン</Text>
+        </Button>
+      )}
     </Container>
   );
 };

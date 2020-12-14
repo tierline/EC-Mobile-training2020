@@ -1,35 +1,33 @@
 import React from 'react';
 import {Body, Button, Container, Content, Text} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
-import LoginForm from '../components/LoginForm'
-import { StyleSheet } from 'react-native';
+import LoginForm from '../components/LoginForm';
+import {StyleSheet} from 'react-native';
 const LoginScreen = () => {
   const navigation = useNavigation();
   return (
     <Container>
-      <Content>
-        <Text>Login画面</Text>
+      <Content style={styles.loginForm}>
+        <LoginForm />
       </Content>
-      <Content style={styles.form}>
-        <LoginForm/>
-      </Content>
-      <Content>
-        <Body>
-          <Button ><Text>ログイン</Text></Button>
-        </Body>
-      </Content>
+      <Content style={styles.home}>
         <Body>
           <Button success onPress={() => navigation.navigate('Home')}>
             <Text>---Home---</Text>
           </Button>
         </Body>
+      </Content>
     </Container>
   );
 };
 const styles = StyleSheet.create({
-  form: {
-    margin: 15
-  }
-})
+  loginForm: {
+    marginTop: 30,
+  },
+  home: {
+    flex: 1,
+    marginTop: 30,
+  },
+});
 
 export default LoginScreen;

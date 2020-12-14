@@ -3,7 +3,8 @@ export interface Route {
     params: {
       name:string,
       price : number,
-      description: string
+      description: string,
+      imagePath: string
     }
   }
 }
