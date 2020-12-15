@@ -4,7 +4,6 @@ import {
   Container,
   Left,
   Button,
-  Icon,
   Body,
   Text,
   Content,
@@ -45,7 +44,6 @@ const DetailsScreen = ({route}: Description) => {
           <CardItem>
             <Body>
               <Button rounded danger>
-                <Icon name="logo-github" />
                 <Text>カートに入れる</Text>
               </Button>
             </Body>

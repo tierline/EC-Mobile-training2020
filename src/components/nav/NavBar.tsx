@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
 import {Body, Header, Left, Right, Button, Title} from 'native-base';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import {StyleSheet} from 'react-native';
 const NavBar = () => {
   return (
     <Header style={styles.header}>
       <Left>
         <Button transparent>
-          <Icon name="arrow-back" />
         </Button>
       </Left>
       <Body>
@@ -15,7 +13,6 @@ const NavBar = () => {
       </Body>
       <Right>
         <Button transparent>
-          <Icon name="menu" />
         </Button>
       </Right>
     </Header>

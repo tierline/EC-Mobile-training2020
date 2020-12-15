@@ -12,9 +12,9 @@ import {
 } from 'native-base';
 import {useNavigation} from '@react-navigation/native';
 import {FlatList} from 'react-native';
-import {fetchProduct} from '../../api/common/FetchProduct'
-import {generateImagePath} from '../../api/members/Fetch';
+import {fetchProduct} from '../../api/common/Product';
 import Storage from '../../Storage';
+import {url} from '../../settings/properties';
 
 const ItemList = () => {
   const navigation = useNavigation();
@@ -29,9 +29,13 @@ const ItemList = () => {
       });
   }, []);
 
+  const generateImagePath = (imagePath: string): string => {
+    return `${url}/image/${imagePath}`;
+  };
+
   const renderItems = ({item}: {item: any} /**interface */) => {
     return (
-      <Card>
+      <Card style={styles.card}>
         <CardItem>
           <Left>
             <Body>
@@ -76,16 +80,19 @@ const ItemList = () => {
   };
 
   return (
-    <Content style={styles.list}>
-      <FlatList data={items} renderItem={renderItems} />
-    </Content>
+    <FlatList
+      style={styles.list}
+      data={items}
+      renderItem={renderItems}
+      keyExtractor={(item) => item.id.toString()}
+    />
   );
 };
 
 const window = Dimensions.get('window');
 const styles = StyleSheet.create({
   list: {
-    margin: 10,
+    margin: 5,
   },
   card: {
     marginTop: 10,

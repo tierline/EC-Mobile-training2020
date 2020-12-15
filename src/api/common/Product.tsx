@@ -1,5 +1,5 @@
-import axios from 'axios'
-import {url} from '../../settings/properties'
+import axios from 'axios';
+import {url} from '../../settings/properties';
 
 export const fetchProduct = async () => {
   const path = `${url}/api/common/products`;

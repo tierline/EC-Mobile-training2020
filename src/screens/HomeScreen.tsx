@@ -10,9 +10,9 @@ const HomeScreen = () => {
   return (
     <Container>
       <NavBar />
-      <Content>
+      
         <ItemList />
-      </Content>
+      
       {Storage.getAuth() ? (
         <NavBarBottom />
       ) : (
