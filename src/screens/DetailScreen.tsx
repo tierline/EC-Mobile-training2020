@@ -11,10 +11,10 @@ import {
   CardItem,
   Card,
 } from 'native-base';
-import {Route} from '../interface/Routet';
+import {Description} from '../interface/Interface';
 import NavBarBottom from '../components/nav/NavBarBottom';
 
-const DetailsScreen = ({route}: Route) => {
+const DetailsScreen = ({route}: Description) => {
   // const navigation = useNavigation();
   const {name, price, description, imagePath} = route.params;
   return (

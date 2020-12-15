@@ -1,5 +1,5 @@
-import React, {Component, useEffect, useState} from 'react';
-import {StyleSheet, Image, Alert, Dimensions} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, Image, Dimensions} from 'react-native';
 import {
   Content,
   Card,
@@ -9,11 +9,11 @@ import {
   Left,
   Body,
   Right,
-  Item,
 } from 'native-base';
 import {useNavigation} from '@react-navigation/native';
 import {FlatList} from 'react-native';
-import {fetchProduct, fetchImagePath} from '../../api/members/Fetch';
+import {fetchProduct} from '../../api/common/FetchProduct'
+import {generateImagePath} from '../../api/members/Fetch';
 import Storage from '../../Storage';
 
 const ItemList = () => {
@@ -44,7 +44,7 @@ const ItemList = () => {
           <Image
             style={styles.image}
             resizeMode={'contain'}
-            source={{uri: fetchImagePath(item.image_path)}}
+            source={{uri: generateImagePath(item.image_path)}}
           />
         </CardItem>
         {Storage.getAuth() ? (
@@ -61,7 +61,7 @@ const ItemList = () => {
                     name: item.name,
                     price: item.price,
                     description: item.description,
-                    imagePath: fetchImagePath(item.image_path),
+                    imagePath: generateImagePath(item.image_path),
                   })
                 }>
                 <Text>詳細</Text>

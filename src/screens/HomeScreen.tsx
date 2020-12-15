@@ -22,7 +22,7 @@ const HomeScreen = () => {
           onPress={() => {
             navigation.goBack();
           }}>
-          <Text>ログイン</Text>
+          <Text>ログインする</Text>
         </Button>
       )}
     </Container>

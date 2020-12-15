@@ -1,4 +1,4 @@
-export interface Route {
+export interface Description {
   route: {
     params: {
       name:string,
@@ -7,4 +7,9 @@ export interface Route {
       imagePath: string
     }
   }
+}
+
+export interface FormData {
+  email: string,
+  password: string
 }

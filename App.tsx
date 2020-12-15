@@ -8,6 +8,7 @@ import OrderScreen from './src/screens/OrderScreen';
 import OrderFormScreen from './src/screens/OrderFormScreen';
 import CompleteScreen from './src/screens/CompleteScreen';
 import LoginScreen from './src/screens/LoginScreen';
+import ApplicateScreen from './src/screens/ApplicateScreen'
 
 const App = () => {
   const Stack = createStackNavigator();
@@ -15,6 +16,7 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen}/>
+        <Stack.Screen name="Applicate" component={ApplicateScreen}/>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Detail" component={DetailScreen} />
         <Stack.Screen name="Cart" component={CartScreen} />
