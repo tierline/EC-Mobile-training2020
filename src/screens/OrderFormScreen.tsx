@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Container, Content, Input, Text, Button} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
-import AddressForm from '../components/AddressForm';
+import AddressForm from '../components/form/AddressForm';
 const OrderFormScreen = () => {
   const navigation = useNavigation();
   return (

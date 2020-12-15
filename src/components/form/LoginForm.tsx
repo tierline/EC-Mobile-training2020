@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 // import {Content, Label, Text} from 'native-base';
-import LoginScreen from '../screen/LoginScreen';
+import LoginScreen from '../../screens/LoginScreen';
 import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
-import {createMember, loginMember} from './Fetch';
+import {createMember, loginMember} from '../../api/members/Fetch';
 import {useForm, Controller} from 'react-hook-form';
 
 const LoginForm = () => {
   const {control, handleSubmit, errors} = useForm();
-
+  const onSubmit = data => console.log(data)
   return (
     <View>
       <Text style={styles.label}>メールアドレス</Text>
@@ -48,7 +48,7 @@ const LoginForm = () => {
         <Button title="新規登録" onPress={handleSubmit(createMember)} />
       </View>
       <View style={styles.button}>
-        <Button title="ログイン" onPress={handleSubmit(loginMember)} />
+        <Button title="ログイン" onPress={handleSubmit(onSubmit)} />
       </View>
     </View>
   );

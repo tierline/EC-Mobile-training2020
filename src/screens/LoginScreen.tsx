@@ -1,7 +1,7 @@
 import React from 'react';
 import {Body, Button, Container, Content, Text} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
-import LoginForm from '../components/LoginForm';
+import LoginForm from '../components/form/LoginForm';
 import {StyleSheet} from 'react-native';
 const LoginScreen = () => {
   const navigation = useNavigation();

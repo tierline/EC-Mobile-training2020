@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Container, Content, Text, Button, Icon, Body} from 'native-base';
-import NavBar from '../components/NavBar';
-import NavBarBottom from '../components/NavBarBottom';
+import NavBar from '../components/nav/NavBar';
+import NavBarBottom from '../components/nav/NavBarBottom';
 import {useNavigation} from '@react-navigation/native';
 
 const CartScreen = () => {

@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import CartScreen from './src/screen/CartScreen';
-import HomeScreen from './src/screen/HomeScreen';
-import DetailScreen from './src/screen/DetailScreen';
-import OrderScreen from './src/screen/OrderScreen';
-import OrderFormScreen from './src/screen/OrderFormScreen';
-import CompleteScreen from './src/screen/CompleteScreen';
-import LoginScreen from './src/screen/LoginScreen';
+import CartScreen from './src/screens/CartScreen';
+import HomeScreen from './src/screens/HomeScreen';
+import DetailScreen from './src/screens/DetailScreen';
+import OrderScreen from './src/screens/OrderScreen';
+import OrderFormScreen from './src/screens/OrderFormScreen';
+import CompleteScreen from './src/screens/CompleteScreen';
+import LoginScreen from './src/screens/LoginScreen';
 
 const App = () => {
   const Stack = createStackNavigator();

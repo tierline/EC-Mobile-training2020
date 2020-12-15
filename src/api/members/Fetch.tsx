@@ -1,11 +1,18 @@
 import axios from 'axios';
 import {Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {Member} from '../interface/Member';
-import {sendMember} from '../modules/Axios';
-import Storage from './Storage';
+import {Member} from '../../interface/Member';
+import Storage from '../../Storage';
+import {url} from '../../settings/properties'
 
-const url = 'http://10.0.2.2:8085';
+
+export const sendMember = (path:string, member: Member) => {
+  const createMember = {
+    email: member.email,
+    password: member.password
+  }
+ return axios.post(path, createMember)
+}
 
 export const fetchProduct = async () => {
   const path = `${url}/api/products`;
@@ -18,7 +25,7 @@ export const fetchImagePath = (imagePath: string): string => {
 };
 
 export const createMember = (member: Member) => {
-  const path = `${url}/api/create`;
+  const path = `${url}/api/members/applicate`;
 
   sendMember(path, member)
     .then(() => {
@@ -28,12 +35,14 @@ export const createMember = (member: Member) => {
       Alert.alert('既に登録されているか、入力した値が不正です。');
     });
 };
+const navigation = useNavigation();
 
-export const loginMember = (member: Member) => {
+export const loginMember = (member: Member, ) => {
   const path = `${url}/api/login`;
   sendMember(path, member)
     .then((res) => {
       Storage.setAuth(res.data);
+      navigation.navigate('Home')
     })
     .catch(() => {
       Alert.alert('予期せぬエラー');

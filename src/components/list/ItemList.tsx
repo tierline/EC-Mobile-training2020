@@ -13,8 +13,8 @@ import {
 } from 'native-base';
 import {useNavigation} from '@react-navigation/native';
 import {FlatList} from 'react-native';
-import {fetchProduct, fetchImagePath} from './Fetch';
-import Storage from './Storage';
+import {fetchProduct, fetchImagePath} from '../../api/members/Fetch';
+import Storage from '../../Storage';
 
 const ItemList = () => {
   const navigation = useNavigation();

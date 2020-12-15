@@ -12,7 +12,7 @@ import {
   Card,
 } from 'native-base';
 import {Route} from '../interface/Routet';
-import NavBarBottom from '../components/NavBarBottom';
+import NavBarBottom from '../components/nav/NavBarBottom';
 
 const DetailsScreen = ({route}: Route) => {
   // const navigation = useNavigation();
