@@ -18,6 +18,6 @@ export const applicateMember = (
       navigation.navigate('Home');
     })
     .catch(() => {
-      Alert.alert('予期せぬエラー');
+      Alert.alert('予期せぬエラー,,,Applicate.tsx');
     });
 };
