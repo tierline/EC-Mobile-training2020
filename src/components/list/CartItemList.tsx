@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Image, Dimensions} from 'react-native';
 import {Card, CardItem, Text, Right, Button} from 'native-base';
-import {FlatList, View, ScrollView} from 'react-native';
+import {FlatList} from 'react-native';
 import CartAction from '../../api/member/CartAction';
 
 const CartItemList = () => {
@@ -40,17 +40,11 @@ const CartItemList = () => {
   };
 
   return (
-    <View>
-      <ScrollView>
-        <View>
           <FlatList
             data={items}
             renderItem={renderItem}
             keyExtractor={(item, index) => index.toString()}
           />
-        </View>
-      </ScrollView>
-    </View>
   );
 };
 
