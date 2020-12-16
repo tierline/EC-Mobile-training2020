@@ -15,6 +15,7 @@ import {FlatList} from 'react-native';
 import Storage from '../../Storage';
 import UrlGenerator from '../../api/UrlGenerator';
 import ProductAction from '../../api/ProductAction';
+import { Product } from '../../interface/Interface';
 
 const ItemList = () => {
   const navigation = useNavigation();
@@ -25,7 +26,7 @@ const ItemList = () => {
     });
   }, []);
 
-  const renderItems = ({item}: {item: any} /**interface */) => {
+  const renderItems = ({item}: {item: Product} /**interface */) => {
     return (
       <Card style={styles.card}>
         <CardItem>
