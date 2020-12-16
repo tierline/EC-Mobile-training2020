@@ -12,26 +12,18 @@ import {
 } from 'native-base';
 import {useNavigation} from '@react-navigation/native';
 import {FlatList} from 'react-native';
-import {fetchProduct} from '../../api/common/Product';
 import Storage from '../../Storage';
-import {url} from '../../settings/properties';
+import UrlGenerator from '../../api/UrlGenerator';
+import ProductAction from '../../api/ProductAction';
 
 const ItemList = () => {
   const navigation = useNavigation();
   const [items, setItems] = useState([]);
   useEffect(() => {
-    fetchProduct()
-      .then((products) => {
-        setItems(products);
-      })
-      .catch(() => {
-        console.log('-----error-----');
-      });
+    ProductAction.fetch().then((product) => {
+      setItems(product);
+    });
   }, []);
-
-  const generateImagePath = (imagePath: string): string => {
-    return `${url}/image/${imagePath}`;
-  };
 
   const renderItems = ({item}: {item: any} /**interface */) => {
     return (
@@ -48,7 +40,7 @@ const ItemList = () => {
           <Image
             style={styles.image}
             resizeMode={'contain'}
-            source={{uri: generateImagePath(item.image_path)}}
+            source={{uri: UrlGenerator.image(item.image_path)}}
           />
         </CardItem>
         {Storage.getAuth() ? (
@@ -65,7 +57,7 @@ const ItemList = () => {
                     name: item.name,
                     price: item.price,
                     description: item.description,
-                    imagePath: generateImagePath(item.image_path),
+                    imagePath: item.image_path,
                   })
                 }>
                 <Text>詳細</Text>

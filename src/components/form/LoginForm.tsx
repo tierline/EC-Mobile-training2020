@@ -2,15 +2,13 @@ import React from 'react';
 import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import {useNavigation} from '@react-navigation/native';
-import {applicateMember} from '../../api/members/Applicate';
 import {FormData} from '../../interface/Interface';
 
 const LoginForm = () => {
   const {control, handleSubmit, errors} = useForm();
   const navigation = useNavigation();
 
-  const onSubmit = (formData: FormData) =>
-    applicateMember('/api/members/auth/login', formData, navigation);
+  const onSubmit = (formData: FormData) => console.log(111);
 
   return (
     <View>

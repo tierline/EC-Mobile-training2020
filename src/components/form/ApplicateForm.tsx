@@ -2,14 +2,22 @@ import React from 'react';
 import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import {useNavigation} from '@react-navigation/native';
-import {applicateMember} from '../../api/members/Applicate';
 import {FormData} from '../../interface/Interface';
+import MemberAction from '../../api/MemberAction';
+import Member from '../../domain/Member';
 
 const ApplicateForm = () => {
   const {control, handleSubmit, errors} = useForm();
   const navigation = useNavigation();
-  const onSubmit = (formData: FormData) =>
-    applicateMember('/api/members/auth/applicate', formData, navigation);
+
+  const navi = () => {
+    navigation.navigate('Home');
+  };
+
+  const onSubmit = (formData: FormData) => {
+    const member = new Member(formData.email, formData.password);
+    MemberAction.applicate(member, navi, '/applicate');
+  };
 
   return (
     <View>
