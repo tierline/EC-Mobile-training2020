@@ -26,7 +26,7 @@ const ItemList = () => {
     });
   }, []);
 
-  const renderItems = ({item}: {item: Product} /**interface */) => {
+  const renderItems = ({item}: {item: Product}) => {
     return (
       <Card style={styles.card}>
         <CardItem>
