@@ -11,10 +11,12 @@ import {
   Right,
 } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
-import { FlatList } from 'react-native';
+import { FlatList, View, ScrollView } from 'react-native';
 import { fetchProduct } from '../../api/common/FetchProduct'
-import { generateImagePath } from '../../api/members/Fetch';
+import { generateImagePath } from '../../api/member/Fetch';
 import Storage from '../../Storage';
+import CartAction from '../../api/member/CartAction'
+
 
 const ItemList = () => {
   const navigation = useNavigation();
@@ -50,7 +52,7 @@ const ItemList = () => {
         {Storage.getAuth() ? (
           <CardItem>
             <Left>
-              <Button danger>
+              <Button danger onPress={() => CartAction.add('add', item.id)}>
                 <Text>カートに入れる</Text>
               </Button>
             </Left>
@@ -76,9 +78,13 @@ const ItemList = () => {
   };
 
   return (
-    <Content style={styles.list}>
-      <FlatList data={items} renderItem={renderItems} />
-    </Content>
+    <View>
+      <ScrollView>
+        <View>
+          <FlatList data={items} renderItem={renderItems} keyExtractor={(item, index) => index.toString()} />
+        </View>
+      </ScrollView>
+    </View>
   );
 };
 

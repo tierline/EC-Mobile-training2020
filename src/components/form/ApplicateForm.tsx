@@ -1,22 +1,22 @@
 import React from 'react';
-import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
-import {useForm, Controller} from 'react-hook-form';
-import {useNavigation} from '@react-navigation/native';
-import {applicateMember} from '../../api/members/Applicate';
-import {FormData} from '../../interface/Interface'
+import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
+import { useForm, Controller } from 'react-hook-form';
+import { useNavigation } from '@react-navigation/native';
+import { applicateMember } from '../../api/member/Applicate';
+import { FormData } from '../../interface/Interface'
 
 const ApplicateForm = () => {
-  const {control, handleSubmit, errors} = useForm();
+  const { control, handleSubmit, errors } = useForm();
   const navigation = useNavigation();
   const onSubmit = (formData: FormData) =>
-    applicateMember('/api/members/auth/applicate', formData, navigation);
+    applicateMember('/api/member/applicate', formData, navigation);
 
   return (
     <View>
       <Text style={styles.label}>メールアドレス</Text>
       <Controller
         control={control}
-        render={({onChange, value}) => (
+        render={({ onChange, value }) => (
           <TextInput
             style={styles.input}
             onChangeText={(value) => onChange(value)}
@@ -24,7 +24,7 @@ const ApplicateForm = () => {
           />
         )}
         name="email"
-        rules={{required: true}}
+        rules={{ required: true }}
         defaultValue=""
       />
       {errors.email && <Text>必須項目です</Text>}
@@ -33,7 +33,7 @@ const ApplicateForm = () => {
 
       <Controller
         control={control}
-        render={({onChange, value}) => (
+        render={({ onChange, value }) => (
           <TextInput
             style={styles.input}
             onChangeText={(value) => onChange(value)}
@@ -41,7 +41,7 @@ const ApplicateForm = () => {
           />
         )}
         name="password"
-        rules={{required: true}}
+        rules={{ required: true }}
         defaultValue=""
       />
       {errors.password && <Text>必須項目です</Text>}

@@ -1,14 +1,14 @@
 import React from 'react';
-import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
-import {useForm, Controller} from 'react-hook-form';
-import {useNavigation} from '@react-navigation/native';
-import {applicateMember} from '../../api/members/Applicate';
-import {FormData} from '../../interface/Interface';
+import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
+import { useForm, Controller } from 'react-hook-form';
+import { useNavigation } from '@react-navigation/native';
+import { applicateMember } from '../../api/member/Applicate';
+import { FormData } from '../../interface/Interface';
 
 const LoginForm = () => {
-  const {control, handleSubmit, errors} = useForm();
+  const { control, handleSubmit, errors } = useForm();
   const onSubmit = (formData: FormData) =>
-    applicateMember('/api/members/auth/login', formData, navigation);
+    applicateMember('/api/member/login', formData, navigation);
   const navigation = useNavigation();
   return (
     <View>
@@ -16,7 +16,7 @@ const LoginForm = () => {
       {errors.email && <Text style={styles.error}>必須項目です</Text>}
       <Controller
         control={control}
-        render={({onChange, value}) => (
+        render={({ onChange, value }) => (
           <TextInput
             style={styles.input}
             onChangeText={(value) => onChange(value)}
@@ -24,7 +24,7 @@ const LoginForm = () => {
           />
         )}
         name="email"
-        rules={{required: true}}
+        rules={{ required: true }}
         defaultValue=""
       />
 
@@ -33,7 +33,7 @@ const LoginForm = () => {
       {errors.password && <Text style={styles.error}>必須項目です</Text>}
       <Controller
         control={control}
-        render={({onChange, value}) => (
+        render={({ onChange, value }) => (
           <TextInput
             style={styles.input}
             onChangeText={(value) => onChange(value)}
@@ -41,7 +41,7 @@ const LoginForm = () => {
           />
         )}
         name="password"
-        rules={{required: true}}
+        rules={{ required: true }}
         defaultValue=""
       />
       <View style={styles.button}>
