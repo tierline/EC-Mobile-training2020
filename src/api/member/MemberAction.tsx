@@ -1,8 +1,8 @@
-import Member from '../domain/Member';
+import Member from '../../domain/Member';
 import axios from 'axios';
-import Storage from '../Storage';
+import Storage from '../../Storage';
 import {Alert} from 'react-native';
-import UrlGenerator from './UrlGenerator';
+import UrlGenerator from '../UrlGenerator';
 export default class MemberAction {
   static baseRequest: string = '/api/member';
 

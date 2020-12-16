@@ -4,7 +4,7 @@ import {useForm, Controller} from 'react-hook-form';
 import {useNavigation} from '@react-navigation/native';
 import {FormData} from '../../interface/Interface';
 import Member from '../../domain/Member';
-import MemberAction from '../../api/MemberAction';
+import MemberAction from '../../api/member/MemberAction';
 
 const LoginForm = () => {
   const {control, handleSubmit, errors} = useForm();

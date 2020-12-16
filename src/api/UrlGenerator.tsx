@@ -6,6 +6,11 @@ export default class UrlGenerator {
   }
 
   static image(imagePath: string): string {
-    return this.baseUrl + '/image/' + imagePath
+    return this.baseUrl + '/image/' + imagePath;
   }
 }
+// import { ip } from '../settings/properties'
+
+// export const UrlGenerator = (mappingUrl: string, requestUrl: string) => {
+//   return `http://${ip}:8085` + mappingUrl + requestUrl
+// }

@@ -1,19 +1,18 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {Container, Content, Input, Text, Button} from 'native-base';
-import {useNavigation} from '@react-navigation/native';
-import AddressForm from '../components/form/AddressForm';
+import { StyleSheet } from 'react-native';
+import { Container, Content, Input, Text, Button } from 'native-base';
+import { useNavigation } from '@react-navigation/native';
+import OrderForm from '../components/form/OrderForm';
+
 const OrderFormScreen = () => {
   const navigation = useNavigation();
   return (
     <Container>
       <Content style={styles.form}>
-        <AddressForm />
+        <OrderForm />
       </Content>
-      <Button full danger onPress={() => navigation.navigate('Complete')}>
-        <Text>注文を確定する</Text>
-      </Button>
-    </Container>
+      {/* <Button full danger onPress={() => navigation.navigate('Complete')}> */}
+    </Container >
   );
 };
 const styles = StyleSheet.create({

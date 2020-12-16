@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import {useNavigation} from '@react-navigation/native';
 import {FormData} from '../../interface/Interface';
-import MemberAction from '../../api/MemberAction';
+import MemberAction from '../../api/member/MemberAction';
 import Member from '../../domain/Member';
 
 const ApplicateForm = () => {

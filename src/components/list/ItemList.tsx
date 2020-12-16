@@ -1,21 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Image, Dimensions} from 'react-native';
-import {
-  Content,
-  Card,
-  CardItem,
-  Text,
-  Button,
-  Left,
-  Body,
-  Right,
-} from 'native-base';
+import {Card, CardItem, Text, Button, Left, Body, Right} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
 import {FlatList} from 'react-native';
 import Storage from '../../Storage';
 import UrlGenerator from '../../api/UrlGenerator';
 import ProductAction from '../../api/ProductAction';
-import { Product } from '../../interface/Interface';
+import {Product} from '../../interface/Interface';
+import CartAction from '../../api/member/CartAction';
 
 const ItemList = () => {
   const navigation = useNavigation();
@@ -47,7 +39,7 @@ const ItemList = () => {
         {Storage.getAuth() ? (
           <CardItem>
             <Left>
-              <Button danger>
+              <Button danger onPress={() => CartAction.add('add', item.id)}>
                 <Text>カートに入れる</Text>
               </Button>
             </Left>
