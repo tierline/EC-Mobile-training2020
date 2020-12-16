@@ -1,39 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, Image, Dimensions } from 'react-native';
-import {
-  Content,
-  Card,
-  CardItem,
-  Text,
-  Button,
-  Left,
-  Body,
-  Right,
-} from 'native-base';
-import { useNavigation } from '@react-navigation/native';
-import { FlatList, View, ScrollView } from 'react-native';
-import { fetchProduct } from '../../api/common/FetchProduct'
-import { generateImagePath } from '../../api/member/Fetch';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, Image, Dimensions} from 'react-native';
+import {Card, CardItem, Text, Button, Left, Body, Right} from 'native-base';
+import {useNavigation} from '@react-navigation/native';
+import {FlatList} from 'react-native';
 import Storage from '../../Storage';
-import CartAction from '../../api/member/CartAction'
-
+import UrlGenerator from '../../api/UrlGenerator';
+import ProductAction from '../../api/ProductAction';
+import {Product} from '../../interface/Interface';
+import CartAction from '../../api/member/CartAction';
 
 const ItemList = () => {
   const navigation = useNavigation();
   const [items, setItems] = useState([]);
   useEffect(() => {
-    fetchProduct()
-      .then((products) => {
-        setItems(products);
-      })
-      .catch(() => {
-        console.log('-----商品情報の取得ができませんでした。-----');
-      });
+    ProductAction.fetch().then((product) => {
+      setItems(product);
+    });
   }, []);
 
-  const renderItems = ({ item }: { item: any } /**interface */) => {
+  const renderItems = ({item}: {item: Product}) => {
     return (
-      <Card>
+      <Card style={styles.card}>
         <CardItem>
           <Left>
             <Body>
@@ -46,7 +33,7 @@ const ItemList = () => {
           <Image
             style={styles.image}
             resizeMode={'contain'}
-            source={{ uri: generateImagePath(item.image_path) }}
+            source={{uri: UrlGenerator.image(item.image_path)}}
           />
         </CardItem>
         {Storage.getAuth() ? (
@@ -63,7 +50,7 @@ const ItemList = () => {
                     name: item.name,
                     price: item.price,
                     description: item.description,
-                    imagePath: generateImagePath(item.image_path),
+                    imagePath: item.image_path,
                   })
                 }>
                 <Text>詳細</Text>
@@ -71,27 +58,26 @@ const ItemList = () => {
             </Right>
           </CardItem>
         ) : (
-            <Text></Text>
-          )}
+          <Text></Text>
+        )}
       </Card>
     );
   };
 
   return (
-    <View>
-      <ScrollView>
-        <View>
-          <FlatList data={items} renderItem={renderItems} keyExtractor={(item, index) => index.toString()} />
-        </View>
-      </ScrollView>
-    </View>
+    <FlatList
+      style={styles.list}
+      data={items}
+      renderItem={renderItems}
+      keyExtractor={(item) => item.id.toString()}
+    />
   );
 };
 
 const window = Dimensions.get('window');
 const styles = StyleSheet.create({
   list: {
-    margin: 10,
+    margin: 5,
   },
   card: {
     marginTop: 10,

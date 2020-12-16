@@ -4,7 +4,6 @@ import {
   Container,
   Left,
   Button,
-  Icon,
   Body,
   Text,
   Content,
@@ -13,9 +12,9 @@ import {
 } from 'native-base';
 import {Description} from '../interface/Interface';
 import NavBarBottom from '../components/nav/NavBarBottom';
+import UrlGenerator from '../api/UrlGenerator';
 
 const DetailsScreen = ({route}: Description) => {
-  // const navigation = useNavigation();
   const {name, price, description, imagePath} = route.params;
   return (
     <Container>
@@ -35,7 +34,7 @@ const DetailsScreen = ({route}: Description) => {
                 style={{height: 300, width: '100%', flex: 1}}
                 resizeMode={'contain'}
                 source={{
-                  uri: imagePath,
+                  uri: UrlGenerator.image(imagePath),
                 }}
               />
               <Text>商品説明</Text>
@@ -45,7 +44,6 @@ const DetailsScreen = ({route}: Description) => {
           <CardItem>
             <Body>
               <Button rounded danger>
-                <Icon name="logo-github" />
                 <Text>カートに入れる</Text>
               </Button>
             </Body>

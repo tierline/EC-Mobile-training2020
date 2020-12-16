@@ -1,4 +1,5 @@
 class Storage {
+  private memory
   constructor() {
     this.memory = new Map();
   }

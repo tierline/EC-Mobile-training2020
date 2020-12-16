@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Container, Content, Input, Text, Button } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
-import OrderForm from '../components/form/OrderForm';
+import OrderForm from '../components/form/orderForm/OrderForm';
 
 const OrderFormScreen = () => {
   const navigation = useNavigation();

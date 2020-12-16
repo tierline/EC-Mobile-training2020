@@ -9,10 +9,10 @@ const HomeScreen = () => {
   const navigation = useNavigation();
   return (
     <Container>
-      <NavBar />
-      <Content>
-        <ItemList />
-      </Content>
+      {/* <NavBar /> */}
+
+      <ItemList />
+
       {Storage.getAuth() ? (
         <NavBarBottom />
       ) : (

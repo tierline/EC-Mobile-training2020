@@ -1,13 +1,13 @@
-// import React, {useState} from 'react';
+// import React from 'react';
 // import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
 // import {useForm, Controller} from 'react-hook-form';
 
 // const VallidateForm = () => {
 //   const {control, handleSubmit, errors} = useForm();
-//   const onSubmit = data => console.log(data)
 //   return (
 //     <View>
 //       <Text style={styles.label}>メールアドレス</Text>
+//       {errors.email && <Text style={styles.error}>正しく入力してください</Text>}
 //       <Controller
 //         control={control}
 //         render={({onChange, value}) => (
@@ -18,34 +18,38 @@
 //           />
 //         )}
 //         name="email"
-//         rules={{required: true}}
-//         defaultValue=""
+//         rules={{
+//           required: true,
+//           pattern: /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+//         }}
+//         defaultValue="abc@example.com"
 //       />
-//       {errors.email && <Text>必須項目です</Text>}
 
 //       <Text style={styles.label}>パスワード</Text>
 
+//       {errors.password && (
+//         <Text style={styles.error}>文字数が少なすぎます</Text>
+//       )}
 //       <Controller
 //         control={control}
 //         render={({onChange, value}) => (
 //           <TextInput
 //             style={styles.input}
+//             secureTextEntry={true}
 //             onChangeText={(value) => onChange(value)}
 //             value={value}
 //           />
 //         )}
 //         name="password"
-//         rules={{required: true}}
-//         defaultValue=""
+//         rules={{required: true, minLength: 4}}
+//         defaultValue="1234"
 //       />
-//       {errors.password && <Text>必須項目です</Text>}
-//       <View style={styles.button}>
-//         <Button title="送信" onPress={handleSubmit(onSubmit)} />
-//       </View>
+//       {/* <View style={styles.button}>
+//         <Button title="新規登録" onPress={handleSubmit(onSubmit)} />
+//       </View> */}
 //     </View>
 //   );
 // };
-
 // const styles = StyleSheet.create({
 //   label: {
 //     marginLeft: 10,
@@ -61,6 +65,9 @@
 //   },
 //   button: {
 //     marginTop: 20,
+//   },
+//   error: {
+//     color: 'red',
 //   },
 // });
 
