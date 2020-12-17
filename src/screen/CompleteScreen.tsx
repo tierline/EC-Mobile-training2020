@@ -16,7 +16,7 @@ import Api from '../api/Api';
 
 const CompleteScreen = ({route}: any) => {
   const [orderItems, setItems] = useState([]);
-  const [orderDetail, setOrder] = useState([]);
+  const [orderDetail, setOrder]: any = useState([]);
   const nav = useNavigation();
   const {orderId} = route.params;
 
