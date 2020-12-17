@@ -4,19 +4,20 @@ import {Card, CardItem, Text, Button, Left, Body, Right} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
 import {FlatList} from 'react-native';
 import Storage from '../../Storage';
-import UrlGenerator from '../../api/UrlGenerator';
-import ProductAction from '../../api/ProductAction';
+import Url from '../../api/Url';
 import {Product} from '../../interface/Interface';
-import CartAction from '../../api/member/CartAction';
+import Api from '../../api/Api';
 
 const ItemList = () => {
   const navigation = useNavigation();
   const [items, setItems] = useState([]);
   useEffect(() => {
-    ProductAction.fetch().then((product) => {
-      setItems(product);
-    });
+    Api.fetchProduct('/api/product', setItems);
   }, []);
+
+  const addProduct = (productId: number) => {
+    Api.addProductToCart('/api/member/cart/add', productId);
+  };
 
   const renderItems = ({item}: {item: Product}) => {
     return (
@@ -33,13 +34,13 @@ const ItemList = () => {
           <Image
             style={styles.image}
             resizeMode={'contain'}
-            source={{uri: UrlGenerator.image(item.image_path)}}
+            source={{uri: Url.image(item.image_path)}}
           />
         </CardItem>
         {Storage.getAuth() ? (
           <CardItem>
             <Left>
-              <Button danger onPress={() => CartAction.add('add', item.id)}>
+              <Button danger onPress={() => addProduct(item.id)}>
                 <Text>カートに入れる</Text>
               </Button>
             </Left>
@@ -69,7 +70,7 @@ const ItemList = () => {
       style={styles.list}
       data={items}
       renderItem={renderItems}
-      keyExtractor={(item) => item.id.toString()}
+      keyExtractor={(item, index) => index.toString()}
     />
   );
 };

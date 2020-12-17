@@ -1,21 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import {Card, CardItem, Text, Right, Button} from 'native-base';
 import {FlatList} from 'react-native';
-import CartAction from '../../api/member/CartAction';
+import Api from '../../api/Api';
 
 const CartItemList = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    CartAction.fetch('list')
-      .then((cart) => {
-        console.log('カート内の商品情報を取得しました' + cart.items);
-        setItems(cart.items);
-      })
-      .catch(() => {
-        console.log('-----カート内の商品を取得できませんでした。-----');
-      });
+    Api.fetchCart('/api/member/cart/list', setItems);
   }, []);
+
+  const removeProduct = (productId: number) => {
+    Api.removeProductFromCart('/api/member/cart/delete', productId);
+  };
 
   const renderItem = ({item}: {item: any}) => {
     return (
@@ -27,10 +24,7 @@ const CartItemList = () => {
           </Text>
         </CardItem>
         <Right>
-          <Button
-            danger
-            small
-            onPress={() => CartAction.delete('delete', item.productId)}>
+          <Button danger small onPress={() => removeProduct(item.productId)}>
             <Text>削除する</Text>
           </Button>
         </Right>

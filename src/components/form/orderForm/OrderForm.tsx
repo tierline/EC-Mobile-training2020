@@ -3,8 +3,8 @@ import React, {createContext} from 'react';
 import {useForm, Controller} from 'react-hook-form';
 import {Text} from 'native-base';
 import {TextInput, View, Button} from 'react-native';
-import OrderAction from '../../../api/member/OrderAction';
 import {useNavigation} from '@react-navigation/native';
+import Api from '../../../api/Api';
 
 // import InputMemberName from './textInput/InputMemberName';
 
@@ -15,11 +15,7 @@ const OrderForm = () => {
   const nav = useNavigation();
 
   const onSubmit = (data: any) =>
-    OrderAction.save(data).then((res) => {
-      nav.navigate('Complete', {
-        orderId: res,
-      });
-    });
+    Api.saveOrderDetail('/api/member/order/save', data, nav);
 
   return (
     // <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>

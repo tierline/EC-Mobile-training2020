@@ -9,7 +9,6 @@ const OrderFormScreen = () => {
       <Content style={styles.form}>
         <OrderForm />
       </Content>
-      {/* <Button full danger onPress={() => navigation.navigate('Complete')}> */}
     </Container>
   );
 };

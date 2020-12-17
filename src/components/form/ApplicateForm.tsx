@@ -3,8 +3,8 @@ import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import {useNavigation} from '@react-navigation/native';
 import {FormData} from '../../interface/Interface';
-import MemberAction from '../../api/member/MemberAction';
 import Member from '../../domain/Member';
+import Api from '../../api/Api';
 
 const ApplicateForm = () => {
   const {control, handleSubmit, errors} = useForm();
@@ -16,11 +16,11 @@ const ApplicateForm = () => {
 
   const onSubmit = (formData: FormData) => {
     const member = new Member(formData.email, formData.password);
-    MemberAction.applicate(member, navi, '/applicate');
+    Api.post('/api/member/applicate', member, navi);
   };
 
   return (
-    <View>
+    <View style={styles.content}>
       <Text style={styles.label}>メールアドレス</Text>
       {errors.email && <Text style={styles.error}>正しく入力してください</Text>}
       <Controller
@@ -37,7 +37,7 @@ const ApplicateForm = () => {
           required: true,
           pattern: /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
         }}
-        defaultValue="abc@example.com"
+        defaultValue=""
       />
 
       <Text style={styles.label}>パスワード</Text>
@@ -57,7 +57,7 @@ const ApplicateForm = () => {
         )}
         name="password"
         rules={{required: true, minLength: 4}}
-        defaultValue="1234"
+        defaultValue=""
       />
       <View style={styles.button}>
         <Button title="新規登録" onPress={handleSubmit(onSubmit)} />
@@ -72,6 +72,9 @@ const ApplicateForm = () => {
   );
 };
 const styles = StyleSheet.create({
+  constent: {
+    flex: 2,
+  },
   label: {
     marginLeft: 10,
   },

@@ -1,27 +1,32 @@
 import React from 'react';
-import {Body, Button, Container, Content, Text} from 'native-base';
+import {View} from 'react-native';
+import {Body, Button, Container, Text} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
 import {StyleSheet} from 'react-native';
 import ApplicateForm from '../components/form/ApplicateForm';
 const ApplicateScreen = () => {
   const navigation = useNavigation();
   return (
-    <Container>
-      <Content style={styles.loginForm}>
+    <Container style={styles.container}>
+      <View style={styles.loginForm}>
         <ApplicateForm />
-      </Content>
-      <Content style={styles.home}>
+      </View>
+      <View style={styles.home}>
         <Body>
           <Button success onPress={() => navigation.navigate('Home')}>
             <Text>---Home---</Text>
           </Button>
         </Body>
-      </Content>
+      </View>
     </Container>
   );
 };
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   loginForm: {
+    flex: 3,
     marginTop: 30,
   },
   home: {

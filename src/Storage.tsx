@@ -1,5 +1,5 @@
 class Storage {
-  private memory
+  private memory: any;
   constructor() {
     this.memory = new Map();
   }

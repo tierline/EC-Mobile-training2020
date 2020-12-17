@@ -1,6 +1,5 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {Button, Container, Content, Text, Body, Row} from 'native-base';
+import {Button, Container, Content, Text, Body} from 'native-base';
 import NavBarBottom from '../components/nav/NavBarBottom';
 import {useNavigation} from '@react-navigation/native';
 
@@ -22,5 +21,4 @@ const OrderScreen = () => {
     </Container>
   );
 };
-const styles = StyleSheet.create({});
 export default OrderScreen;

@@ -1,21 +1,12 @@
 import React from 'react';
-import {Body, Button, Container, Content, Text} from 'native-base';
-import {useNavigation} from '@react-navigation/native';
+import {Container, Content} from 'native-base';
 import LoginForm from '../components/form/LoginForm';
 import {StyleSheet} from 'react-native';
 const LoginScreen = () => {
-  const navigation = useNavigation();
   return (
     <Container>
       <Content style={styles.loginForm}>
         <LoginForm />
-      </Content>
-      <Content style={styles.home}>
-        <Body>
-          <Button success onPress={() => navigation.navigate('Home')}>
-            <Text>---Home---</Text>
-          </Button>
-        </Body>
       </Content>
     </Container>
   );
@@ -26,7 +17,6 @@ const styles = StyleSheet.create({
   },
   home: {
     flex: 1,
-    marginTop: 30,
   },
 });
 
