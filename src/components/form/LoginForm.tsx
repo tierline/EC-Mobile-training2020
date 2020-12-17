@@ -65,7 +65,7 @@ const LoginForm = () => {
       <View style={styles.button}>
         <Button
           title="新規登録画面へ"
-          onPress={() => navigation.navigate('Applicate')}
+          onPress={() => navigation.navigate('MemberApplicate')}
         />
       </View>
     </View>

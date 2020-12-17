@@ -47,7 +47,7 @@ const ItemList = () => {
             <Right>
               <Button
                 onPress={() =>
-                  navigation.navigate('Detail', {
+                  navigation.navigate('ProductDetail', {
                     name: item.name,
                     price: item.price,
                     description: item.description,
