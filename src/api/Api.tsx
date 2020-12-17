@@ -4,13 +4,14 @@ import Storage from '../Storage';
 import Url from './Url';
 
 export default class Api {
-  static post(request: string, data: object, navi: Function) {
+  static post(request: string, data: any, navi: Function) {
     const url = Url.get(request);
     axios
       .post(url, data)
       .then((res) => {
         Storage.setAuth(res.data);
         if (res.data) {
+          Storage.setEmail(data.email);
           navi();
         } else {
           Alert.alert('メールアドレスかパスワードが違います');
@@ -78,6 +79,19 @@ export default class Api {
       })
       .catch(() => {
         Alert.alert('通信エラー,,saveOder');
+      });
+  }
+
+  static fetchOrderHistory(request: string, email: object, setState: Function) {
+    const url = Url.get(request);
+    axios
+      .post(url, email)
+      .then((res) => {
+        console.log(res.data);
+        setState(res.data);
+      })
+      .catch(() => {
+        Alert.alert('通信エラー,,fetchOrderHistory');
       });
   }
 }

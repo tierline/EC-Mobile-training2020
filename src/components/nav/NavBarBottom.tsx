@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
-import {StyleSheet} from 'react-native';
-import {Content, Footer, FooterTab, Button, Text} from 'native-base';
+import React from 'react';
+import {Footer, FooterTab, Button, Text} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
 import Storage from '../../Storage';
 const NavBarBottom = () => {
@@ -28,5 +27,4 @@ const NavBarBottom = () => {
     </Footer>
   );
 };
-const styles = StyleSheet.create({});
 export default NavBarBottom;

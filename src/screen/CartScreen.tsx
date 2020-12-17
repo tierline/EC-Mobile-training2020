@@ -1,27 +1,37 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {Container, Content, Text, Button, Body} from 'native-base';
+import {View, StyleSheet} from 'react-native';
+import {Text, Button, Body} from 'native-base';
 import NavBarBottom from '../components/nav/NavBarBottom';
 import {useNavigation} from '@react-navigation/native';
 import CartItemList from '../components/list/CartItemList';
 
 const CartScreen = () => {
   const navigation = useNavigation();
-
   return (
-    <Container>
-      <Content>
+    <View style={styles.container}>
+      <View style={styles.itemList}>
+        <CartItemList />
+      </View>
+      <View style={styles.button}>
         <Body>
-          <CartItemList />
-          <Button primary onPress={() => navigation.navigate('OrderForm')}>
+          <Button full primary onPress={() => navigation.navigate('OrderForm')}>
             <Text>注文する</Text>
           </Button>
         </Body>
-      </Content>
+      </View>
       <NavBarBottom />
-    </Container>
+    </View>
   );
 };
-
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  itemList: {
+    flex: 8,
+  },
+  button: {
+    flex: 1,
+  },
+});
 export default CartScreen;

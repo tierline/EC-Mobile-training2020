@@ -14,7 +14,7 @@ const ApplicateScreen = () => {
       <View style={styles.home}>
         <Body>
           <Button success onPress={() => navigation.navigate('Home')}>
-            <Text>---Home---</Text>
+            <Text>商品一覧へ</Text>
           </Button>
         </Body>
       </View>
