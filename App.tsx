@@ -8,6 +8,7 @@ import CompleteScreen from './src/screen/CompleteScreen';
 import LoginScreen from './src/screen/LoginScreen';
 import ApplicateScreen from './src/screen/ApplicateScreen';
 import MyPageScreen from './src/screen/MyPageScreen';
+import ProductDetailScreen from './src/screen/ProductDetailScreen';
 
 const App = () => {
   const Stack = createStackNavigator();
@@ -18,6 +19,7 @@ const App = () => {
         <Stack.Screen name="Applicate" component={ApplicateScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Cart" component={CartScreen} />
+        <Stack.Screen name="ProductDetail" component={ProductDetailScreen} />
         <Stack.Screen name="OrderForm" component={OrderFormScreen} />
         <Stack.Screen name="Complete" component={CompleteScreen} />
         <Stack.Screen name="MyPage" component={MyPageScreen} />
