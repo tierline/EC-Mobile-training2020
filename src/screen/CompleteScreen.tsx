@@ -28,7 +28,7 @@ const CompleteScreen = ({route}: any) => {
   const renderItems = ({item}: any) => {
     return (
       <List>
-        <ListItem noIndent style={{backgroundColor: '#fde3e2'}}>
+        <ListItem noIndent>
           <Left>
             <Text>{item.name}</Text>
           </Left>
@@ -48,7 +48,7 @@ const CompleteScreen = ({route}: any) => {
       <Content>
         <Text>注文番号{orderId}</Text>
         <List>
-          <ListItem noIndent style={{backgroundColor: '#cde1f9'}}>
+          <ListItem noIndent>
             <Left>
               <Text>注文日</Text>
             </Left>
@@ -56,7 +56,7 @@ const CompleteScreen = ({route}: any) => {
               <Text>{orderDetail.date}</Text>
             </Body>
           </ListItem>
-          <ListItem noIndent style={{backgroundColor: '#cde1f9'}}>
+          <ListItem noIndent>
             <Left>
               <Text>お名前</Text>
             </Left>
@@ -64,7 +64,7 @@ const CompleteScreen = ({route}: any) => {
               <Text>{orderDetail.name}様</Text>
             </Body>
           </ListItem>
-          <ListItem noIndent style={{backgroundColor: '#cde1f9'}}>
+          <ListItem noIndent>
             <Left>
               <Text>お届け先</Text>
             </Left>
@@ -72,7 +72,7 @@ const CompleteScreen = ({route}: any) => {
               <Text>{orderDetail.address}</Text>
             </Body>
           </ListItem>
-          <ListItem noIndent style={{backgroundColor: '#cde1f9'}}>
+          <ListItem noIndent>
             <Left>
               <Text>メールアドレス</Text>
             </Left>
@@ -80,7 +80,7 @@ const CompleteScreen = ({route}: any) => {
               <Text>{orderDetail.email}</Text>
             </Body>
           </ListItem>
-          <ListItem noIndent style={{backgroundColor: '#cde1f9'}}>
+          <ListItem noIndent>
             <Left>
               <Text>電話番号</Text>
             </Left>
@@ -88,7 +88,7 @@ const CompleteScreen = ({route}: any) => {
               <Text>{orderDetail.phone}</Text>
             </Body>
           </ListItem>
-          <ListItem noIndent style={{backgroundColor: '#cde1f9'}}>
+          <ListItem noIndent>
             <Left>
               <Text>合計金額</Text>
             </Left>
@@ -103,11 +103,12 @@ const CompleteScreen = ({route}: any) => {
           renderItem={renderItems}
           keyExtractor={(item, index) => index.toString()}
         />
-        <Button full onPress={() => nav.navigate('Home')}>
-          <Text>Home</Text>
-        </Button>
       </Content>
+      <Button full onPress={() => nav.navigate('Home')}>
+        <Text>Home</Text>
+      </Button>
     </Container>
   );
 };
+
 export default CompleteScreen;
