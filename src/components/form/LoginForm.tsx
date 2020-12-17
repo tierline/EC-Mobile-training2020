@@ -37,7 +37,7 @@ const LoginForm = () => {
           required: true,
           pattern: /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
         }}
-        defaultValue="abc@example.com"
+        defaultValue="test@example.com"
       />
 
       <Text style={styles.label}>パスワード</Text>
@@ -57,7 +57,7 @@ const LoginForm = () => {
         )}
         name="password"
         rules={{required: true, minLength: 4}}
-        defaultValue="1234"
+        defaultValue="test"
       />
       <View style={styles.button}>
         <Button title="ログイン" onPress={handleSubmit(onSubmit)} />

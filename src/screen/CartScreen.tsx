@@ -1,5 +1,4 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
 import {Container, Content, Text, Button, Body} from 'native-base';
 import NavBarBottom from '../components/nav/NavBarBottom';
 import {useNavigation} from '@react-navigation/native';
@@ -23,5 +22,4 @@ const CartScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({});
 export default CartScreen;

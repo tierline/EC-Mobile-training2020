@@ -1,4 +1,3 @@
-
 export interface Description {
   route: {
     params: {
@@ -21,14 +20,4 @@ export interface Product {
   price: number;
   description: string;
   image_path: string;
-}
-
-export interface OrderFormData {
-  lastName: string;
-  firstName: string;
-  email: string;
-  phone: string;
-  address1: string;
-  address2: string;
-  dateNow: Date;
 }

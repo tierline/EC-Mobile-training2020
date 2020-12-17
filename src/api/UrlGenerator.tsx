@@ -1,4 +1,4 @@
-import { url } from '../settings/properties'
+import {url} from '../settings/properties';
 export default class UrlGenerator {
   static baseUrl = url();
 

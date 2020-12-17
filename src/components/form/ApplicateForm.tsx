@@ -1,13 +1,13 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
-import { useForm, Controller } from 'react-hook-form';
-import { useNavigation } from '@react-navigation/native';
-import { FormData } from '../../interface/Interface';
+import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
+import {useForm, Controller} from 'react-hook-form';
+import {useNavigation} from '@react-navigation/native';
+import {FormData} from '../../interface/Interface';
 import MemberAction from '../../api/member/MemberAction';
 import Member from '../../domain/Member';
 
 const ApplicateForm = () => {
-  const { control, handleSubmit, errors } = useForm();
+  const {control, handleSubmit, errors} = useForm();
   const navigation = useNavigation();
 
   const navi = () => {
@@ -25,7 +25,7 @@ const ApplicateForm = () => {
       {errors.email && <Text style={styles.error}>正しく入力してください</Text>}
       <Controller
         control={control}
-        render={({ onChange, value }) => (
+        render={({onChange, value}) => (
           <TextInput
             style={styles.input}
             onChangeText={(value) => onChange(value)}
@@ -47,7 +47,7 @@ const ApplicateForm = () => {
       )}
       <Controller
         control={control}
-        render={({ onChange, value }) => (
+        render={({onChange, value}) => (
           <TextInput
             style={styles.input}
             secureTextEntry={true}
@@ -56,7 +56,7 @@ const ApplicateForm = () => {
           />
         )}
         name="password"
-        rules={{ required: true, minLength: 4 }}
+        rules={{required: true, minLength: 4}}
         defaultValue="1234"
       />
       <View style={styles.button}>

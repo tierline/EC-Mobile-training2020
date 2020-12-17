@@ -1,31 +1,31 @@
-import React from 'react';
-import { Text, View } from 'native-base';
-import { useForm, Controller } from 'react-hook-form'
-import { StyleSheet, TextInput } from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import React, {useContext} from 'react';
+import {Text, View} from 'native-base';
+import {useForm, Controller} from 'react-hook-form';
+import {StyleSheet, TextInput} from 'react-native';
+import {FormContext} from '../OrderForm';
 
-const LastNameInput = () => {
-  const { control, errors } = useForm();
-
+const InputMemberName = () => {
+  const {control, errors} = useForm();
+  const formContext = useContext(FormContext);
   return (
-
-    <View
-      style={styles.view}>
-      <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
+    <View style={styles.view}>
+      <View style={{flex: 0.2, alignItems: 'flex-end'}}>
         <Text>名前</Text>
       </View>
-      <View style={{ flex: 0.8 }}>
+      <View style={{flex: 0.8}}>
         <Controller
           control={control}
-          render={({ onChange, onBlur, value }) => (
+          render={({onChange, onBlur, value}) => (
             <TextInput
               style={styles.textInput}
-              placeholder="お名前"
+              placeholder=""
               onBlur={onBlur}
               onChangeText={(value) => onChange(value)}
               value={value}
             />
           )}
-          name="name"
+          name={formContext.label}
           rules={{
             required: true,
             maxLength: 10,
@@ -33,18 +33,17 @@ const LastNameInput = () => {
           defaultValue=""
         />
         {errors.name && errors.name.type === 'required' && (
-          <Text style={{ color: 'red' }}>Nameは必須です。</Text>
+          <Text style={{color: 'red'}}>Nameは必須です。</Text>
         )}
         {errors.name && errors.name.type === 'maxLength' && (
-          <Text style={{ color: 'red' }}>
+          <Text style={{color: 'red'}}>
             Nameは10文字以内で入力してください。
           </Text>
         )}
       </View>
     </View>
-  )
-
-}
+  );
+};
 
 const styles = StyleSheet.create({
   view: {
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
     width: '80%',
     fontSize: 20,
     margin: '4%',
-  }
+  },
 });
 
-export default LastNameInput;
+export default InputMemberName;

@@ -58,7 +58,7 @@ const ItemList = () => {
             </Right>
           </CardItem>
         ) : (
-          <Text></Text>
+          <Text />
         )}
       </Card>
     );
