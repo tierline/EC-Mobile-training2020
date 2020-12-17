@@ -59,7 +59,7 @@ const OrderForm = () => {
               required: true,
               maxLength: 6,
             }}
-            defaultValue="tanaka"
+            defaultValue="田中"
           />
           {errors.lastName && errors.lastName.type === 'required' && (
             <Text style={{color: 'red'}}>姓は必須です。</Text>
@@ -104,7 +104,7 @@ const OrderForm = () => {
               required: true,
               maxLength: 6,
             }}
-            defaultValue="taro"
+            defaultValue="太郎"
           />
           {errors.firstName && errors.firstName.type === 'required' && (
             <Text style={{color: 'red'}}>名は必須です。</Text>
@@ -167,7 +167,142 @@ const OrderForm = () => {
           )}
         </View>
       </View>
-
+      {/* 電話番号 */}
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <View style={{flex: 0.2, alignItems: 'flex-end'}}>
+          <Text>電話番号</Text>
+        </View>
+        <View style={{flex: 0.8}}>
+          <Controller
+            control={control}
+            render={({onChange, onBlur, value}) => (
+              <TextInput
+                style={{
+                  borderBottomWidth: 1,
+                  borderBottomColor: '#ccc',
+                  width: '80%',
+                  fontSize: 20,
+                  margin: '4%',
+                }}
+                placeholder=""
+                onBlur={onBlur}
+                onChangeText={(value) => onChange(value)}
+                value={value}
+              />
+            )}
+            name="phone"
+            rules={{
+              required: true,
+              maxLength: 11,
+              pattern: /[0-9]*/,
+            }}
+            defaultValue="0000000000"
+          />
+          {errors.phone && errors.phone.type === 'required' && (
+            <Text style={{color: 'red'}}>電話番号は必須です。</Text>
+          )}
+          {errors.phone && errors.phone.type === 'maxLength' && (
+            <Text style={{color: 'red'}}>
+              電話番号は11文字以内で入力してください。
+            </Text>
+          )}
+        </View>
+      </View>
+      {/* 住所 */}
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <View style={{flex: 0.2, alignItems: 'flex-end'}}>
+          <Text>住所</Text>
+        </View>
+        <View style={{flex: 0.8}}>
+          <Controller
+            control={control}
+            render={({onChange, onBlur, value}) => (
+              <TextInput
+                style={{
+                  borderBottomWidth: 1,
+                  borderBottomColor: '#ccc',
+                  width: '80%',
+                  fontSize: 20,
+                  margin: '4%',
+                }}
+                placeholder=""
+                onBlur={onBlur}
+                onChangeText={(value) => onChange(value)}
+                value={value}
+              />
+            )}
+            name="address"
+            rules={{
+              required: true,
+              maxLength: 100,
+            }}
+            defaultValue="Kobe"
+          />
+          {errors.address && errors.address.type === 'required' && (
+            <Text style={{color: 'red'}}>住所は必須です。</Text>
+          )}
+          {errors.address && errors.address.type === 'maxLength' && (
+            <Text style={{color: 'red'}}>
+              住所は100文字以内で入力してください。
+            </Text>
+          )}
+        </View>
+      </View>
+      {/* 番地 */}
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <View style={{flex: 0.2, alignItems: 'flex-end'}}>
+          <Text>番地</Text>
+        </View>
+        <View style={{flex: 0.8}}>
+          <Controller
+            control={control}
+            render={({onChange, onBlur, value}) => (
+              <TextInput
+                style={{
+                  borderBottomWidth: 1,
+                  borderBottomColor: '#ccc',
+                  width: '80%',
+                  fontSize: 20,
+                  margin: '4%',
+                }}
+                placeholder=""
+                onBlur={onBlur}
+                onChangeText={(value) => onChange(value)}
+                value={value}
+              />
+            )}
+            name="address2"
+            rules={{
+              required: true,
+              maxLength: 100,
+            }}
+            defaultValue="00番地"
+          />
+          {errors.address2 && errors.address2.type === 'required' && (
+            <Text style={{color: 'red'}}>番地は必須です。</Text>
+          )}
+          {errors.address2 && errors.address2.type === 'maxLength' && (
+            <Text style={{color: 'red'}}>
+              番地は100文字以内で入力してください。
+            </Text>
+          )}
+        </View>
+      </View>
       <Button title="注文を確定する" onPress={handleSubmit(onSubmit)} />
     </View>
   );
