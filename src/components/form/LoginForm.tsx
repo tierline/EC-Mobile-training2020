@@ -4,7 +4,7 @@ import {useForm, Controller} from 'react-hook-form';
 import {useNavigation} from '@react-navigation/native';
 import {FormData} from '../../interface/Interface';
 import Member from '../../domain/Member';
-import MemberAction from '../../api/member/MemberAction';
+import Api from '../../api/Api';
 
 const LoginForm = () => {
   const {control, handleSubmit, errors} = useForm();
@@ -16,7 +16,7 @@ const LoginForm = () => {
 
   const onSubmit = (formData: FormData) => {
     const member = new Member(formData.email, formData.password);
-    MemberAction.applicate(member, navi, '/login');
+    Api.post('/api/member/login', member, navi);
   };
 
   return (
@@ -37,7 +37,7 @@ const LoginForm = () => {
           required: true,
           pattern: /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
         }}
-        defaultValue="abc@example.com"
+        defaultValue="test@example.com"
       />
 
       <Text style={styles.label}>パスワード</Text>
@@ -57,7 +57,7 @@ const LoginForm = () => {
         )}
         name="password"
         rules={{required: true, minLength: 4}}
-        defaultValue="1234"
+        defaultValue="test"
       />
       <View style={styles.button}>
         <Button title="ログイン" onPress={handleSubmit(onSubmit)} />

@@ -10,10 +10,10 @@ const OrderFormScreen = () => {
     <Container>
       <Content style={styles.form}>
         <OrderForm />
+      <Button full danger onPress={() => navigation.navigate('Complete')}>
       </Content>
-      {/* <Button full danger onPress={() => navigation.navigate('Complete')}> */}
-    </Container >
-  );
+    </Container>
+  )
 };
 const styles = StyleSheet.create({
   form: {
