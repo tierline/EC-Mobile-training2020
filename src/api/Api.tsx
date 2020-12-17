@@ -48,14 +48,9 @@ export default class Api {
 
   static addProductToCart(request: string, id: number) {
     const url = Url.get(`${request}/${id}`);
-    axios
-      .post(url, id)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch(() => {
-        Alert.alert('通信エラー,,add');
-      });
+    axios.post(url, id).catch(() => {
+      Alert.alert('通信エラー,,add');
+    });
   }
 
   static removeProductFromCart(request: string, id: number) {
@@ -70,15 +65,33 @@ export default class Api {
       });
   }
 
-  static saveOrderDetail(request: string) {
+  static saveOrderDetail(request: string, data: any, nav: any) {
     const url = Url.get(request);
     axios
-      .post(url)
-      .then(() => {
-        console.log('OK');
+      .post(url, data)
+      .then((res) => {
+        nav.navigate('Complete', {
+          orderId: res.data,
+        });
       })
       .catch(() => {
-        Alert.alert('通信エラー,,saveOder');
+        Alert.alert('通信エラー,,saveOrder');
+      });
+  }
+
+  static fetchOrderDetails(
+    request: string,
+    orderId: number,
+    setState: Function,
+  ) {
+    const url = Url.get(request + '/' + orderId);
+    axios
+      .get(url)
+      .then((res) => {
+        setState(res.data);
+      })
+      .catch(() => {
+        Alert.alert('通信エラー,,fetchOrder');
       });
   }
 

@@ -13,7 +13,6 @@ export default class OrderAction {
   //   API.post(this.mappingUrl, data, foo);
   static async save() {
     const url = Url.get(this.mappingUrl + 'save');
-    console.log('url:' + url);
     const res = await axios.post(url);
     console.log(res);
     return res.data;

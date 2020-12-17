@@ -1,18 +1,13 @@
 import axios from 'axios';
-import Url from '../api/Url';
+import Url from '../Url';
 
 export default class CartAction {
   static mappingUrl = '/api/member/cart/';
 
-  static async fetch(requestUrl: string, setState: Function) {
+  static async fetch(requestUrl: string) {
     const url = Url.get(this.mappingUrl + requestUrl);
-    try {
-      const cart = await axios.get(url);
-      setState(cart.data.items);
-      console.log('カート内の商品情報を取得しました' + cart.data.items);
-    } catch {
-      console.log('-----カート内の商品を取得できませんでした。-----');
-    }
+    const res = await axios.get(url);
+    return res.data;
   }
 
   static async add(requestUrl: string, id: number) {

@@ -1,6 +1,5 @@
 import React from 'react';
-import {Body, Button, Container, Content, Text} from 'native-base';
-import NavBar from '../components/nav/NavBar';
+import {Container, Content} from 'native-base';
 import NavBarBottom from '../components/nav/NavBarBottom';
 import OrderList from '../components/list/OrderList';
 
