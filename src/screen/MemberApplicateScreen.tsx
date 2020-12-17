@@ -3,13 +3,13 @@ import {View} from 'react-native';
 import {Body, Button, Container, Text} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
 import {StyleSheet} from 'react-native';
-import ApplicateForm from '../components/form/ApplicateForm';
+import MemberApplicateForm from '../components/form/MemberApplicateForm';
 const ApplicateScreen = () => {
   const navigation = useNavigation();
   return (
     <Container style={styles.container}>
       <View style={styles.loginForm}>
-        <ApplicateForm />
+        <MemberApplicateForm />
       </View>
       <View style={styles.home}>
         <Body>

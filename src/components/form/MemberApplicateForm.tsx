@@ -6,7 +6,7 @@ import {FormData} from '../../interface/Interface';
 import Member from '../../domain/Member';
 import Api from '../../api/Api';
 
-const ApplicateForm = () => {
+const MemberApplicateForm = () => {
   const {control, handleSubmit, errors} = useForm();
   const navigation = useNavigation();
 
@@ -20,7 +20,7 @@ const ApplicateForm = () => {
   };
 
   return (
-    <View style={styles.content}>
+    <View>
       <Text style={styles.label}>メールアドレス</Text>
       {errors.email && <Text style={styles.error}>正しく入力してください</Text>}
       <Controller
@@ -94,4 +94,4 @@ const styles = StyleSheet.create({
     color: 'red',
   },
 });
-export default ApplicateForm;
+export default MemberApplicateForm;
