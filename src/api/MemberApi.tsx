@@ -1,10 +1,10 @@
 import axios from 'axios';
 import {Alert} from 'react-native';
 import Storage from '../Storage';
-import Url from './Url';
+import UrlApi from './UrlApi';
 export default class MemberApi {
   static login(request: string, data: any, navi: Function) {
-    const url = Url.get(request);
+    const url = UrlApi.get(request);
     axios.post(url, data).then((res) => {
       Storage.setAuth(res.data);
       if (res.data) {
@@ -16,7 +16,7 @@ export default class MemberApi {
     });
   }
   static applicate(request: string, data: any, navi: Function) {
-    const url = Url.get(request);
+    const url = UrlApi.get(request);
     axios
       .post(url, data)
       .then((res) => {

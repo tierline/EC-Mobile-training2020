@@ -4,7 +4,7 @@ import {Card, CardItem, Text, Button, Left, Body, Right} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
 import {FlatList} from 'react-native';
 import Storage from '../../Storage';
-import Url from '../../api/Url';
+import UrlApi from '../../api/UrlApi';
 import {Product} from '../../interface/Interface';
 import ProductApi from '../../api/ProductApi';
 import CarApi from '../../api/CarApi';
@@ -35,7 +35,7 @@ const ItemList = () => {
           <Image
             style={styles.image}
             resizeMode={'contain'}
-            source={{uri: Url.image(item.image_path)}}
+            source={{uri: UrlApi.image(item.image_path)}}
           />
         </CardItem>
         {Storage.getAuth() ? (

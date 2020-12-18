@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Card, CardItem, Text, Right, Button, H3} from 'native-base';
 import {FlatList, Image, StyleSheet} from 'react-native';
 import CartApi from '../../api/CarApi';
-import Url from '../../api/Url';
+import UrlApi from '../../api/UrlApi';
 
 const CartItemList = () => {
   const [items, setItems] = useState([]);
@@ -28,7 +28,7 @@ const CartItemList = () => {
           <Image
             style={styles.image}
             resizeMode={'contain'}
-            source={{uri: Url.image(item.productImage)}}
+            source={{uri: UrlApi.image(item.productImage)}}
           />
           <Right>
             <H3>
