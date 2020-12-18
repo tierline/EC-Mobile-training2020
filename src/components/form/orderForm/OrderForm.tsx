@@ -241,17 +241,17 @@ const OrderForm = () => {
                 value={value}
               />
             )}
-            name="address"
+            name="address1"
             rules={{
               required: true,
               maxLength: 100,
             }}
             defaultValue="Kobe"
           />
-          {errors.address && errors.address.type === 'required' && (
+          {errors.address1 && errors.address1.type === 'required' && (
             <Text style={{color: 'red'}}>住所は必須です。</Text>
           )}
-          {errors.address && errors.address.type === 'maxLength' && (
+          {errors.address1 && errors.address1.type === 'maxLength' && (
             <Text style={{color: 'red'}}>
               住所は100文字以内で入力してください。
             </Text>
