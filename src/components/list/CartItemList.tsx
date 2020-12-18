@@ -5,7 +5,7 @@ import CartApi from '../../api/CarApi';
 import UrlApi from '../../api/UrlApi';
 
 const CartItemList = () => {
-  const [items, setItems] = useState([]);
+  const [cartItems, setItems] = useState([]);
 
   useEffect(() => {
     let unmounted = false;
@@ -15,7 +15,7 @@ const CartItemList = () => {
     return () => {
       unmounted = true;
     };
-  }, [items]);
+  }, [cartItems]);
 
   const removeProduct = (productId: number) => {
     CartApi.removeProductFromCart('/api/member/cart/delete', productId);
@@ -46,7 +46,7 @@ const CartItemList = () => {
 
   return (
     <FlatList
-      data={items}
+      data={cartItems}
       renderItem={renderItem}
       keyExtractor={(item, index) => index.toString()}
     />
@@ -55,7 +55,6 @@ const CartItemList = () => {
 
 const styles = StyleSheet.create({
   image: {
-    // flex: 1,
     alignSelf: 'stretch',
     width: 100,
     height: 100,

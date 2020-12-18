@@ -53,4 +53,22 @@ export default class CartApi {
         Alert.alert('通信エラー,,remove');
       });
   }
+
+  /**
+   *
+   * カート内
+   *
+   * @param request
+   */
+  static hasItem(request: string, setState: Function) {
+    const url = UrlApi.get(request);
+    axios
+      .get(url)
+      .then((res) => {
+        setState(res.data);
+      })
+      .catch(() => {
+        Alert.alert('通信エラー,,hasItem');
+      });
+  }
 }
