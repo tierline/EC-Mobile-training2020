@@ -1,10 +1,10 @@
 import axios from 'axios';
 import {Alert} from 'react-native';
-import Url from './Url';
+import UrlApi from './UrlApi';
 
 export default class ProductApi {
   static fetchProduct(request: string, setState: Function) {
-    const url = Url.get(request);
+    const url = UrlApi.get(request);
     axios
       .get(url)
       .then((res) => {

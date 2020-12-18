@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {Alert} from 'react-native';
-import Url from './Url';
+import UrlApi from './UrlApi';
 
 export default class OrderApi {
   /**
@@ -12,7 +12,7 @@ export default class OrderApi {
    * @param nav 保存後に注文完了ページに遷移させるためのナヴィゲーション
    */
   static saveOrderDetail(request: string, data: any, nav: any) {
-    const url = Url.get(request);
+    const url = UrlApi.get(request);
     axios
       .post(url, data)
       .then((res) => {
@@ -37,7 +37,7 @@ export default class OrderApi {
     orderId: number,
     setState: Function,
   ) {
-    const url = Url.get(request + '/' + orderId);
+    const url = UrlApi.get(request + '/' + orderId);
     axios
       .get(url)
       .then((res) => {
@@ -50,7 +50,7 @@ export default class OrderApi {
   }
 
   static fetchOrderHistory(request: string, email: object, setState: Function) {
-    const url = Url.get(request);
+    const url = UrlApi.get(request);
     axios
       .post(url, email)
       .then((res) => {

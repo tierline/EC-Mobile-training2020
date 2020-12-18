@@ -12,7 +12,7 @@ import {
 } from 'native-base';
 import {Description} from '../interface/Interface';
 import NavBarBottom from '../components/nav/NavBarBottom';
-import UrlGenerator from '../api/Url';
+import UrlGenerator from '../api/UrlApi';
 
 const ProductDetailScreen = ({route}: Description) => {
   const {name, price, description, imagePath} = route.params;

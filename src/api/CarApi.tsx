@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {Alert} from 'react-native';
-import Url from './Url';
+import UrlApi from './UrlApi';
 
 export default class CartApi {
   /**
@@ -10,7 +10,7 @@ export default class CartApi {
    * @param setState
    */
   static fetchCart(request: string, setState: Function) {
-    const url = Url.get(request);
+    const url = UrlApi.get(request);
     axios
       .get(url)
       .then((res) => {
@@ -29,7 +29,7 @@ export default class CartApi {
    * @param id
    */
   static addProductToCart(request: string, id: number) {
-    const url = Url.get(`${request}/${id}`);
+    const url = UrlApi.get(`${request}/${id}`);
     axios.post(url, id).catch(() => {
       Alert.alert('通信エラー,,add');
     });
@@ -43,7 +43,7 @@ export default class CartApi {
    * @param id
    */
   static removeProductFromCart(request: string, id: number) {
-    const url = Url.get(`${request}/${id}`);
+    const url = UrlApi.get(`${request}/${id}`);
     axios
       .post(url)
       .then(() => {
