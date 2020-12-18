@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {Text, Button, Body} from 'native-base';
+import {Text, Button} from 'native-base';
 import NavBarBottom from '../components/nav/NavBarBottom';
 import {useNavigation} from '@react-navigation/native';
 import CartItemList from '../components/list/CartItemList';
