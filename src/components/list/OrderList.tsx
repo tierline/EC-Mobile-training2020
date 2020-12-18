@@ -3,6 +3,7 @@ import {FlatList, StyleSheet, View, Text} from 'react-native';
 import {Body, Card, CardItem, Thumbnail, Left} from 'native-base';
 import OrderApi from '../../api/OrderApi';
 import Storage from '../../Storage';
+import Url from '../../api/UrlApi';
 
 const OrderList = () => {
   const [items, setItems] = useState([]);
@@ -10,23 +11,23 @@ const OrderList = () => {
   const renderItems = ({item}: {item: any}) => {
     return (
       <View>
-        <Text>orderId:{item.orderId}</Text>
+        {/* <Text>orderId:{item.orderId}</Text> */}
         <Card>
           <CardItem>
             <Left>
               <Thumbnail
                 source={{
-                  uri:
-                    'https://assets.media-platform.com/gizmodo/dist/images/2019/04/19/20190418-google-tends-to-bully-other-browsers-01-w1280.jpg',
+                  uri: Url.image(item.imagePath),
                 }}
               />
               <Body>
-                <Text>name:{item.name}</Text>
+                <Text>商品名:{item.imagePath}</Text>
+                <Text>商品名:{item.name}</Text>
                 <Text>
-                  price:{item.unitPrice} quantity:{item.quantity}
+                  価格:{item.unitPrice} 個数:{item.quantity}
                 </Text>
-                <Text>total:{item.unitPrice * item.quantity}</Text>
-                <Text>date:{item.date}</Text>
+                <Text>合計金額:{item.unitPrice * item.quantity}円</Text>
+                <Text>注文日:{item.date}</Text>
               </Body>
             </Left>
           </CardItem>
@@ -40,13 +41,6 @@ const OrderList = () => {
   }, []);
 
   return (
-    // <View>
-    //   <Body>
-    //     <Text>注文履歴</Text>
-    //     {/* <Text>ID:{items}</Text> */}
-    //     <Text>{Storage.getEmail()}</Text>
-    //   </Body>
-    // </View>
     <View>
       <Body>
         <Text>注文履歴</Text>
