@@ -13,7 +13,7 @@ import {
   H2,
 } from 'native-base';
 import {useNavigation} from '@react-navigation/native';
-import Api from '../api/Api';
+import OrderApi from '../api/OrderApi';
 
 const CompleteScreen = ({route}: any) => {
   const [orderItems, setItems] = useState([]);
@@ -22,8 +22,16 @@ const CompleteScreen = ({route}: any) => {
   const {orderId} = route.params;
 
   useEffect(() => {
-    Api.fetchOrderDetails('/api/member/order/orderDetails', orderId, setOrder);
-    Api.fetchOrderDetails('/api/member/order/itemDetails', orderId, setItems);
+    OrderApi.fetchOrderDetails(
+      '/api/member/order/orderDetails',
+      orderId,
+      setOrder,
+    );
+    OrderApi.fetchOrderDetails(
+      '/api/member/order/itemDetails',
+      orderId,
+      setItems,
+    );
   }, [orderId]);
 
   const renderItems = ({item}: any) => {

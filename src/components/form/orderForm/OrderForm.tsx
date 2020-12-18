@@ -4,7 +4,7 @@ import {useForm, Controller} from 'react-hook-form';
 import {Text, Button} from 'native-base';
 import {TextInput, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import Api from '../../../api/Api';
+import OrderApi from '../../../api/OrderApi';
 
 // import InputMemberName from './textInput/InputMemberName';
 
@@ -15,7 +15,7 @@ const OrderForm = () => {
   const nav = useNavigation();
 
   const onSubmit = (data: any) =>
-    Api.saveOrderDetail('/api/member/order/save', data, nav);
+    OrderApi.saveOrderDetail('/api/member/order/save', data, nav);
 
   return (
     // <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>

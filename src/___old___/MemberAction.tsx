@@ -3,13 +3,13 @@ import Member from '../domain/Member';
 // import Storage from '../../Storage';
 // import {Alert} from 'react-native';
 import Url from '../api/Url';
-import Api from '../api/Api';
+import MemberApi from '../api/MemberApi';
 export default class MemberAction {
   static baseRequest: string = '/api/member';
 
   static async applicate(member: Member, navi: any, request: string) {
     const postUrl = Url.get(this.baseRequest + request);
-    Api.post(postUrl, member, navi);
+    MemberApi.post(postUrl, member, navi);
     // const url = UrlGenerator.api(this.baseRequest + request);
     // try {
     //   const res = await axios.post(url, member);

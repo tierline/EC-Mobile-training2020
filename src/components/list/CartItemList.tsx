@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Card, CardItem, Text, Right, Button, H3} from 'native-base';
 import {FlatList, Image, StyleSheet} from 'react-native';
-import Api from '../../api/Api';
+import CartApi from '../../api/CarApi';
 import Url from '../../api/Url';
 
 const CartItemList = () => {
@@ -10,7 +10,7 @@ const CartItemList = () => {
   useEffect(() => {
     let unmounted = false;
     if (!unmounted) {
-      Api.fetchCart('/api/member/cart/list', setItems);
+      CartApi.fetchCart('/api/member/cart/list', setItems);
     }
     return () => {
       unmounted = true;
@@ -18,7 +18,7 @@ const CartItemList = () => {
   }, [items]);
 
   const removeProduct = (productId: number) => {
-    Api.removeProductFromCart('/api/member/cart/delete', productId);
+    CartApi.removeProductFromCart('/api/member/cart/delete', productId);
   };
 
   const renderItem = ({item}: {item: any}) => {

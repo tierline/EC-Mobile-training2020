@@ -1,6 +1,6 @@
 // import axios from 'axios';
 // import {Alert} from 'react-native';
-import Api from '../api/Api';
+import MemberApi from '../api/MemberApi';
 import Url from '../api/Url';
 
 export default class ProductAction {
@@ -8,7 +8,7 @@ export default class ProductAction {
 
   static async fetch(state: Function) {
     const url = Url.get(this.baseRequest);
-    Api.getProduct(url, state);
+    MemberApi.getProduct(url, state);
     // try {
     //   const res = await axios.get(url);
     //   return res.data;
