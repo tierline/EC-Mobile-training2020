@@ -12,13 +12,13 @@ const CartScreen = () => {
       <View style={styles.itemList}>
         <CartItemList />
       </View>
-      <View style={styles.button}>
-        <Body>
-          <Button full primary onPress={() => navigation.navigate('OrderForm')}>
-            <Text>注文する</Text>
-          </Button>
-        </Body>
-      </View>
+      <Button
+        full
+        primary
+        large
+        onPress={() => navigation.navigate('OrderForm')}>
+        <Text>注文する</Text>
+      </Button>
       <NavBarBottom />
     </View>
   );
@@ -29,9 +29,6 @@ const styles = StyleSheet.create({
   },
   itemList: {
     flex: 8,
-  },
-  button: {
-    flex: 1,
   },
 });
 export default CartScreen;

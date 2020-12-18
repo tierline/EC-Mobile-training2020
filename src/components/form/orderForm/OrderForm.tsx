@@ -1,8 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {createContext} from 'react';
 import {useForm, Controller} from 'react-hook-form';
-import {Text} from 'native-base';
-import {TextInput, View, Button} from 'react-native';
+import {Text, Button} from 'native-base';
+import {TextInput, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Api from '../../../api/Api';
 
@@ -303,7 +303,11 @@ const OrderForm = () => {
           )}
         </View>
       </View>
-      <Button title="注文を確定する" onPress={handleSubmit(onSubmit)} />
+      <View>
+        <Button primary onPress={handleSubmit(onSubmit)}>
+          <Text>注文する</Text>
+        </Button>
+      </View>
     </View>
   );
 };

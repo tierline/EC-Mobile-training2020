@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 import {
   Button,
   Container,
@@ -9,7 +9,6 @@ import {
   ListItem,
   Left,
   Body,
-  Right,
   H1,
   H2,
 } from 'native-base';
@@ -34,12 +33,14 @@ const CompleteScreen = ({route}: any) => {
           <Left>
             <Text>{item.name}</Text>
           </Left>
+          {/* <Right> */}
           <Body>
-            <Text>{item.price}円</Text>
+            <Text>
+              {item.price}円 {item.quantity}個
+            </Text>
+            <Text />
           </Body>
-          <Right>
-            <Text>{item.quantity}個</Text>
-          </Right>
+          {/* </Right> */}
         </ListItem>
       </List>
     );
@@ -49,7 +50,7 @@ const CompleteScreen = ({route}: any) => {
     <Container>
       <Content>
         <Content style={{paddingTop: '2%'}}>
-          <H1>ご注文ありがとうございました</H1>
+          <H1>ご注文ありがとうございました。</H1>
         </Content>
         <List>
           <ListItem noIndent>
@@ -92,14 +93,6 @@ const CompleteScreen = ({route}: any) => {
               <Text>{orderDetail.phone}</Text>
             </Body>
           </ListItem>
-          <ListItem noIndent>
-            <Left>
-              <Text>合計金額</Text>
-            </Left>
-            <Body>
-              <Text>{orderDetail.price}円</Text>
-            </Body>
-          </ListItem>
         </List>
         <Content style={{paddingTop: '4%'}}>
           <Text>
@@ -112,6 +105,9 @@ const CompleteScreen = ({route}: any) => {
           renderItem={renderItems}
           keyExtractor={(item, index) => index.toString()}
         />
+        <View style={styles.totalPrice}>
+          <H2 style={{fontWeight: '500'}}>合計金額{orderDetail.price}円</H2>
+        </View>
       </Content>
       <Button full onPress={() => nav.navigate('Home')}>
         <Text>Home</Text>
@@ -119,5 +115,13 @@ const CompleteScreen = ({route}: any) => {
     </Container>
   );
 };
+
+const styles = StyleSheet.create({
+  totalPrice: {
+    alignItems: 'center',
+    backgroundColor: '#eee',
+    padding: 25,
+  },
+});
 
 export default CompleteScreen;
