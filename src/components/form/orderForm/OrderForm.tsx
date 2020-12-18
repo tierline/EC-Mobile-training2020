@@ -25,6 +25,14 @@ const OrderForm = () => {
     //   <Button title="注文を確定する" onPress={handleSubmit(onSubmit)} />
     // </View>
 
+    // <Form>
+    //   <InputMemberName />
+
+    //   <Button primary onPress={handleSubmit(onSubmit)}>
+    //     <Text>注文する</Text>
+    //   </Button>
+    // </Form>
+
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       {/* 姓 */}
       <View
