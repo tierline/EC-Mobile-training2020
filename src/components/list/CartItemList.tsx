@@ -7,8 +7,18 @@ const CartItemList = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    Api.fetchCart('/api/member/cart/list', setItems);
-  }, []);
+    let unmounted = false;
+    if (!unmounted) {
+      Api.fetchCart('/api/member/cart/list', setItems);
+    }
+    return () => {
+      unmounted = true;
+    };
+  }, [items]);
+
+  // useEffect(() => {
+  //   Api.fetchCart('/api/member/cart/list', setItems);
+  // }, [items]);
 
   const removeProduct = (productId: number) => {
     Api.removeProductFromCart('/api/member/cart/delete', productId);

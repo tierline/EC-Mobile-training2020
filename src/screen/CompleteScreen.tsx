@@ -10,6 +10,8 @@ import {
   Left,
   Body,
   Right,
+  H1,
+  H2,
 } from 'native-base';
 import {useNavigation} from '@react-navigation/native';
 import Api from '../api/Api';
@@ -46,7 +48,9 @@ const CompleteScreen = ({route}: any) => {
   return (
     <Container>
       <Content>
-        <Text>注文番号{orderId}</Text>
+        <Content style={{paddingTop: '2%'}}>
+          <H1>ご注文ありがとうございました</H1>
+        </Content>
         <List>
           <ListItem noIndent>
             <Left>
@@ -93,11 +97,16 @@ const CompleteScreen = ({route}: any) => {
               <Text>合計金額</Text>
             </Left>
             <Body>
-              <Text>{orderDetail.price}</Text>
+              <Text>{orderDetail.price}円</Text>
             </Body>
           </ListItem>
         </List>
-        <Text>ご注文された商品</Text>
+        <Content style={{paddingTop: '4%'}}>
+          <Text>
+            <H2>ご注文された商品</H2>
+          </Text>
+        </Content>
+
         <FlatList
           data={orderItems}
           renderItem={renderItems}
