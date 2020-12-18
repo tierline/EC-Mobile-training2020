@@ -1,43 +1,65 @@
-import {View, Text} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {Body} from 'native-base';
+import {FlatList, StyleSheet, View, Text} from 'react-native';
+import {Body, Card, CardItem, Thumbnail, Left} from 'native-base';
 import Api from '../../api/Api';
 import Storage from '../../Storage';
 
 const OrderList = () => {
-  const [items, setItems] = useState(0);
+  const [items, setItems] = useState([]);
 
-  //  const renderItems = ({item}: {item: any}) => {
-  //    return(
-
-  //    )
-  //  }
+  const renderItems = ({item}: {item: any}) => {
+    return (
+      <View>
+        <Text>orderId:{item.orderId}</Text>
+        <Card>
+          <CardItem>
+            <Left>
+              <Thumbnail
+                source={{
+                  uri:
+                    'https://assets.media-platform.com/gizmodo/dist/images/2019/04/19/20190418-google-tends-to-bully-other-browsers-01-w1280.jpg',
+                }}
+              />
+              <Body>
+                <Text>name:{item.name}</Text>
+                <Text>
+                  price:{item.unitPrice} quantity:{item.quantity}
+                </Text>
+                <Text>total:{item.unitPrice * item.quantity}</Text>
+                <Text>date:{item.date}</Text>
+              </Body>
+            </Left>
+          </CardItem>
+        </Card>
+      </View>
+    );
+  };
   useEffect(() => {
     const email = {email: Storage.getEmail()};
     Api.fetchOrderHistory('/api/member/order/history', email, setItems);
   }, []);
 
   return (
+    // <View>
+    //   <Body>
+    //     <Text>注文履歴</Text>
+    //     {/* <Text>ID:{items}</Text> */}
+    //     <Text>{Storage.getEmail()}</Text>
+    //   </Body>
+    // </View>
     <View>
       <Body>
         <Text>注文履歴</Text>
-        <Text>ID:{items}</Text>
-        <Text>{Storage.getEmail()}</Text>
       </Body>
+      <FlatList style={styles.list} data={items} renderItem={renderItems} />
     </View>
-    //    <FlatList
-    //     style={styles.list}
-    //    data={items}
-    //    renderItem={renderItems
-    //     keyExtractor={(item, index) => index.toString()}
-    //     />
   );
 };
 
-// const styles = StyleSheet.create({
-//   list: {
-//     margin: 10,
-//   },
-// });
+const styles = StyleSheet.create({
+  list: {
+    margin: 10,
+  },
+});
 
 export default OrderList;
