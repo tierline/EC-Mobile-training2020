@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList, StyleSheet, View, Text} from 'react-native';
 import {Body, Card, CardItem, Thumbnail, Left} from 'native-base';
-import Api from '../../api/Api';
+import OrderApi from '../../api/OrderApi';
 import Storage from '../../Storage';
 
 const OrderList = () => {
@@ -36,7 +36,7 @@ const OrderList = () => {
   };
   useEffect(() => {
     const email = {email: Storage.getEmail()};
-    Api.fetchOrderHistory('/api/member/order/history', email, setItems);
+    OrderApi.fetchOrderHistory('/api/member/order/history', email, setItems);
   }, []);
 
   return (

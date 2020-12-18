@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 import {
   Button,
   Container,
@@ -9,10 +9,11 @@ import {
   ListItem,
   Left,
   Body,
-  Right,
+  H1,
+  H2,
 } from 'native-base';
 import {useNavigation} from '@react-navigation/native';
-import Api from '../api/Api';
+import OrderApi from '../api/OrderApi';
 
 const CompleteScreen = ({route}: any) => {
   const [orderItems, setItems] = useState([]);
@@ -21,23 +22,33 @@ const CompleteScreen = ({route}: any) => {
   const {orderId} = route.params;
 
   useEffect(() => {
-    Api.fetchOrderDetails('/api/member/order/orderDetails', orderId, setOrder);
-    Api.fetchOrderDetails('/api/member/order/itemDetails', orderId, setItems);
+    OrderApi.fetchOrderDetails(
+      '/api/member/order/orderDetails',
+      orderId,
+      setOrder,
+    );
+    OrderApi.fetchOrderDetails(
+      '/api/member/order/itemDetails',
+      orderId,
+      setItems,
+    );
   }, [orderId]);
 
   const renderItems = ({item}: any) => {
     return (
       <List>
-        <ListItem noIndent style={{backgroundColor: '#fde3e2'}}>
+        <ListItem noIndent>
           <Left>
             <Text>{item.name}</Text>
           </Left>
+          {/* <Right> */}
           <Body>
-            <Text>{item.price}円</Text>
+            <Text>
+              {item.price}円 {item.quantity}個
+            </Text>
+            <Text />
           </Body>
-          <Right>
-            <Text>{item.quantity}個</Text>
-          </Right>
+          {/* </Right> */}
         </ListItem>
       </List>
     );
@@ -46,9 +57,11 @@ const CompleteScreen = ({route}: any) => {
   return (
     <Container>
       <Content>
-        <Text>注文番号{orderId}</Text>
+        <Content style={{paddingTop: '2%'}}>
+          <H1>ご注文ありがとうございました。</H1>
+        </Content>
         <List>
-          <ListItem noIndent style={{backgroundColor: '#cde1f9'}}>
+          <ListItem noIndent>
             <Left>
               <Text>注文日</Text>
             </Left>
@@ -56,7 +69,7 @@ const CompleteScreen = ({route}: any) => {
               <Text>{orderDetail.date}</Text>
             </Body>
           </ListItem>
-          <ListItem noIndent style={{backgroundColor: '#cde1f9'}}>
+          <ListItem noIndent>
             <Left>
               <Text>お名前</Text>
             </Left>
@@ -64,7 +77,7 @@ const CompleteScreen = ({route}: any) => {
               <Text>{orderDetail.name}様</Text>
             </Body>
           </ListItem>
-          <ListItem noIndent style={{backgroundColor: '#cde1f9'}}>
+          <ListItem noIndent>
             <Left>
               <Text>お届け先</Text>
             </Left>
@@ -72,7 +85,7 @@ const CompleteScreen = ({route}: any) => {
               <Text>{orderDetail.address}</Text>
             </Body>
           </ListItem>
-          <ListItem noIndent style={{backgroundColor: '#cde1f9'}}>
+          <ListItem noIndent>
             <Left>
               <Text>メールアドレス</Text>
             </Left>
@@ -80,7 +93,7 @@ const CompleteScreen = ({route}: any) => {
               <Text>{orderDetail.email}</Text>
             </Body>
           </ListItem>
-          <ListItem noIndent style={{backgroundColor: '#cde1f9'}}>
+          <ListItem noIndent>
             <Left>
               <Text>電話番号</Text>
             </Left>
@@ -88,26 +101,35 @@ const CompleteScreen = ({route}: any) => {
               <Text>{orderDetail.phone}</Text>
             </Body>
           </ListItem>
-          <ListItem noIndent style={{backgroundColor: '#cde1f9'}}>
-            <Left>
-              <Text>合計金額</Text>
-            </Left>
-            <Body>
-              <Text>{orderDetail.price}</Text>
-            </Body>
-          </ListItem>
         </List>
-        <Text>ご注文された商品</Text>
+        <Content style={{paddingTop: '4%'}}>
+          <Text>
+            <H2>ご注文された商品</H2>
+          </Text>
+        </Content>
+
         <FlatList
           data={orderItems}
           renderItem={renderItems}
           keyExtractor={(item, index) => index.toString()}
         />
-        <Button full onPress={() => nav.navigate('Home')}>
-          <Text>Home</Text>
-        </Button>
+        <View style={styles.totalPrice}>
+          <H2 style={{fontWeight: '500'}}>合計金額{orderDetail.price}円</H2>
+        </View>
       </Content>
+      <Button full onPress={() => nav.navigate('Home')}>
+        <Text>Home</Text>
+      </Button>
     </Container>
   );
 };
+
+const styles = StyleSheet.create({
+  totalPrice: {
+    alignItems: 'center',
+    backgroundColor: '#eee',
+    padding: 25,
+  },
+});
+
 export default CompleteScreen;

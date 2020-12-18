@@ -4,7 +4,7 @@ import {useForm, Controller} from 'react-hook-form';
 import {useNavigation} from '@react-navigation/native';
 import {FormData} from '../../interface/Interface';
 import Member from '../../domain/Member';
-import Api from '../../api/Api';
+import MemberApi from '../../api/MemberApi';
 
 const MemberApplicateForm = () => {
   const {control, handleSubmit, errors} = useForm();
@@ -16,7 +16,7 @@ const MemberApplicateForm = () => {
 
   const onSubmit = (formData: FormData) => {
     const member = new Member(formData.email, formData.password);
-    Api.post('/api/member/applicate', member, navi);
+    MemberApi.applicate('/api/member/applicate', member, navi);
   };
 
   return (

@@ -14,7 +14,7 @@ import {Description} from '../interface/Interface';
 import NavBarBottom from '../components/nav/NavBarBottom';
 import UrlGenerator from '../api/Url';
 
-const DetailsScreen = ({route}: Description) => {
+const ProductDetailScreen = ({route}: Description) => {
   const {name, price, description, imagePath} = route.params;
   return (
     <Container>
@@ -55,4 +55,4 @@ const DetailsScreen = ({route}: Description) => {
   );
 };
 
-export default DetailsScreen;
+export default ProductDetailScreen;

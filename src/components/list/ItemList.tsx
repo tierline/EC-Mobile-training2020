@@ -6,17 +6,18 @@ import {FlatList} from 'react-native';
 import Storage from '../../Storage';
 import Url from '../../api/Url';
 import {Product} from '../../interface/Interface';
-import Api from '../../api/Api';
+import ProductApi from '../../api/ProductApi';
+import CarApi from '../../api/CarApi';
 
 const ItemList = () => {
   const navigation = useNavigation();
   const [items, setItems] = useState([]);
   useEffect(() => {
-    Api.fetchProduct('/api/product', setItems);
+    ProductApi.fetchProduct('/api/product', setItems);
   }, []);
 
   const addProduct = (productId: number) => {
-    Api.addProductToCart('/api/member/cart/add', productId);
+    CarApi.addProductToCart('/api/member/cart/add', productId);
   };
 
   const renderItems = ({item}: {item: Product}) => {
