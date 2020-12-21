@@ -9,6 +9,7 @@ import LoginScreen from './src/screen/LoginScreen';
 import MemberApplicateScreen from './src/screen/MemberApplicateScreen';
 import MyPageScreen from './src/screen/MyPageScreen';
 import ProductDetailScreen from './src/screen/ProductDetailScreen';
+import OrderItemDetailScreen from './src/screen/OrderItemDetailScreen';
 
 const App = () => {
   const Stack = createStackNavigator();
@@ -26,6 +27,10 @@ const App = () => {
         <Stack.Screen name="OrderForm" component={OrderFormScreen} />
         <Stack.Screen name="Complete" component={CompleteScreen} />
         <Stack.Screen name="MyPage" component={MyPageScreen} />
+        <Stack.Screen
+          name="OrderItemDetail"
+          component={OrderItemDetailScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

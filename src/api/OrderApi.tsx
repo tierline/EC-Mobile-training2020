@@ -54,11 +54,23 @@ export default class OrderApi {
     axios
       .post(url, email)
       .then((res) => {
-        console.log(res.data);
+        console.log('OrderHistory', res.data);
         setState(res.data);
       })
       .catch(() => {
         Alert.alert('通信エラー,,fetchOrderHistory');
       });
+  }
+
+  static fetchOrderItemHistory(
+    request: string,
+    id: string,
+    setState: Function,
+  ) {
+    const url = UrlApi.get(`${request}/${id}`);
+    axios.get(url).then((res) => {
+      setState(res.data);
+      console.log('orderItem', res.data);
+    });
   }
 }
