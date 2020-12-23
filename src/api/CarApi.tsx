@@ -4,21 +4,28 @@ import UrlApi from './UrlApi';
 
 export default class CartApi {
   /**
+   *
    * カートの商品を取得する
    *
    * @param request
    * @param setState
+   * @param mounted
    */
-  static fetchCart(request: string, setState: Function) {
-    const url = UrlApi.get(request);
-    axios
-      .get(url)
-      .then((res) => {
-        setState(res.data.items);
-      })
-      .catch(() => {
-        console.log('-----カート内の商品を取得できませんでした。-----');
-      });
+  static async fetchCart(
+    request: string,
+    setState: Function,
+    mounted: boolean,
+  ) {
+    try {
+      const url = UrlApi.get(request);
+      const results = await axios.get(url);
+      if (mounted) {
+        setState(results.data.items);
+      }
+    } catch (error) {
+      console.log('通信エラー' + error);
+      Alert.alert('通信エラー' + error);
+    }
   }
 
   /**
@@ -28,11 +35,14 @@ export default class CartApi {
    * @param request
    * @param id
    */
-  static addProductToCart(request: string, id: number) {
+  static async addProductToCart(request: string, id: number) {
     const url = UrlApi.get(`${request}/${id}`);
-    axios.post(url, id).catch(() => {
-      Alert.alert('通信エラー,,add');
-    });
+    try {
+      await axios.post(url, id);
+    } catch (error) {
+      console.log('通信エラー' + error);
+      Alert.alert('通信エラー' + error);
+    }
   }
 
   /**
@@ -42,15 +52,35 @@ export default class CartApi {
    * @param request
    * @param id
    */
-  static removeProductFromCart(request: string, id: number) {
+  static async cartFromParticularProductsAllRemove(
+    request: string,
+    id: number,
+  ) {
     const url = UrlApi.get(`${request}/${id}`);
-    axios
-      .post(url)
-      .then(() => {
-        Alert.alert('削除しました');
-      })
-      .catch(() => {
-        Alert.alert('通信エラー,,remove');
-      });
+    try {
+      await axios.post(url);
+      Alert.alert('削除しました');
+    } catch (error) {
+      console.log('通信エラー' + error);
+      Alert.alert('通信エラー' + error);
+    }
+  }
+
+  /**
+   *
+   * カート内に商品が入っているかどうか
+   *
+   * @param request
+   */
+  static async hasItem(request: string, setState: Function) {
+    const url = UrlApi.get(request);
+
+    try {
+      const result = await axios.get(url);
+      setState(result.data);
+    } catch (error) {
+      console.log('通信エラー' + error);
+      Alert.alert('通信エラー' + error);
+    }
   }
 }

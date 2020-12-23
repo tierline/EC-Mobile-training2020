@@ -4,21 +4,24 @@ import {FlatList, Image, StyleSheet} from 'react-native';
 import CartApi from '../../api/CarApi';
 import UrlApi from '../../api/UrlApi';
 
-const CartItemList = () => {
-  const [items, setItems] = useState([]);
+const CartItemList = (prop: any) => {
+  const [cartItems, setItems] = useState([]);
 
   useEffect(() => {
-    let unmounted = false;
-    if (!unmounted) {
-      CartApi.fetchCart('/api/member/cart/list', setItems);
-    }
+    let mounted = true;
+    CartApi.fetchCart('/api/member/cart/list', setItems, mounted);
     return () => {
-      unmounted = true;
+      mounted = false;
     };
-  }, [items]);
+  }, []);
 
-  const removeProduct = (productId: number) => {
-    CartApi.removeProductFromCart('/api/member/cart/delete', productId);
+  const removeParticularProduct = async (productId: number) => {
+    await CartApi.cartFromParticularProductsAllRemove(
+      '/api/member/cart/delete',
+      productId,
+    );
+    await CartApi.fetchCart('/api/member/cart/list', setItems, true);
+    await CartApi.hasItem('/api/member/cart/hasItem', prop.setHasItem);
   };
 
   const renderItem = ({item}: {item: any}) => {
@@ -35,7 +38,10 @@ const CartItemList = () => {
               {item.productName} {item.quantity}個
             </H3>
             <Text>単価{item.productPrice}円</Text>
-            <Button danger small onPress={() => removeProduct(item.productId)}>
+            <Button
+              danger
+              small
+              onPress={() => removeParticularProduct(item.productId)}>
               <Text>削除する</Text>
             </Button>
           </Right>
@@ -46,7 +52,7 @@ const CartItemList = () => {
 
   return (
     <FlatList
-      data={items}
+      data={cartItems}
       renderItem={renderItem}
       keyExtractor={(item, index) => index.toString()}
     />
@@ -55,7 +61,6 @@ const CartItemList = () => {
 
 const styles = StyleSheet.create({
   image: {
-    // flex: 1,
     alignSelf: 'stretch',
     width: 100,
     height: 100,
