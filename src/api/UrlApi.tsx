@@ -1,13 +1,19 @@
 import {Platform} from 'react-native';
 
 export default class Url {
+  static isDev = true;
+
   static get(request: string): string {
-    return this.baseUrl() + request;
+    if (this.isDev) {
+      return this.baseUrl() + request;
+    } else {
+      return 'http://54.199.71.61' + request;
+    }
   }
 
   static baseUrl() {
-    const android = 'http://10.0.2.2:8085';
-    const ios = 'http://192.168.1.16:8085';
+    const android = 'http://10.0.2.2:8080';
+    const ios = 'http://192.168.1.16:8080';
     if (Platform.OS === 'ios') {
       return ios;
     } else {

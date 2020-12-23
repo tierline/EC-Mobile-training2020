@@ -10,13 +10,13 @@ const MemberApplicateForm = () => {
   const {control, handleSubmit, errors} = useForm();
   const navigation = useNavigation();
 
-  const navi = () => {
+  const nav = () => {
     navigation.navigate('Home');
   };
 
   const onSubmit = (formData: FormData) => {
     const member = new Member(formData.email, formData.password);
-    MemberApi.applicate('/api/member/applicate', member, navi);
+    MemberApi.applicate('/api/member/applicate', member, nav);
   };
 
   return (
@@ -35,7 +35,7 @@ const MemberApplicateForm = () => {
         name="email"
         rules={{
           required: true,
-          pattern: /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+          pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
         }}
         defaultValue=""
       />

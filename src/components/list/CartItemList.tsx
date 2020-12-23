@@ -4,21 +4,17 @@ import {FlatList, Image, StyleSheet} from 'react-native';
 import CartApi from '../../api/CarApi';
 import UrlApi from '../../api/UrlApi';
 
-const CartItemList = () => {
+const CartItemList = (prop: any) => {
   const [cartItems, setItems] = useState([]);
 
   useEffect(() => {
     let unmounted = false;
-    if (!unmounted) {
-      CartApi.fetchCart('/api/member/cart/list', setItems);
-    }
-    return () => {
-      unmounted = true;
-    };
+    CartApi.fetchCart('/api/member/cart/list', setItems, unmounted);
   }, [cartItems]);
 
   const removeProduct = (productId: number) => {
     CartApi.removeProductFromCart('/api/member/cart/delete', productId);
+    CartApi.hasItem('/api/member/cart/hasItem', prop.setHasItem);
   };
 
   const renderItem = ({item}: {item: any}) => {

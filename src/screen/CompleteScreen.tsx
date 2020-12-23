@@ -41,14 +41,12 @@ const CompleteScreen = ({route}: any) => {
           <Left>
             <Text>{item.name}</Text>
           </Left>
-          {/* <Right> */}
           <Body>
             <Text>
               {item.price}円 {item.quantity}個
             </Text>
             <Text />
           </Body>
-          {/* </Right> */}
         </ListItem>
       </List>
     );
@@ -103,9 +101,7 @@ const CompleteScreen = ({route}: any) => {
           </ListItem>
         </List>
         <Content style={{paddingTop: '4%'}}>
-          <Text>
-            <H2>ご注文された商品</H2>
-          </Text>
+          <H2>ご注文された商品</H2>
         </Content>
 
         <FlatList

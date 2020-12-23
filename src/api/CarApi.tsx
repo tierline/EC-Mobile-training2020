@@ -4,21 +4,31 @@ import UrlApi from './UrlApi';
 
 export default class CartApi {
   /**
+   *
    * カートの商品を取得する
    *
    * @param request
    * @param setState
+   * @param unmounted
    */
-  static fetchCart(request: string, setState: Function) {
-    const url = UrlApi.get(request);
-    axios
-      .get(url)
-      .then((res) => {
-        setState(res.data.items);
-      })
-      .catch(() => {
-        console.log('-----カート内の商品を取得できませんでした。-----');
-      });
+  static async fetchCart(
+    request: string,
+    setState: Function,
+    unmounted: boolean,
+  ) {
+    try {
+      const url = UrlApi.get(request);
+      const results = await axios.get(url);
+      if (!unmounted) {
+        setState(results.data.items);
+      }
+      return () => {
+        unmounted = true;
+      };
+    } catch (error) {
+      const {status, statusText} = error.response;
+      console.log(`Error! HTTP Status: ${status} ${statusText}`);
+    }
   }
 
   /**
@@ -28,11 +38,13 @@ export default class CartApi {
    * @param request
    * @param id
    */
-  static addProductToCart(request: string, id: number) {
+  static async addProductToCart(request: string, id: number) {
     const url = UrlApi.get(`${request}/${id}`);
-    axios.post(url, id).catch(() => {
-      Alert.alert('通信エラー,,add');
-    });
+    try {
+      await axios.post(url, id);
+    } catch (err) {
+      Alert.alert('通信エラー' + err);
+    }
   }
 
   /**
@@ -42,16 +54,14 @@ export default class CartApi {
    * @param request
    * @param id
    */
-  static removeProductFromCart(request: string, id: number) {
+  static async removeProductFromCart(request: string, id: number) {
     const url = UrlApi.get(`${request}/${id}`);
-    axios
-      .post(url)
-      .then(() => {
-        Alert.alert('削除しました');
-      })
-      .catch(() => {
-        Alert.alert('通信エラー,,remove');
-      });
+    try {
+      await axios.post(url);
+      Alert.alert('削除しました');
+    } catch (err) {
+      Alert.alert('通信エラー' + err);
+    }
   }
 
   /**
@@ -64,8 +74,8 @@ export default class CartApi {
     const url = UrlApi.get(request);
     axios
       .get(url)
-      .then((res) => {
-        setState(res.data);
+      .then(async (res) => {
+        await setState(res.data);
       })
       .catch(() => {
         Alert.alert('通信エラー,,hasItem');

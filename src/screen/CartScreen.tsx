@@ -8,16 +8,22 @@ import CartApi from '../api/CarApi';
 
 const CartScreen = () => {
   const navigation = useNavigation();
-  const [hasItem, setBoolean] = useState(true);
+  const [hasItem, setHasItem] = useState(false);
 
   useEffect(() => {
-    CartApi.hasItem('/api/member/cart/hasItem', setBoolean);
+    let unmounted = false;
+    if (!unmounted) {
+      CartApi.hasItem('/api/member/cart/hasItem', setHasItem);
+    }
+    return () => {
+      unmounted = true;
+    };
   }, [hasItem]);
 
   return (
     <View style={styles.container}>
       <View style={styles.itemList}>
-        <CartItemList />
+        <CartItemList setHasItem={setHasItem} />
       </View>
       {hasItem && (
         <Button

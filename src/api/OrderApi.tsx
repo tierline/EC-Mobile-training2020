@@ -41,7 +41,6 @@ export default class OrderApi {
     axios
       .get(url)
       .then((res) => {
-        console.log(res.data);
         setState(res.data);
       })
       .catch(() => {
@@ -54,7 +53,6 @@ export default class OrderApi {
     axios
       .post(url, email)
       .then((res) => {
-        console.log(res.data);
         setState(res.data);
       })
       .catch(() => {
