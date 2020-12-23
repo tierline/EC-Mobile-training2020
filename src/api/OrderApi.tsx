@@ -64,7 +64,7 @@ export default class OrderApi {
 
   static fetchOrderItemHistory(
     request: string,
-    id: string,
+    id: number,
     setState: Function,
   ) {
     const url = UrlApi.get(`${request}/${id}`);

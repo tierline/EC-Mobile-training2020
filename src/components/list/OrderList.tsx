@@ -8,58 +8,52 @@ import {useNavigation} from '@react-navigation/native';
 const OrderList = () => {
   const navigation = useNavigation();
   const [items, setItem] = useState([]);
-  const [days, setDay] = useState([]);
   useEffect(() => {
     const email = {email: Storage.getEmail()};
     OrderApi.fetchOrderHistory('/api/member/order/history', email, setItem);
   }, []);
 
-  const getMonth = (orderDay: string) => {
-    const month = orderDay.slice(5, 7);
-    OrderApi.fetchOrderItemHistory('/api/member/order/history', month, setDay);
-    return month;
-  };
-
   const renderItems = ({item}: {item: any}) => {
+    console.log('renderItems');
+    const month = item.orderMonth.slice(5, 7);
+    const day = item.orderDay.slice(0, 2);
+    console.log(month, ':', day);
+    console.log(item.orderId);
     return (
       <View>
         <Button
-          title={item.orderDate}
+          title={item.orderMonth}
           onPress={() =>
             navigation.navigate('OrderItemDetail', {
-              id: item.orderDate,
+              id: item.orderId,
+              orderDate: item.orderDay,
             })
           }
         />
       </View>
     );
   };
-  //   return (
-  //     <FlatList
-  //       style={styles.list}
-  //       data={items}
-  //       renderItem={renderItems}
-  //       keyExtractor={(item, index) => index.toString()}
-  //     />
-  //   );
-  // };
 
+  // const dataArray = () => {
+  //   const list: any[] = [];
+  //   items.forEach((item: any) => {
+  //     const data = {
+  //       title: <Button title={'tes'} onPress={() => console.log('tes')} />,
+  //       content: item,
+  //     };
+  //     list.push(data);
+  //   });
+  //   return list;
+  // };
   const dataArray = () => {
     const list: any[] = [];
     items.forEach((item: any) => {
       const data = {
-        title: (
-          <View>
-            <Button
-              title={item.orderDate}
-              onPress={() => getMonth(item.orderDate)}
-            />
-          </View>
-        ),
+        title: item.orderMonth,
         content: (
           <FlatList
             style={styles.list}
-            data={days}
+            data={items}
             renderItem={renderItems}
             keyExtractor={(item, index) => index.toString()}
           />
@@ -78,14 +72,6 @@ const OrderList = () => {
     </View>
   );
 };
-
-// return (
-//   <View style={styles.button}>
-//     <Content padder>
-//       <Accordion dataArray={dataList} expanded={0} />
-//     </Content>
-//   </View>
-// );
 
 const styles = StyleSheet.create({
   button: {
