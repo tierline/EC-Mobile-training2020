@@ -9,25 +9,22 @@ export default class CartApi {
    *
    * @param request
    * @param setState
-   * @param unmounted
+   * @param mounted
    */
   static async fetchCart(
     request: string,
     setState: Function,
-    unmounted: boolean,
+    mounted: boolean,
   ) {
     try {
       const url = UrlApi.get(request);
       const results = await axios.get(url);
-      if (!unmounted) {
+      if (mounted) {
         setState(results.data.items);
       }
-      return () => {
-        unmounted = true;
-      };
     } catch (error) {
-      const {status, statusText} = error.response;
-      console.log(`Error! HTTP Status: ${status} ${statusText}`);
+      console.log('通信エラー' + error);
+      Alert.alert('通信エラー' + error);
     }
   }
 
@@ -42,8 +39,9 @@ export default class CartApi {
     const url = UrlApi.get(`${request}/${id}`);
     try {
       await axios.post(url, id);
-    } catch (err) {
-      Alert.alert('通信エラー' + err);
+    } catch (error) {
+      console.log('通信エラー' + error);
+      Alert.alert('通信エラー' + error);
     }
   }
 
@@ -54,31 +52,35 @@ export default class CartApi {
    * @param request
    * @param id
    */
-  static async removeProductFromCart(request: string, id: number) {
+  static async cartFromParticularProductsAllRemove(
+    request: string,
+    id: number,
+  ) {
     const url = UrlApi.get(`${request}/${id}`);
     try {
       await axios.post(url);
       Alert.alert('削除しました');
-    } catch (err) {
-      Alert.alert('通信エラー' + err);
+    } catch (error) {
+      console.log('通信エラー' + error);
+      Alert.alert('通信エラー' + error);
     }
   }
 
   /**
    *
-   * カート内
+   * カート内に商品が入っているかどうか
    *
    * @param request
    */
-  static hasItem(request: string, setState: Function) {
+  static async hasItem(request: string, setState: Function) {
     const url = UrlApi.get(request);
-    axios
-      .get(url)
-      .then(async (res) => {
-        await setState(res.data);
-      })
-      .catch(() => {
-        Alert.alert('通信エラー,,hasItem');
-      });
+
+    try {
+      const result = await axios.get(url);
+      setState(result.data);
+    } catch (error) {
+      console.log('通信エラー' + error);
+      Alert.alert('通信エラー' + error);
+    }
   }
 }

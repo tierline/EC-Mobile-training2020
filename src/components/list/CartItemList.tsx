@@ -8,13 +8,20 @@ const CartItemList = (prop: any) => {
   const [cartItems, setItems] = useState([]);
 
   useEffect(() => {
-    let unmounted = false;
-    CartApi.fetchCart('/api/member/cart/list', setItems, unmounted);
-  }, [cartItems]);
+    let mounted = true;
+    CartApi.fetchCart('/api/member/cart/list', setItems, mounted);
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
-  const removeProduct = (productId: number) => {
-    CartApi.removeProductFromCart('/api/member/cart/delete', productId);
-    CartApi.hasItem('/api/member/cart/hasItem', prop.setHasItem);
+  const removeParticularProduct = async (productId: number) => {
+    await CartApi.cartFromParticularProductsAllRemove(
+      '/api/member/cart/delete',
+      productId,
+    );
+    await CartApi.fetchCart('/api/member/cart/list', setItems, true);
+    await CartApi.hasItem('/api/member/cart/hasItem', prop.setHasItem);
   };
 
   const renderItem = ({item}: {item: any}) => {
@@ -31,7 +38,10 @@ const CartItemList = (prop: any) => {
               {item.productName} {item.quantity}個
             </H3>
             <Text>単価{item.productPrice}円</Text>
-            <Button danger small onPress={() => removeProduct(item.productId)}>
+            <Button
+              danger
+              small
+              onPress={() => removeParticularProduct(item.productId)}>
               <Text>削除する</Text>
             </Button>
           </Right>

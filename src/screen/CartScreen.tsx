@@ -18,7 +18,7 @@ const CartScreen = () => {
     return () => {
       unmounted = true;
     };
-  }, [hasItem]);
+  }, []);
 
   return (
     <View style={styles.container}>
