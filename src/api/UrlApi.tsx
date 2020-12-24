@@ -7,7 +7,7 @@ export default class Url {
     if (this.isDev) {
       return this.baseUrl() + request;
     } else {
-      return 'http://54.199.71.61' + request;
+      return 'http://3.112.203.188' + request;
     }
   }
 
