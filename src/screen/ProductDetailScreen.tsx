@@ -47,7 +47,7 @@ const ProductDetailScreen = ({route}: Description) => {
           </CardItem>
           <CardItem>
             <Body>
-            <Button danger onPress={() => addProduct(id)}>
+              <Button danger onPress={() => addProduct(id)}>
                 <Text>カートに入れる</Text>
               </Button>
             </Body>
