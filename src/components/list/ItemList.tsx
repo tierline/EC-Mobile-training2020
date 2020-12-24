@@ -49,6 +49,7 @@ const ItemList = () => {
               <Button
                 onPress={() =>
                   navigation.navigate('ProductDetail', {
+                    id: item.id,
                     name: item.name,
                     price: item.price,
                     description: item.description,

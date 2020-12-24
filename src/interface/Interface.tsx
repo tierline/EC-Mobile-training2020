@@ -1,6 +1,7 @@
 export interface Description {
   route: {
     params: {
+      id: number;
       name: string;
       price: number;
       description: string;

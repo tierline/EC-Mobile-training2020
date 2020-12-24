@@ -13,9 +13,13 @@ import {
 import {Description} from '../interface/Interface';
 import NavBarBottom from '../components/nav/NavBarBottom';
 import UrlGenerator from '../api/UrlApi';
+import CartApi from '../api/CarApi';
 
 const ProductDetailScreen = ({route}: Description) => {
-  const {name, price, description, imagePath} = route.params;
+  const {id, name, price, description, imagePath} = route.params;
+  const addProduct = (productId: number) => {
+    CartApi.addProductToCart('/api/member/cart/add', productId);
+  };
   return (
     <Container>
       <Content>
@@ -43,7 +47,7 @@ const ProductDetailScreen = ({route}: Description) => {
           </CardItem>
           <CardItem>
             <Body>
-              <Button rounded danger>
+            <Button danger onPress={() => addProduct(id)}>
                 <Text>カートに入れる</Text>
               </Button>
             </Body>
