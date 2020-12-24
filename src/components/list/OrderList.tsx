@@ -22,7 +22,7 @@ const OrderList = () => {
     return (
       <View>
         <Button
-          title={item.orderMonth}
+          title={item.orderDay}
           onPress={() =>
             navigation.navigate('OrderItemDetail', {
               id: item.orderId,
