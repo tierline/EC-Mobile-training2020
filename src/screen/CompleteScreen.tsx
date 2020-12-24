@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {
   Button,
   Container,
@@ -13,44 +13,27 @@ import {
   H2,
 } from 'native-base';
 import {useNavigation} from '@react-navigation/native';
+import OrderedItemList from '../components/list/OrderedItemList';
 import OrderApi from '../api/OrderApi';
 
 const CompleteScreen = ({route}: any) => {
-  const [orderItems, setItems] = useState([]);
   const [orderDetail, setOrder]: any = useState([]);
   const nav = useNavigation();
   const {orderId} = route.params;
 
   useEffect(() => {
+    let isMounted = true;
     OrderApi.fetchOrderDetails(
       '/api/member/order/orderDetails',
       orderId,
       setOrder,
+      isMounted,
     );
-    OrderApi.fetchOrderDetails(
-      '/api/member/order/itemDetails',
-      orderId,
-      setItems,
-    );
-  }, [orderId]);
-
-  const renderItems = ({item}: any) => {
-    return (
-      <List>
-        <ListItem noIndent>
-          <Left>
-            <Text>{item.name}</Text>
-          </Left>
-          <Body>
-            <Text>
-              {item.price}円 {item.quantity}個
-            </Text>
-            <Text />
-          </Body>
-        </ListItem>
-      </List>
-    );
-  };
+    return () => {
+      isMounted = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Container>
@@ -103,12 +86,7 @@ const CompleteScreen = ({route}: any) => {
         <Content style={{paddingTop: '4%'}}>
           <H2>ご注文された商品</H2>
         </Content>
-
-        <FlatList
-          data={orderItems}
-          renderItem={renderItems}
-          keyExtractor={(item, index) => index.toString()}
-        />
+        <OrderedItemList orderId={orderId} />
         <View style={styles.totalPrice}>
           <H2 style={{fontWeight: '500'}}>合計金額{orderDetail.price}円</H2>
         </View>

@@ -24,28 +24,31 @@ export default class OrderApi {
         Alert.alert('通信エラー,,saveOrder');
       });
   }
+
   /**
    *
-   * 注文詳細を保存する
+   * 注文詳細を取得する
    *
    * @param request リクエスト先のURL
    * @param id 注文ID
    * @param setState
    */
-  static fetchOrderDetails(
+  static async fetchOrderDetails(
     request: string,
     orderId: number,
     setState: Function,
+    isMounted: boolean,
   ) {
     const url = UrlApi.get(request + '/' + orderId);
-    axios
-      .get(url)
-      .then((res) => {
-        setState(res.data);
-      })
-      .catch(() => {
-        Alert.alert('通信エラー,,fetchOrder');
-      });
+    try {
+      const result = await axios.get(url);
+      if (isMounted) {
+        setState(result.data);
+      }
+    } catch (error) {
+      console.log('通信エラー' + error);
+      Alert.alert('通信エラー' + error);
+    }
   }
 
   static fetchOrderHistory(request: string, email: object, setState: Function) {
