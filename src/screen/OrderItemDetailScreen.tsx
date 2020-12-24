@@ -7,6 +7,7 @@ const OrderItemDetailScreen = ({route}: any) => {
   const {id, orderDate} = route.params;
   const [items, setItem] = useState([]);
   useEffect(() => {
+    console.log(id);
     OrderApi.fetchOrderItemHistory('/api/member/order/history', id, setItem);
   }, [id]);
 
