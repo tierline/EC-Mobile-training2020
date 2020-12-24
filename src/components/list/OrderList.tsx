@@ -6,33 +6,33 @@ import Storage from '../../Storage';
 import {useNavigation} from '@react-navigation/native';
 
 const OrderList = () => {
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
   const [items, setItem] = useState([]);
   useEffect(() => {
     const email = {email: Storage.getEmail()};
     OrderApi.fetchOrderHistory('/api/member/order/history', email, setItem);
   }, []);
 
-  // const renderItems = ({item}: {item: any}) => {
-  //   console.log('renderItems');
-  //   const month = item.orderMonth.slice(5, 7);
-  //   const day = item.orderDay.slice(0, 2);
-  //   console.log(month, ':', day);
-  //   console.log(item.orderId);
-  //   return (
-  //     <View>
-  //       <Button
-  //         title={item.orderDay}
-  //         onPress={() =>
-  //           navigation.navigate('OrderItemDetail', {
-  //             id: item.orderId,
-  //             orderDate: item.orderDay,
-  //           })
-  //         }
-  //       />
-  //     </View>
-  //   );
-  // };
+  const renderItems = ({item}: {item: any}) => {
+    console.log('renderItems');
+    const month = item.orderMonth.slice(5, 7);
+    const day = item.orderDay.slice(0, 2);
+    console.log(month, ':', day);
+    console.log(item.orderId);
+    return (
+      <View>
+        <Button
+          title={item.orderDay}
+          onPress={() =>
+            navigation.navigate('OrderItemDetail', {
+              id: item.orderId,
+              orderDate: item.orderDay,
+            })
+          }
+        />
+      </View>
+    );
+  };
 
   // const dataArray = () => {
   //   const list: any[] = [];
@@ -52,12 +52,12 @@ const OrderList = () => {
         title: item.orderMonth,
         content: (
           // <Button title={item.orderDay} onPress={() => console.log(11)} />
-          // <FlatList
-          //   style={styles.list}
-          //   data={items}
-          //   renderItem={renderItems}
-          //   keyExtractor={(item, index) => index.toString()}
-          // />
+          <FlatList
+            style={styles.list}
+            data={items}
+            renderItem={renderItems}
+            keyExtractor={(item, index) => index.toString()}
+          />
         ),
       };
       list.push(data);
