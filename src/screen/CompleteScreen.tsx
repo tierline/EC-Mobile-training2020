@@ -27,17 +27,19 @@ const CompleteScreen = ({route}: any) => {
 
   return (
     <Container>
-      <Content style={styles.h1content}>
-        <H1>ご注文ありがとうございました。</H1>
+      <Content>
+        <Content style={styles.h1content}>
+          <H1>ご注文ありがとうございました。</H1>
+        </Content>
+        <OrderDetailList orderDetail={orderDetail} />
+        <Content style={styles.h2content}>
+          <H2>ご注文された商品</H2>
+        </Content>
+        <OrderedItemList orderId={orderId} />
+        <View style={styles.totalPrice}>
+          <Text style={styles.totalPriceH2}>合計金額{orderDetail.price}円</Text>
+        </View>
       </Content>
-      <OrderDetailList orderDetail={orderDetail} />
-      <Content style={styles.h2content}>
-        <H2>ご注文された商品</H2>
-      </Content>
-      <OrderedItemList orderId={orderId} />
-      <View style={styles.totalPrice}>
-        <H2 style={styles.totalPriceH2}>合計金額{orderDetail.price}円</H2>
-      </View>
       <Button full onPress={() => nav.navigate('Home')}>
         <Text>Home</Text>
       </Button>
@@ -58,6 +60,7 @@ const styles = StyleSheet.create({
     padding: 25,
   },
   totalPriceH2: {
+    fontSize: 20,
     fontWeight: '500',
   },
 });
