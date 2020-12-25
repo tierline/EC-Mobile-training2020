@@ -51,27 +51,24 @@ export default class OrderApi {
     }
   }
 
-  static fetchOrderHistory(request: string, email: object, setState: Function) {
+  static fetchMemberId(request: string, email: object, setState: Function) {
     const url = UrlApi.get(request);
     axios
       .post(url, email)
       .then((res) => {
+        console.log('memberId', res.data);
         setState(res.data);
       })
       .catch(() => {
-        Alert.alert('通信エラー,,fetchOrderHistory');
+        Alert.alert('通信エラー,,fetchMemberId');
       });
   }
 
-  static fetchOrderItemHistory(
-    request: string,
-    id: number,
-    setState: Function,
-  ) {
+  static fetchOrder(request: string, id: number, setState: Function) {
     const url = UrlApi.get(`${request}/${id}`);
     axios.get(url).then((res) => {
+      console.log('orderDate', res.data);
       setState(res.data);
-      console.log('orderItem', res.data);
     });
   }
 }
