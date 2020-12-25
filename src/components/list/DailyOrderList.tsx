@@ -1,41 +1,64 @@
-// import React, {useEffect, useState} from 'react';
-// import {FlatList, StyleSheet, Text, View, Button} from 'react-native';
-// import {Accordion} from 'native-base';
-// import OrderApi from '../../api/OrderApi';
-// import Storage from '../../Storage';
-// import {useNavigation} from '@react-navigation/native';
+import React from 'react';
+import {FlatList, StyleSheet, View, Button} from 'react-native';
 
-// const DailyOrderList = () => {
-//   const navigation = useNavigation();
-//   const renderItems = ({item}: {item: any}) => {
-//     console.log('renderItems');
-//     const month = item.orderMonth.slice(5, 7);
-//     const day = item.orderDay.slice(0, 2);
-//     console.log(month, ':', day);
-//     console.log(item.orderId);
-//     return (
-//       <View>
-//         <Button
-//           title={item.orderDay}
-//           onPress={() =>
-//             navigation.navigate('OrderItemDetail', {
-//               id: item.orderId,
-//               orderDate: item.orderDay,
-//             })
-//           }
-//         />
-//       </View>
-//     );
-//   };
-//   return (
+const DailyOrderList = (props: any) => {
+  const {navi, items} = props;
 
-//     <FlatList
-//     style={styles.list}
-//     data={items}
-//     renderItem={renderItems}
-//     keyExtractor={(item, index) => index.toString()}
-//     />;
-//     )
-// };
+  const renderItems = ({item}: {item: any}) => {
+    return (
+      <View>
+        <Button
+          title={`${item.date}日`}
+          onPress={() => {
+            navi.navigate('OrderItemDetail', {
+              id: item.id,
+              orderDate: item.date,
+            });
+          }}
+        />
+      </View>
+    );
+  };
+  return (
+    <FlatList
+      style={styles.list}
+      data={items}
+      renderItem={renderItems}
+      keyExtractor={(item, index) => index.toString()}
+    />
+  );
+};
+const styles = StyleSheet.create({
+  button: {
+    width: '10',
+  },
+  text: {
+    color: 'white',
+  },
+  list: {
+    margin: 5,
+  },
+});
 
-// export default DailyOrderList;
+export default DailyOrderList;
+// data = [
+//  {month :{
+//   day:
+//   day:
+//   day:
+// }},
+//  {month :{
+//   day:
+//   day:
+// }},
+//  {month :{
+//   day:
+// }},
+//  {month :{
+//   day:
+//   day:
+//   day:
+//   day:
+//   day:
+// }}
+// ]
