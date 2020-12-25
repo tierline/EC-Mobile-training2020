@@ -15,6 +15,7 @@ export default class MemberApi {
       }
     });
   }
+
   static applicate(request: string, data: any, nav: Function) {
     const url = UrlApi.get(request);
     axios
