@@ -1,10 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {createContext} from 'react';
+import React, {createContext, useEffect, useState} from 'react';
 import {useForm, Controller} from 'react-hook-form';
 import {Text, Button} from 'native-base';
 import {TextInput, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import OrderApi from '../../../api/OrderApi';
+import MemberApi from '../../../api/MemberApi';
 
 // import InputMemberName from './textInput/InputMemberName';
 
@@ -12,27 +13,15 @@ export const FormContext = createContext({label: '', max: 0});
 
 const OrderForm = () => {
   const {control, handleSubmit, errors} = useForm();
+  const [member, setMember] = useState();
   const nav = useNavigation();
-
+  useEffect(() => {
+    MemberApi.fetchMemberAddress('/api/member/order', 1, setMember);
+  }, []);
   const onSubmit = (data: any) =>
     OrderApi.saveOrderDetail('/api/member/order/save', data, nav);
 
   return (
-    // <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-    //   <FormContext.Provider value={{label: 'name', max: 0}}>
-    //     <InputMemberName />
-    //   </FormContext.Provider>
-    //   <Button title="注文を確定する" onPress={handleSubmit(onSubmit)} />
-    // </View>
-
-    // <Form>
-    //   <InputMemberName />
-
-    //   <Button primary onPress={handleSubmit(onSubmit)}>
-    //     <Text>注文する</Text>
-    //   </Button>
-    // </Form>
-
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       {/* 姓 */}
       <View
@@ -67,7 +56,7 @@ const OrderForm = () => {
               required: true,
               maxLength: 6,
             }}
-            defaultValue="田中"
+            defaultValue={member ? member.lastName : 'test'}
           />
           {errors.lastName && errors.lastName.type === 'required' && (
             <Text style={{color: 'red'}}>姓は必須です。</Text>
@@ -217,6 +206,51 @@ const OrderForm = () => {
           {errors.phone && errors.phone.type === 'maxLength' && (
             <Text style={{color: 'red'}}>
               電話番号は11文字以内で入力してください。
+            </Text>
+          )}
+        </View>
+      </View>
+      {/* 郵便番号 */}
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <View style={{flex: 0.2, alignItems: 'flex-end'}}>
+          <Text>郵便番号</Text>
+        </View>
+        <View style={{flex: 0.8}}>
+          <Controller
+            control={control}
+            render={({onChange, onBlur, value}) => (
+              <TextInput
+                style={{
+                  borderBottomWidth: 1,
+                  borderBottomColor: '#ccc',
+                  width: '80%',
+                  fontSize: 20,
+                  margin: '4%',
+                }}
+                placeholder=""
+                onBlur={onBlur}
+                onChangeText={(value) => onChange(value)}
+                value={value}
+              />
+            )}
+            name="zip_code"
+            rules={{
+              required: true,
+              maxLength: 8,
+            }}
+            defaultValue="Kobe"
+          />
+          {errors.zip_code && errors.zip_code.type === 'required' && (
+            <Text style={{color: 'red'}}>郵便番号</Text>
+          )}
+          {errors.zip_code && errors.zip_code.type === 'maxLength' && (
+            <Text style={{color: 'red'}}>
+              郵便番号はは8文字以内で入力してください。
             </Text>
           )}
         </View>

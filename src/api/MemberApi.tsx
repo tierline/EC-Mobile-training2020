@@ -31,4 +31,17 @@ export default class MemberApi {
         Alert.alert('既に登録されています');
       });
   }
+
+  static fetchMemberAddress(request: string, id: number, setState: Function) {
+    const url = UrlApi.get(`${request}/${id}`);
+    axios
+      .get(url)
+      .then((res) => {
+        console.log(res.data.lastName);
+        setState(res.data);
+      })
+      .catch(() => {
+        console.log('memberAddress');
+      });
+  }
 }

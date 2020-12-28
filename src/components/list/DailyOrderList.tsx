@@ -1,22 +1,20 @@
 import React from 'react';
-import {FlatList, StyleSheet, View, Button} from 'react-native';
+import {FlatList, StyleSheet, Button} from 'react-native';
 
 const DailyOrderList = (props: any) => {
   const {navi, items} = props;
 
   const renderItems = ({item}: {item: any}) => {
     return (
-      <View>
-        <Button
-          title={`${item.date}日`}
-          onPress={() => {
-            navi.navigate('OrderItemDetail', {
-              id: item.id,
-              orderDate: item.date,
-            });
-          }}
-        />
-      </View>
+      <Button
+        title={`${item.date}日`}
+        onPress={() => {
+          navi.navigate('OrderItemDetail', {
+            id: item.id,
+            orderDate: item.date,
+          });
+        }}
+      />
     );
   };
   return (
@@ -29,9 +27,6 @@ const DailyOrderList = (props: any) => {
   );
 };
 const styles = StyleSheet.create({
-  button: {
-    width: '10',
-  },
   text: {
     color: 'white',
   },
@@ -41,24 +36,3 @@ const styles = StyleSheet.create({
 });
 
 export default DailyOrderList;
-// data = [
-//  {month :{
-//   day:
-//   day:
-//   day:
-// }},
-//  {month :{
-//   day:
-//   day:
-// }},
-//  {month :{
-//   day:
-// }},
-//  {month :{
-//   day:
-//   day:
-//   day:
-//   day:
-//   day:
-// }}
-// ]

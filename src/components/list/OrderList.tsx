@@ -19,13 +19,13 @@ const OrderList = () => {
 
   const dataArray = () => {
     const list: any[] = [];
-    items.forEach((item: any) => {
+    for (let key in items) {
       const data = {
-        title: `${item.orderMonth}月`,
-        content: <DailyOrderList navi={navigation} items={item.orderDay} />,
+        title: `${key}月`,
+        content: <DailyOrderList navi={navigation} items={items[key]} />,
       };
       list.push(data);
-    });
+    }
     return list;
   };
   return <Accordion dataArray={dataArray()} expanded={0} />;
