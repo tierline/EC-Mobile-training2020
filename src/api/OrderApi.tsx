@@ -51,19 +51,6 @@ export default class OrderApi {
     }
   }
 
-  static fetchMemberId(request: string, email: object, setState: Function) {
-    const url = UrlApi.get(request);
-    axios
-      .post(url, email)
-      .then((res) => {
-        console.log('memberId', res.data);
-        setState(res.data);
-      })
-      .catch(() => {
-        Alert.alert('通信エラー,,fetchMemberId');
-      });
-  }
-
   static fetchOrder(request: string, id: number, setState: Function) {
     const url = UrlApi.get(`${request}/${id}`);
     axios.get(url).then((res) => {

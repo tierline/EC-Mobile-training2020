@@ -4,13 +4,14 @@ import OrderApi from '../../api/OrderApi';
 import Storage from '../../Storage';
 import {useNavigation} from '@react-navigation/native';
 import DailyOrderList from './DailyOrderList';
+import MemberApi from '../../api/MemberApi';
 
 const OrderList = () => {
   const navigation = useNavigation();
   const [items, setItem] = useState([]);
   useEffect(() => {
     const email = {email: Storage.getEmail()};
-    OrderApi.fetchMemberId('/api/member/order/member_id', email, orderDate);
+    MemberApi.fetchMemberId('/api/member/order/member_id', email, orderDate);
   }, []);
 
   const orderDate = (id: number) => {
