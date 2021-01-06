@@ -7,7 +7,6 @@ const MyPageScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.orderList}>
-        <Text>注文履歴</Text>
         <OrderList />
       </View>
       <NavBarBottom />

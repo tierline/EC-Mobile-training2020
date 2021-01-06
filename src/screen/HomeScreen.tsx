@@ -9,7 +9,6 @@ const HomeScreen = () => {
   return (
     <Container>
       <ItemList />
-
       {Storage.getAuth() ? (
         <NavBarBottom />
       ) : (

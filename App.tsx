@@ -10,29 +10,78 @@ import MemberApplicateScreen from './src/screen/MemberApplicateScreen';
 import MyPageScreen from './src/screen/MyPageScreen';
 import ProductDetailScreen from './src/screen/ProductDetailScreen';
 import OrderItemDetailScreen from './src/screen/OrderItemDetailScreen';
+import {HeaderBackButton} from '@react-navigation/stack';
+import {StyleSheet} from 'react-native';
 
 const App = () => {
   const Stack = createStackNavigator();
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator
+        initialRouteName="Login"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#f4511e',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}>
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen
           name="MemberApplicate"
           component={MemberApplicateScreen}
         />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Cart" component={CartScreen} />
-        <Stack.Screen name="ProductDetail" component={ProductDetailScreen} />
-        <Stack.Screen name="OrderForm" component={OrderFormScreen} />
-        <Stack.Screen name="Complete" component={CompleteScreen} />
-        <Stack.Screen name="MyPage" component={MyPageScreen} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            title: 'T&K',
+            headerLeft: () => <HeaderBackButton style={styles.leftButton} />,
+          }}
+        />
+        <Stack.Screen
+          name="Cart"
+          component={CartScreen}
+          options={{title: 'カートの中身'}}
+        />
+        <Stack.Screen
+          name="ProductDetail"
+          component={ProductDetailScreen}
+          options={{title: '商品詳細'}}
+        />
+        <Stack.Screen
+          name="OrderForm"
+          component={OrderFormScreen}
+          options={{title: '住所入力フォーム'}}
+        />
+        <Stack.Screen
+          name="Complete"
+          component={CompleteScreen}
+          options={{
+            title: '注文完了',
+            headerLeft: () => <HeaderBackButton style={styles.leftButton} />,
+          }}
+        />
+        <Stack.Screen
+          name="MyPage"
+          component={MyPageScreen}
+          options={{title: '注文履歴'}}
+        />
         <Stack.Screen
           name="OrderItemDetail"
           component={OrderItemDetailScreen}
+          options={{title: '注文履歴'}}
         />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
+
+const styles = StyleSheet.create({
+  leftButton: {
+    display: 'none',
+  },
+});
 export default App;
