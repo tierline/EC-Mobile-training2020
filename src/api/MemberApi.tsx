@@ -36,38 +36,16 @@ export default class MemberApi {
       });
   }
 
-  static fetchMemberAddress(request: string, id: number, reset: Function) {
-    const url = UrlApi.get(`${request}/${id}`);
-    axios
-      .get(url)
-      .then((res) => {
-        const d = res.data;
-        reset({
-          lastName: d.lastName,
-          firstName: d.firstName,
-          email: d.email,
-          phoneNumber: d.phoneNumber,
-          postcode: d.postcode,
-          prefecture: d.prefecture,
-          city: d.city,
-          block: d.block,
-        });
-      })
-      .catch(() => {
-        console.log('memberAddress');
-      });
-  }
-
-  static fetchMemberId(request: string, email: object, callback: Function) {
+  //住所かid
+  static addressAcquisition(request: string, email: string, reset: Function) {
     const url = UrlApi.get(request);
     axios
       .post(url, email)
       .then((res) => {
-        console.log('memberId', res.data);
-        callback(res.data);
+        reset(res.data);
       })
       .catch(() => {
-        Alert.alert('通信エラー,,fetchMemberId');
+        console.log('addressAcquisition');
       });
   }
 }

@@ -53,9 +53,14 @@ export default class OrderApi {
 
   static fetchOrder(request: string, id: number, setState: Function) {
     const url = UrlApi.get(`${request}/${id}`);
-    axios.get(url).then((res) => {
-      console.log('orderDate', res.data);
-      setState(res.data);
-    });
+    axios
+      .get(url)
+      .then((res) => {
+        console.log('orderDate', res.data);
+        setState(res.data);
+      })
+      .catch(() => {
+        console.log('エラー...fetchOrder');
+      });
   }
 }

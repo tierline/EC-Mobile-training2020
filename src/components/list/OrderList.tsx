@@ -11,7 +11,11 @@ const OrderList = () => {
   const [items, setItem] = useState([]);
   useEffect(() => {
     const email = {email: Storage.getEmail()};
-    MemberApi.fetchMemberId('/api/member/order/member_id', email, orderDate);
+    MemberApi.addressAcquisition(
+      '/api/member/order/member_id',
+      email,
+      orderDate,
+    );
   }, []);
 
   const orderDate = (id: number) => {

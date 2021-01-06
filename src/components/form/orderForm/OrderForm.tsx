@@ -14,14 +14,10 @@ const OrderForm = () => {
   const {control, handleSubmit, errors, reset} = useForm();
   const nav = useNavigation();
   useEffect(() => {
-    //id取得処理を追加
     const email = {email: Storage.getEmail()};
-    MemberApi.fetchMemberId('/api/member/order/member_id', email, formReset);
+    MemberApi.addressAcquisition('/api/member/order/address', email, reset);
   }, []);
 
-  const formReset = (id: number) => {
-    MemberApi.fetchMemberAddress('/api/member/order', id, reset);
-  };
   const onSubmit = (data: any) =>
     OrderApi.saveOrderDetail('/api/member/order/save', data, nav);
 
