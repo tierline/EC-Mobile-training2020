@@ -32,6 +32,7 @@ const App = () => {
         <Stack.Screen
           name="MemberApplicate"
           component={MemberApplicateScreen}
+          options={{title: '新規登録'}}
         />
         <Stack.Screen
           name="Home"

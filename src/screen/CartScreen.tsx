@@ -5,6 +5,7 @@ import NavBarBottom from '../components/nav/NavBarBottom';
 import {useNavigation} from '@react-navigation/native';
 import CartItemList from '../components/list/CartItemList';
 import CartApi from '../api/CarApi';
+import FlashMessage from 'react-native-flash-message';
 
 const CartScreen = () => {
   const navigation = useNavigation();
@@ -38,6 +39,8 @@ const CartScreen = () => {
           <H2>カートに商品がありません</H2>
         </View>
       )}
+      <FlashMessage position="center" />
+
       <NavBarBottom />
     </View>
   );

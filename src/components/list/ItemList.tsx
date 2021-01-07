@@ -8,6 +8,8 @@ import UrlApi from '../../api/UrlApi';
 import {Product} from '../../interface/Interface';
 import ProductApi from '../../api/ProductApi';
 import CarApi from '../../api/CarApi';
+import {showMessage} from 'react-native-flash-message';
+import {flashMessage} from '../flashMessage/FlashMessage';
 
 const ItemList = () => {
   const navigation = useNavigation();
@@ -16,7 +18,8 @@ const ItemList = () => {
     ProductApi.fetchProduct('/api/product', setItems);
   }, []);
 
-  const addProduct = (productId: number) => {
+  const addProduct = (productId: number, productName: string) => {
+    flashMessage(`${productName}を`, 'カートに追加しました');
     CarApi.addProductToCart('/api/member/cart/add', productId);
   };
 
@@ -41,7 +44,7 @@ const ItemList = () => {
         {Storage.getAuth() ? (
           <CardItem>
             <Left>
-              <Button danger onPress={() => addProduct(item.id)}>
+              <Button danger onPress={() => addProduct(item.id, item.name)}>
                 <Text>カートに入れる</Text>
               </Button>
             </Left>
@@ -91,6 +94,10 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     width: window.width,
     height: 250,
+  },
+  message: {
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 });
 

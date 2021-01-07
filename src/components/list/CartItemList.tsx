@@ -3,6 +3,7 @@ import {Card, CardItem, Text, Right, Button, H3} from 'native-base';
 import {FlatList, Image, StyleSheet} from 'react-native';
 import CartApi from '../../api/CarApi';
 import UrlApi from '../../api/UrlApi';
+import {flashMessage} from '../flashMessage/FlashMessage';
 
 const CartItemList = (prop: any) => {
   const [cartItems, setItems] = useState([]);
@@ -22,6 +23,7 @@ const CartItemList = (prop: any) => {
     );
     await CartApi.fetchCart('/api/member/cart/list', setItems, true);
     await CartApi.hasItem('/api/member/cart/hasItem', prop.setHasItem);
+    flashMessage('削除しました', '');
   };
 
   const renderItem = ({item}: {item: any}) => {
