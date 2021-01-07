@@ -20,7 +20,6 @@ const OrderForm = () => {
 
   const onSubmit = (data: any) =>
     OrderApi.saveOrderDetail('/api/member/order/save', data, nav);
-
   return (
     //コンポーネントを作る
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -41,7 +40,7 @@ const OrderForm = () => {
               <TextInput
                 style={styles.input}
                 onBlur={onBlur}
-                onChange={onChange}
+                onChangeText={(lastNameValue) => onChange(lastNameValue)}
                 value={value}
               />
             )}
