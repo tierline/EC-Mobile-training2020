@@ -7,23 +7,9 @@ import OrderApi from '../api/OrderApi';
 import OrderDetailList from '../components/list/OrderDetailList';
 
 const OrderVerificationScreen = ({route}: any) => {
-  const [orderDetail, setOrder]: any = useState([]);
   const nav = useNavigation();
   const {orderId} = route.params;
 
-  useEffect(() => {
-    let isMounted = true;
-    OrderApi.fetchOrderDetails(
-      '/api/member/order/orderDetails',
-      orderId,
-      setOrder,
-      isMounted,
-    );
-    return () => {
-      isMounted = false;
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <Container>

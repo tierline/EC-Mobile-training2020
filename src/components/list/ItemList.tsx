@@ -8,7 +8,6 @@ import UrlApi from '../../api/UrlApi';
 import {Product} from '../../interface/Interface';
 import ProductApi from '../../api/ProductApi';
 import CarApi from '../../api/CarApi';
-import {showMessage} from 'react-native-flash-message';
 import {flashMessage} from '../flashMessage/FlashMessage';
 
 const ItemList = () => {
@@ -19,7 +18,7 @@ const ItemList = () => {
   }, []);
 
   const addProduct = (productId: number, productName: string) => {
-    flashMessage(`${productName}を`, 'カートに追加しました');
+    flashMessage(`${productName}を`, 'カートに追加しました', 200, '#f4511e');
     CarApi.addProductToCart('/api/member/cart/add', productId);
   };
 
@@ -38,7 +37,7 @@ const ItemList = () => {
           <Image
             style={styles.image}
             resizeMode={'contain'}
-            source={{uri: UrlApi.image(item.image_path)}}
+            source={{uri: UrlApi.image(item.imagePath)}}
           />
         </CardItem>
         {Storage.getAuth() ? (
@@ -56,7 +55,7 @@ const ItemList = () => {
                     name: item.name,
                     price: item.price,
                     description: item.description,
-                    imagePath: item.image_path,
+                    imagePath: item.imagePath,
                   })
                 }>
                 <Text>詳細</Text>

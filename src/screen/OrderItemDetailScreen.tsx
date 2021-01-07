@@ -4,6 +4,7 @@ import {CardItem, Left, Body, Thumbnail, Card} from 'native-base';
 import OrderApi from '../api/OrderApi';
 import UrlApi from '../api/UrlApi';
 import NavBarBottom from '../components/nav/NavBarBottom';
+
 const OrderItemDetailScreen = ({route}: any) => {
   const {id, orderDate} = route.params;
   const [items, setItem] = useState([]);

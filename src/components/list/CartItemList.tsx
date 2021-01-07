@@ -23,7 +23,7 @@ const CartItemList = (prop: any) => {
     );
     await CartApi.fetchCart('/api/member/cart/list', setItems, true);
     await CartApi.hasItem('/api/member/cart/hasItem', prop.setHasItem);
-    flashMessage('削除しました', '');
+    flashMessage('削除しました', '', 200, 'red');
   };
 
   const renderItem = ({item}: {item: any}) => {

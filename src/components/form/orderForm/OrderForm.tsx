@@ -12,14 +12,16 @@ export const FormContext = createContext({label: '', max: 0});
 
 const OrderForm = () => {
   const {control, handleSubmit, errors, reset} = useForm();
-  const nav = useNavigation();
+  const navigation = useNavigation();
   useEffect(() => {
     const email = {email: Storage.getEmail()};
-    MemberApi.addressAcquisition('/api/member/order/address', email, reset);
-  }, []);
+    MemberApi.fetchMemberAddress('/api/member/address', email, reset);
+  }, [reset]);
 
-  const onSubmit = (data: any) =>
-    OrderApi.saveOrderDetail('/api/member/order/save', data, nav);
+  const onSubmit = (data: any) => {
+    // navigation.navigate('OrderVerification', {formData: data});
+    OrderApi.saveOrderDetail('/api/member/order/save', data, navigation);
+  };
 
   return (
     //コンポーネントを作る
@@ -41,7 +43,7 @@ const OrderForm = () => {
               <TextInput
                 style={styles.input}
                 onBlur={onBlur}
-                onChange={onChange}
+                onChangeText={(value) => onChange(value)}
                 value={value}
               />
             )}
@@ -191,7 +193,7 @@ const OrderForm = () => {
             rules={{
               required: true,
               maxLength: 13,
-              pattern: /[0-9]*/,
+              pattern: /^[0-9]*$/,
             }}
           />
           {errors.phoneNumber && errors.phoneNumber.type === 'required' && (
@@ -200,6 +202,11 @@ const OrderForm = () => {
           {errors.phoneNumber && errors.phoneNumber.type === 'maxLength' && (
             <Text style={{color: 'red'}}>
               電話番号は13文字以内で入力してください。
+            </Text>
+          )}
+          {errors.phoneNumber && errors.phoneNumber.type === 'pattern' && (
+            <Text style={{color: 'red'}}>
+              電話番号のフォーマットが不正です。
             </Text>
           )}
         </View>
@@ -237,6 +244,7 @@ const OrderForm = () => {
             rules={{
               required: true,
               maxLength: 8,
+              pattern: /^[0-9]*$/,
             }}
           />
           {errors.postcode && errors.postcode.type === 'required' && (
@@ -245,6 +253,11 @@ const OrderForm = () => {
           {errors.postcode && errors.postcode.type === 'maxLength' && (
             <Text style={{color: 'red'}}>
               郵便番号はは8文字以内で入力してください。
+            </Text>
+          )}
+          {errors.phoneNumber && errors.phoneNumber.type === 'pattern' && (
+            <Text style={{color: 'red'}}>
+              郵便番号のフォーマットが不正です。
             </Text>
           )}
         </View>

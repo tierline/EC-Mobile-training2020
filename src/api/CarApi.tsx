@@ -59,7 +59,6 @@ export default class CartApi {
     const url = UrlApi.get(`${request}/${id}`);
     try {
       await axios.post(url);
-      Alert.alert('削除しました');
     } catch (error) {
       console.log('通信エラー' + error);
       Alert.alert('通信エラー' + error);

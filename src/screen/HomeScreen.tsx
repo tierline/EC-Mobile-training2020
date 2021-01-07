@@ -1,11 +1,10 @@
 import React from 'react';
-import {Button} from 'react-native';
-import {Container, Text} from 'native-base';
+import {} from 'react-native';
+import {Button, Container, Text} from 'native-base';
 import ItemList from '../components/list/ItemList';
 import NavBarBottom from '../components/nav/NavBarBottom';
 import {useNavigation} from '@react-navigation/native';
 import Storage from '../Storage';
-import FlashMessage from 'react-native-flash-message';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -19,13 +18,11 @@ const HomeScreen = () => {
           dark
           full
           onPress={() => {
-            navigation.goBack();
+            navigation.navigate('Login');
           }}>
           <Text>ログインする</Text>
         </Button>
       )}
-
-      <FlashMessage position="center" />
     </Container>
   );
 };

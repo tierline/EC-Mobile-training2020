@@ -11,7 +11,7 @@ const OrderList = () => {
   const [items, setItem] = useState([]);
   useEffect(() => {
     const email = {email: Storage.getEmail()};
-    MemberApi.addressAcquisition(
+    MemberApi.fetchMemberAddress(
       '/api/member/order/member_id',
       email,
       orderDate,

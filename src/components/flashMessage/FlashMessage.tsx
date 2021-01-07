@@ -1,15 +1,20 @@
 import {StyleSheet} from 'react-native';
 import {showMessage} from 'react-native-flash-message';
 
-export const flashMessage = (message: string, description: string) => {
+export const flashMessage = (
+  message: string,
+  description: string,
+  duration: number,
+  backgroundColor: string,
+) => {
   showMessage({
     message: message,
     description: description,
-    duration: 200,
+    duration: duration,
     style: styles.card,
     titleStyle: styles.message,
     textStyle: styles.description,
-    backgroundColor: '#f4511e',
+    backgroundColor: backgroundColor,
   });
 };
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import {Footer, FooterTab, Button, Text} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
-import Storage from '../../Storage';
 import {Alert} from 'react-native';
+import MemberApi from '../../api/MemberApi';
 const NavBarBottom = () => {
   const navigation = useNavigation();
 
@@ -13,7 +13,7 @@ const NavBarBottom = () => {
     ]);
   };
   const logout = () => {
-    Storage.setAuth(false);
+    MemberApi.logout('/member/logout');
     Alert.alert('ログアウトしました');
     navigation.navigate('Login');
   };
@@ -22,16 +22,16 @@ const NavBarBottom = () => {
     <Footer>
       <FooterTab>
         <Button dark onPress={() => navigation.navigate('Home')}>
-          <Text>Home</Text>
+          <Text>ホーム</Text>
         </Button>
         <Button dark onPress={() => navigation.navigate('Cart')}>
-          <Text>Cart</Text>
+          <Text>カート</Text>
         </Button>
         <Button dark onPress={() => navigation.navigate('MyPage')}>
-          <Text>Mypage</Text>
+          <Text>購入履歴</Text>
         </Button>
         <Button dark onPress={() => logoutConfirmation()}>
-          <Text>LogOut</Text>
+          <Text>ログアウト</Text>
         </Button>
       </FooterTab>
     </Footer>

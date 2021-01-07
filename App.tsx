@@ -12,7 +12,8 @@ import ProductDetailScreen from './src/screen/ProductDetailScreen';
 import OrderItemDetailScreen from './src/screen/OrderItemDetailScreen';
 import {HeaderBackButton} from '@react-navigation/stack';
 import {StyleSheet} from 'react-native';
-
+import FlashMessage from 'react-native-flash-message';
+import OrderVerificationScreen from './src/screen/OrderVerificationScreen';
 const App = () => {
   const Stack = createStackNavigator();
   return (
@@ -28,7 +29,11 @@ const App = () => {
             fontWeight: 'bold',
           },
         }}>
-        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{title: 'ログイン'}}
+        />
         <Stack.Screen
           name="MemberApplicate"
           component={MemberApplicateScreen}
@@ -75,7 +80,13 @@ const App = () => {
           component={OrderItemDetailScreen}
           options={{title: '注文履歴'}}
         />
+        <Stack.Screen
+          name="OrderVerification"
+          component={OrderVerificationScreen}
+          options={{title: '注文確認'}}
+        />
       </Stack.Navigator>
+      <FlashMessage position="center" />
     </NavigationContainer>
   );
 };
