@@ -6,8 +6,6 @@ import {TextInput, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import OrderApi from '../../../api/OrderApi';
 
-// import InputMemberName from './textInput/InputMemberName';
-
 export const FormContext = createContext({label: '', max: 0});
 
 const OrderForm = () => {
@@ -18,21 +16,6 @@ const OrderForm = () => {
     OrderApi.saveOrderDetail('/api/member/order/save', data, nav);
 
   return (
-    // <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-    //   <FormContext.Provider value={{label: 'name', max: 0}}>
-    //     <InputMemberName />
-    //   </FormContext.Provider>
-    //   <Button title="注文を確定する" onPress={handleSubmit(onSubmit)} />
-    // </View>
-
-    // <Form>
-    //   <InputMemberName />
-
-    //   <Button primary onPress={handleSubmit(onSubmit)}>
-    //     <Text>注文する</Text>
-    //   </Button>
-    // </Form>
-
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       {/* 姓 */}
       <View
@@ -58,7 +41,7 @@ const OrderForm = () => {
                 }}
                 placeholder=""
                 onBlur={onBlur}
-                onChangeText={(value) => onChange(value)}
+                onChangeText={(lastNameValue) => onChange(lastNameValue)}
                 value={value}
               />
             )}
@@ -103,7 +86,7 @@ const OrderForm = () => {
                 }}
                 placeholder=""
                 onBlur={onBlur}
-                onChangeText={(value) => onChange(value)}
+                onChangeText={(firstNameValue) => onChange(firstNameValue)}
                 value={value}
               />
             )}
@@ -148,7 +131,7 @@ const OrderForm = () => {
                 }}
                 placeholder=""
                 onBlur={onBlur}
-                onChangeText={(value) => onChange(value)}
+                onChangeText={(emailValue) => onChange(emailValue)}
                 value={value}
               />
             )}
@@ -199,7 +182,7 @@ const OrderForm = () => {
                 }}
                 placeholder=""
                 onBlur={onBlur}
-                onChangeText={(value) => onChange(value)}
+                onChangeText={(phoneValue) => onChange(phoneValue)}
                 value={value}
               />
             )}
@@ -245,7 +228,7 @@ const OrderForm = () => {
                 }}
                 placeholder=""
                 onBlur={onBlur}
-                onChangeText={(value) => onChange(value)}
+                onChangeText={(address1Value) => onChange(address1Value)}
                 value={value}
               />
             )}
@@ -290,7 +273,7 @@ const OrderForm = () => {
                 }}
                 placeholder=""
                 onBlur={onBlur}
-                onChangeText={(value) => onChange(value)}
+                onChangeText={(address2Value) => onChange(address2Value)}
                 value={value}
               />
             )}

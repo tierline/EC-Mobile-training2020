@@ -3,7 +3,7 @@ import React, {useContext} from 'react';
 import {Text, View} from 'native-base';
 import {useForm, Controller} from 'react-hook-form';
 import {StyleSheet, TextInput} from 'react-native';
-import {FormContext} from '../OrderForm';
+import {FormContext} from '../../components/form/orderForm/OrderForm';
 
 const InputMemberName = () => {
   const {control, errors} = useForm();
@@ -21,6 +21,7 @@ const InputMemberName = () => {
               style={styles.textInput}
               placeholder=""
               onBlur={onBlur}
+              // eslint-disable-next-line no-shadow
               onChangeText={(value) => onChange(value)}
               value={value}
             />
