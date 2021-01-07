@@ -15,8 +15,8 @@ const OrderForm = () => {
   const nav = useNavigation();
   useEffect(() => {
     const email = {email: Storage.getEmail()};
-    MemberApi.addressAcquisition('/api/member/order/address', email, reset);
-  }, []);
+    MemberApi.fetchAddressByEmail('/api/member/address', email, reset);
+  }, [reset]);
 
   const onSubmit = (data: any) =>
     OrderApi.saveOrderDetail('/api/member/order/save', data, nav);
@@ -199,6 +199,11 @@ const OrderForm = () => {
           {errors.phoneNumber && errors.phoneNumber.type === 'maxLength' && (
             <Text style={{color: 'red'}}>
               電話番号は13文字以内で入力してください。
+            </Text>
+          )}
+          {errors.phoneNumber && errors.phoneNumber.type === 'pattern' && (
+            <Text style={{color: 'red'}}>
+              電話番号のフォーマットが不正です。
             </Text>
           )}
         </View>

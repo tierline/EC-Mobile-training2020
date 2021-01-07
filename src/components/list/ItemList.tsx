@@ -38,7 +38,7 @@ const ItemList = () => {
           <Image
             style={styles.image}
             resizeMode={'contain'}
-            source={{uri: UrlApi.image(item.image_path)}}
+            source={{uri: UrlApi.image(item.imagePath)}}
           />
         </CardItem>
         {Storage.getAuth() ? (
@@ -56,7 +56,7 @@ const ItemList = () => {
                     name: item.name,
                     price: item.price,
                     description: item.description,
-                    imagePath: item.image_path,
+                    imagePath: item.imagePath,
                   })
                 }>
                 <Text>詳細</Text>

@@ -37,7 +37,7 @@ export default class MemberApi {
   }
 
   //住所かid
-  static addressAcquisition(request: string, email: any, reset: Function) {
+  static fetchAddressByEmail(request: string, email: any, reset: Function) {
     const url = UrlApi.get(request);
     axios
       .post(url, email)
