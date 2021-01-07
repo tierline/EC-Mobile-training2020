@@ -18,7 +18,7 @@ const ItemList = () => {
   }, []);
 
   const addProduct = (productId: number, productName: string) => {
-    flashMessage(`${productName}を`, 'カートに追加しました', 200, '#f4511e');
+    flashMessage(`${productName}を`, 'カートに追加しました', 100, '#f4511e');
     CarApi.addProductToCart('/api/member/cart/add', productId);
   };
 

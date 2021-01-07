@@ -43,7 +43,7 @@ const OrderForm = () => {
               <TextInput
                 style={styles.input}
                 onBlur={onBlur}
-                onChangeText={(value) => onChange(value)}
+                onChangeText={(lastNameValue) => onChange(lastNameValue)}
                 value={value}
               />
             )}
@@ -88,7 +88,7 @@ const OrderForm = () => {
                 }}
                 placeholder=""
                 onBlur={onBlur}
-                onChangeText={(value) => onChange(value)}
+                onChangeText={(firstNameValue) => onChange(firstNameValue)}
                 value={value}
               />
             )}
@@ -134,7 +134,7 @@ const OrderForm = () => {
                 }}
                 placeholder=""
                 onBlur={onBlur}
-                onChangeText={(value) => onChange(value)}
+                onChangeText={(emailValue) => onChange(emailValue)}
                 value={value}
               />
             )}
@@ -185,7 +185,7 @@ const OrderForm = () => {
                 }}
                 placeholder=""
                 onBlur={onBlur}
-                onChangeText={(value) => onChange(value)}
+                onChangeText={(phoneValue) => onChange(phoneValue)}
                 value={value}
               />
             )}
@@ -236,7 +236,7 @@ const OrderForm = () => {
                 }}
                 placeholder=""
                 onBlur={onBlur}
-                onChangeText={(value) => onChange(value)}
+                onChangeText={(address1Value) => onChange(address1Value)}
                 value={value}
               />
             )}
@@ -358,7 +358,7 @@ const OrderForm = () => {
                 style={styles.input}
                 placeholder=""
                 onBlur={onBlur}
-                onChangeText={(value) => onChange(value)}
+                onChangeText={(address2Value) => onChange(address2Value)}
                 value={value}
               />
             )}

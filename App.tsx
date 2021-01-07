@@ -73,12 +73,12 @@ const App = () => {
         <Stack.Screen
           name="MyPage"
           component={MyPageScreen}
-          options={{title: '注文履歴'}}
+          options={{title: '購入履歴'}}
         />
         <Stack.Screen
           name="OrderItemDetail"
           component={OrderItemDetailScreen}
-          options={{title: '注文履歴'}}
+          options={{title: '購入履歴(日別)'}}
         />
         <Stack.Screen
           name="OrderVerification"
