@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {View, StyleSheet} from 'react-native';
-import {Text, Button} from 'native-base';
+import {Text, Button, H2} from 'native-base';
 import NavBarBottom from '../components/nav/NavBarBottom';
 import {useNavigation} from '@react-navigation/native';
 import CartItemList from '../components/list/CartItemList';
 import CartApi from '../api/CarApi';
+import FlashMessage from 'react-native-flash-message';
 
 const CartScreen = () => {
   const navigation = useNavigation();
@@ -25,7 +26,7 @@ const CartScreen = () => {
       <View style={styles.itemList}>
         <CartItemList setHasItem={setHasItem} />
       </View>
-      {hasItem && (
+      {hasItem ? (
         <Button
           full
           primary
@@ -33,7 +34,13 @@ const CartScreen = () => {
           onPress={() => navigation.navigate('OrderForm')}>
           <Text>注文する</Text>
         </Button>
+      ) : (
+        <View style={styles.message}>
+          <H2>カートに商品がありません</H2>
+        </View>
       )}
+      <FlashMessage position="center" />
+
       <NavBarBottom />
     </View>
   );
@@ -44,6 +51,11 @@ const styles = StyleSheet.create({
   },
   itemList: {
     flex: 8,
+  },
+  message: {
+    position: 'absolute',
+    top: 20,
+    left: 10,
   },
 });
 export default CartScreen;

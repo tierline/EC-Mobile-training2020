@@ -5,11 +5,19 @@ import Storage from '../../Storage';
 import {Alert} from 'react-native';
 const NavBarBottom = () => {
   const navigation = useNavigation();
+
+  const logoutConfirmation = () => {
+    Alert.alert('ログアウトしますか？', '', [
+      {text: 'ログアウトする', onPress: () => logout()},
+      {text: 'やめる', onPress: () => console.log()},
+    ]);
+  };
   const logout = () => {
     Storage.setAuth(false);
     Alert.alert('ログアウトしました');
     navigation.navigate('Login');
   };
+
   return (
     <Footer>
       <FooterTab>
@@ -22,7 +30,7 @@ const NavBarBottom = () => {
         <Button dark onPress={() => navigation.navigate('MyPage')}>
           <Text>Mypage</Text>
         </Button>
-        <Button dark onPress={() => logout()}>
+        <Button dark onPress={() => logoutConfirmation()}>
           <Text>LogOut</Text>
         </Button>
       </FooterTab>

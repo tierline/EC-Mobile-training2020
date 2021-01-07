@@ -42,7 +42,7 @@ const OrderDetailList = (prop: any) => {
           <Text>電話番号</Text>
         </Left>
         <Body>
-          <Text>{orderDetail.phone}</Text>
+          <Text>{orderDetail.phoneNumber}</Text>
         </Body>
       </ListItem>
     </List>

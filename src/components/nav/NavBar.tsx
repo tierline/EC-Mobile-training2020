@@ -4,12 +4,11 @@ import {StyleSheet} from 'react-native';
 const NavBar = () => {
   return (
     <Header style={styles.header}>
-      <Left>
-        <Button transparent />
-      </Left>
+      <Left />
       <Body>
-        <Title>おみせのなまえ</Title>
+        <Title>T&K</Title>
       </Body>
+
       <Right>
         <Button transparent />
       </Right>

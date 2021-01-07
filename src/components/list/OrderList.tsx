@@ -4,13 +4,18 @@ import OrderApi from '../../api/OrderApi';
 import Storage from '../../Storage';
 import {useNavigation} from '@react-navigation/native';
 import DailyOrderList from './DailyOrderList';
+import MemberApi from '../../api/MemberApi';
 
 const OrderList = () => {
   const navigation = useNavigation();
   const [items, setItem] = useState([]);
   useEffect(() => {
     const email = {email: Storage.getEmail()};
-    OrderApi.fetchMemberId('/api/member/order/member_id', email, orderDate);
+    MemberApi.addressAcquisition(
+      '/api/member/order/member_id',
+      email,
+      orderDate,
+    );
   }, []);
 
   const orderDate = (id: number) => {
@@ -19,13 +24,13 @@ const OrderList = () => {
 
   const dataArray = () => {
     const list: any[] = [];
-    items.forEach((item: any) => {
+    for (let key in items) {
       const data = {
-        title: `${item.orderMonth}月`,
-        content: <DailyOrderList navi={navigation} items={item.orderDay} />,
+        title: `${key}月`,
+        content: <DailyOrderList navi={navigation} items={items[key]} />,
       };
       list.push(data);
-    });
+    }
     return list;
   };
   return <Accordion dataArray={dataArray()} expanded={0} />;
