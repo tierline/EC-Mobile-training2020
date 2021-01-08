@@ -5,6 +5,7 @@ import Storage from '../Storage';
 import UrlApi from './UrlApi';
 
 export default class MemberApi {
+  //loginとapplicateの処理がほぼ同じなのでどうにかしたい
   static login(request: string, data: any, navi: Function) {
     const url = UrlApi.get(request);
     axios
@@ -60,6 +61,7 @@ export default class MemberApi {
   }
 
   //住所かid
+  //メソッド名変える
   static fetchMemberAddress(request: string, email: any, reset: Function) {
     const url = UrlApi.get(request);
     axios

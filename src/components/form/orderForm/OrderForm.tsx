@@ -4,7 +4,6 @@ import {useForm, Controller} from 'react-hook-form';
 import {Text, Button} from 'native-base';
 import {StyleSheet, TextInput, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import OrderApi from '../../../api/OrderApi';
 import MemberApi from '../../../api/MemberApi';
 import Storage from '../../../Storage';
 
@@ -19,8 +18,7 @@ const OrderForm = () => {
   }, [reset]);
 
   const onSubmit = (data: any) => {
-    // navigation.navigate('OrderVerification', {formData: data});
-    OrderApi.saveOrderDetail('/api/member/order/save', data, navigation);
+    navigation.navigate('OrderVerification', {formData: data});
   };
 
   return (
@@ -281,7 +279,7 @@ const OrderForm = () => {
                 style={styles.input}
                 placeholder=""
                 onBlur={onBlur}
-                onChangeText={(value) => onChange(value)}
+                onChangeText={(prefecture) => onChange(prefecture)}
                 value={value}
               />
             )}
@@ -320,7 +318,7 @@ const OrderForm = () => {
                 style={styles.input}
                 placeholder=""
                 onBlur={onBlur}
-                onChangeText={(value) => onChange(value)}
+                onChangeText={(city) => onChange(city)}
                 value={value}
               />
             )}
@@ -381,7 +379,7 @@ const OrderForm = () => {
       </View>
       <View>
         <Button primary onPress={handleSubmit(onSubmit)}>
-          <Text>注文する</Text>
+          <Text>注文確認画面へ</Text>
         </Button>
       </View>
     </View>

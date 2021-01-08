@@ -5,18 +5,15 @@ import {StyleSheet} from 'react-native';
 const LoginScreen = () => {
   return (
     <Container>
-      <Content style={styles.loginForm}>
+      <Content style={styles.form}>
         <LoginForm />
       </Content>
     </Container>
   );
 };
 const styles = StyleSheet.create({
-  loginForm: {
+  form: {
     marginTop: 30,
-  },
-  home: {
-    flex: 1,
   },
 });
 

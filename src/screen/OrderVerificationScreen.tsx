@@ -1,34 +1,60 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Button, Container, Content, Text, H1, H2} from 'native-base';
+import {Button, Container, Content, Text, H1, H2, Body} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
 import OrderedItemList from '../components/list/OrderedItemList';
 import OrderApi from '../api/OrderApi';
 import OrderDetailList from '../components/list/OrderDetailList';
+import CartApi from '../api/CartApi';
 
 const OrderVerificationScreen = ({route}: any) => {
-  const nav = useNavigation();
-  const {orderId} = route.params;
+  const navigation = useNavigation();
+  const formData = route.params.formData;
+  const [items, setItems] = useState();
+  const [totalAmount, setTotalAmount] = useState();
+  useEffect(() => {
+    let mounted = true;
+    CartApi.fetchCartItems(
+      '/api/member/cart/list',
+      setItems,
+      mounted,
+      setTotalAmount,
+    );
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
-
+  const navi = (id: any) => {
+    navigation.navigate('Complete', {
+      orderId: id,
+    });
+  };
+  const onSubmit = () => {
+    OrderApi.saveOrderDetail('/api/member/order/save', formData, navi);
+  };
   return (
     <Container>
       <Content>
         <Content style={styles.h1content}>
-          <H1>注文内容の確認</H1>
+          <H1>お届け先情報</H1>
         </Content>
-        <OrderDetailList orderDetail={orderDetail} />
+        <OrderDetailList orderDetail={formData} />
         <Content style={styles.h2content}>
-          <H2>商品</H2>
+          <H2>注文商品</H2>
         </Content>
-        <OrderedItemList orderId={orderId} />
+        <OrderedItemList orderItem={items} />
         <View style={styles.totalPrice}>
-          <Text style={styles.totalPriceH2}>合計金額{orderDetail.price}円</Text>
+          <Text style={styles.totalPriceH2}>合計金額{totalAmount}円</Text>
+        </View>
+        <View>
+          <Body style={styles.button}>
+            <Button onPress={() => onSubmit()}>
+              <Text>注文する</Text>
+            </Button>
+          </Body>
         </View>
       </Content>
-      <Button full onPress={() => nav.navigate('Home')}>
-        <Text>Home</Text>
-      </Button>
     </Container>
   );
 };
@@ -36,9 +62,11 @@ const OrderVerificationScreen = ({route}: any) => {
 const styles = StyleSheet.create({
   h1content: {
     paddingTop: '2%',
+    paddingLeft: '5%',
   },
   h2content: {
     paddingTop: '4%',
+    paddingLeft: '5%',
   },
   totalPrice: {
     alignItems: 'center',
@@ -48,6 +76,9 @@ const styles = StyleSheet.create({
   totalPriceH2: {
     fontSize: 20,
     fontWeight: '500',
+  },
+  button: {
+    marginBottom: '5%',
   },
 });
 

@@ -11,6 +11,7 @@ export const flashMessage = (
     message: message,
     description: description,
     duration: duration,
+    animationDuration: 100,
     style: styles.card,
     titleStyle: styles.message,
     textStyle: styles.description,

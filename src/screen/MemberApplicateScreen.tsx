@@ -1,27 +1,18 @@
 import React from 'react';
-import {View} from 'react-native';
-import {Container} from 'native-base';
+import {Container, Content} from 'native-base';
 import {StyleSheet} from 'react-native';
 import MemberApplicateForm from '../components/form/MemberApplicateForm';
 const ApplicateScreen = () => {
   return (
-    <Container style={styles.container}>
-      <View style={styles.loginForm}>
+    <Container>
+      <Content style={styles.form}>
         <MemberApplicateForm />
-      </View>
+      </Content>
     </Container>
   );
 };
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  loginForm: {
-    flex: 3,
-    marginTop: 30,
-  },
-  home: {
-    flex: 1,
+  form: {
     marginTop: 30,
   },
 });

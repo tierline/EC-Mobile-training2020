@@ -80,6 +80,7 @@ const App = () => {
           component={OrderItemDetailScreen}
           options={{title: '購入履歴(日別)'}}
         />
+        {/* まだ */}
         <Stack.Screen
           name="OrderVerification"
           component={OrderVerificationScreen}
