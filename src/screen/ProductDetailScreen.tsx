@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image} from 'react-native';
+import {Image, StyleSheet} from 'react-native';
 import {
   Container,
   Left,
@@ -13,11 +13,13 @@ import {
 import {Description} from '../interface/Interface';
 import NavBarBottom from '../components/nav/NavBarBottom';
 import UrlGenerator from '../api/UrlApi';
-import CartApi from '../api/CarApi';
+import CartApi from '../api/CartApi';
+import {flashMessage} from '../components/flashMessage/FlashMessage';
 
 const ProductDetailScreen = ({route}: Description) => {
   const {id, name, price, description, imagePath} = route.params;
-  const addProduct = (productId: number) => {
+  const addProduct = (productId: number, productName: string) => {
+    flashMessage(`${productName}を`, 'カートに追加しました', 100, '#f4511e');
     CartApi.addProductToCart('/api/member/cart/add', productId);
   };
   return (
@@ -35,7 +37,7 @@ const ProductDetailScreen = ({route}: Description) => {
           <CardItem>
             <Body>
               <Image
-                style={{height: 300, width: '100%', flex: 1}}
+                style={styles.img}
                 resizeMode={'contain'}
                 source={{
                   uri: UrlGenerator.image(imagePath),
@@ -47,7 +49,7 @@ const ProductDetailScreen = ({route}: Description) => {
           </CardItem>
           <CardItem>
             <Body>
-              <Button danger onPress={() => addProduct(id)}>
+              <Button danger onPress={() => addProduct(id, name)}>
                 <Text>カートに入れる</Text>
               </Button>
             </Body>
@@ -58,5 +60,13 @@ const ProductDetailScreen = ({route}: Description) => {
     </Container>
   );
 };
+
+const styles = StyleSheet.create({
+  img: {
+    height: 300,
+    width: '100%',
+    flex: 1,
+  },
+});
 
 export default ProductDetailScreen;

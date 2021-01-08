@@ -5,31 +5,26 @@ const OrderDetailList = (prop: any) => {
   const orderDetail = prop.orderDetail;
   return (
     <List>
-      <ListItem noIndent>
-        <Left>
-          <Text>注文日</Text>
-        </Left>
-        <Body>
-          <Text>{orderDetail.date}</Text>
-        </Body>
-      </ListItem>
-      <ListItem noIndent>
+      <ListItem>
         <Left>
           <Text>お名前</Text>
         </Left>
         <Body>
-          <Text>{orderDetail.name}様</Text>
+          <Text>{orderDetail.lastName + orderDetail.firstName}様</Text>
         </Body>
       </ListItem>
-      <ListItem noIndent>
+      <ListItem>
         <Left>
-          <Text>お届け先</Text>
+          <Text>住所</Text>
         </Left>
         <Body>
-          <Text>{orderDetail.address}</Text>
+          <Text>{orderDetail.postcode}</Text>
+          <Text>
+            {orderDetail.prefecture + orderDetail.city + orderDetail.block}
+          </Text>
         </Body>
       </ListItem>
-      <ListItem noIndent>
+      <ListItem>
         <Left>
           <Text>メールアドレス</Text>
         </Left>
@@ -37,7 +32,7 @@ const OrderDetailList = (prop: any) => {
           <Text>{orderDetail.email}</Text>
         </Body>
       </ListItem>
-      <ListItem noIndent>
+      <ListItem>
         <Left>
           <Text>電話番号</Text>
         </Left>

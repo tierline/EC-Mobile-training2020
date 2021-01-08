@@ -11,16 +11,20 @@ export default class CartApi {
    * @param setState
    * @param mounted
    */
-  static async fetchCart(
+  static async fetchCartItems(
     request: string,
     setState: Function,
     mounted: boolean,
+    setAmount?: Function,
   ) {
     try {
       const url = UrlApi.get(request);
       const results = await axios.get(url);
       if (mounted) {
         setState(results.data.items);
+        if (setAmount) {
+          setAmount(results.data.totalAmount);
+        }
       }
     } catch (error) {
       console.log('通信エラー' + error);

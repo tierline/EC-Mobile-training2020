@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Card, CardItem, Text, Right, Button, H3} from 'native-base';
 import {FlatList, Image, StyleSheet} from 'react-native';
-import CartApi from '../../api/CarApi';
+import CartApi from '../../api/CartApi';
 import UrlApi from '../../api/UrlApi';
 import {flashMessage} from '../flashMessage/FlashMessage';
 
@@ -10,7 +10,7 @@ const CartItemList = (prop: any) => {
 
   useEffect(() => {
     let mounted = true;
-    CartApi.fetchCart('/api/member/cart/list', setItems, mounted);
+    CartApi.fetchCartItems('/api/member/cart/list', setItems, mounted);
     return () => {
       mounted = false;
     };
@@ -21,7 +21,7 @@ const CartItemList = (prop: any) => {
       '/api/member/cart/delete',
       productId,
     );
-    await CartApi.fetchCart('/api/member/cart/list', setItems, true);
+    await CartApi.fetchCartItems('/api/member/cart/list', setItems, true);
     await CartApi.hasItem('/api/member/cart/hasItem', prop.setHasItem);
     flashMessage('削除しました', '', 200, 'red');
   };

@@ -16,9 +16,10 @@ export default class OrderApi {
     axios
       .post(url, data)
       .then((res) => {
-        nav.navigate('Complete', {
-          orderId: res.data,
-        });
+        nav(res.data);
+        // nav.navigate('Complete', {
+        //   orderId: res.data,
+        // });
       })
       .catch(() => {
         Alert.alert('通信エラー,,saveOrder');

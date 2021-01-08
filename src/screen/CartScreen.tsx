@@ -4,7 +4,7 @@ import {Text, Button, H2} from 'native-base';
 import NavBarBottom from '../components/nav/NavBarBottom';
 import {useNavigation} from '@react-navigation/native';
 import CartItemList from '../components/list/CartItemList';
-import CartApi from '../api/CarApi';
+import CartApi from '../api/CartApi';
 
 const CartScreen = () => {
   const navigation = useNavigation();
