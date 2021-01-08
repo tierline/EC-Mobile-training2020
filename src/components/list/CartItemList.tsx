@@ -16,14 +16,12 @@ const CartItemList = (prop: any) => {
     };
   }, []);
 
+  // 綺麗にしたい
   const removeParticularProduct = async (productId: number) => {
-    await CartApi.cartFromParticularProductsAllRemove(
-      '/api/member/cart/delete',
-      productId,
-    );
+    await CartApi.removeProduct('/api/member/cart/delete', productId);
     await CartApi.fetchCartItems('/api/member/cart/list', setItems, true);
     await CartApi.hasItem('/api/member/cart/hasItem', prop.setHasItem);
-    flashMessage('削除しました', '', 200, 'red');
+    flashMessage('削除しました', '', 500, 'red');
   };
 
   const renderItem = ({item}: {item: any}) => {

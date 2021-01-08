@@ -9,7 +9,7 @@ import {Product} from '../../interface/Interface';
 import ProductApi from '../../api/ProductApi';
 import CarApi from '../../api/CartApi';
 import {flashMessage} from '../flashMessage/FlashMessage';
-const ItemList = () => {
+const ProductList = () => {
   const navigation = useNavigation();
   const [items, setItems] = useState([]);
   useEffect(() => {
@@ -17,7 +17,7 @@ const ItemList = () => {
   }, []);
 
   const addProduct = (productId: number, productName: string) => {
-    flashMessage(`${productName}を`, 'カートに追加しました', 100, '#f4511e');
+    flashMessage(`${productName}を`, 'カートに追加しました', 500, '#f4511e');
     CarApi.addProductToCart('/api/member/cart/add', productId);
   };
 
@@ -27,7 +27,7 @@ const ItemList = () => {
         <CardItem>
           <Left>
             <Body>
-              <Text>商品名:{item.name}</Text>
+              <Text style={styles.itemName}>{item.name}</Text>
               <Text>価格:{item.price}円</Text>
             </Body>
           </Left>
@@ -93,10 +93,14 @@ const styles = StyleSheet.create({
     width: window.width,
     height: 250,
   },
+  itemName: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
   message: {
     fontSize: 20,
     fontWeight: 'bold',
   },
 });
 
-export default ItemList;
+export default ProductList;

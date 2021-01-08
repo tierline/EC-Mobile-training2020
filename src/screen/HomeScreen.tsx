@@ -1,7 +1,7 @@
 import React from 'react';
 import {} from 'react-native';
 import {Button, Container, Text} from 'native-base';
-import ItemList from '../components/list/ItemList';
+import ItemList from '../components/list/ProductList';
 import NavBarBottom from '../components/nav/NavBarBottom';
 import {useNavigation} from '@react-navigation/native';
 import Storage from '../Storage';

@@ -19,6 +19,7 @@ const MemberApplicateForm = () => {
     MemberApi.applicate('/api/member/applicate', member, nav);
   };
 
+  // Formはコンポーネントで共通化したい
   return (
     <View>
       <Text style={styles.label}>メールアドレス</Text>
@@ -72,9 +73,6 @@ const MemberApplicateForm = () => {
   );
 };
 const styles = StyleSheet.create({
-  constent: {
-    flex: 2,
-  },
   label: {
     marginLeft: 10,
   },

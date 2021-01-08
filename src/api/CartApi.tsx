@@ -56,10 +56,7 @@ export default class CartApi {
    * @param request
    * @param id
    */
-  static async cartFromParticularProductsAllRemove(
-    request: string,
-    id: number,
-  ) {
+  static async removeProduct(request: string, id: number) {
     const url = UrlApi.get(`${request}/${id}`);
     try {
       await axios.post(url);

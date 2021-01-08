@@ -31,7 +31,7 @@ const CartScreen = () => {
           primary
           large
           onPress={() => navigation.navigate('OrderForm')}>
-          <Text>注文する</Text>
+          <Text>入力フォームへ進む</Text>
         </Button>
       ) : (
         <View style={styles.message}>
