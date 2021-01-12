@@ -6,6 +6,7 @@ import {StyleSheet, TextInput, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Storage from '../../../Storage';
 import Api from '../../../api/Api';
+import FormController from './FormController';
 
 export const FormContext = createContext({label: '', max: 0});
 
@@ -35,6 +36,7 @@ const OrderForm = () => {
           <Text>姓</Text>
         </View>
         <View style={{flex: 0.8}}>
+          {/* <FormController name="lastName" maxLength={6} /> */}
           <Controller
             control={control}
             render={({onChange, onBlur, value}) => (
