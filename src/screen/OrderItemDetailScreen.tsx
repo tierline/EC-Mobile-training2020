@@ -5,14 +5,18 @@ import OrderApi from '../api/OrderApi';
 import UrlApi from '../api/UrlApi';
 import NavBarBottom from '../components/nav/NavBarBottom';
 
-const OrderItemDetailScreen = ({route}: any) => {
-  const {id, orderDate} = route.params;
-  const [items, setItem] = useState([]);
+const OrderItemDetailScreen = ({route}: RouteForOrderHistory) => {
+  const {orderId, orderDate} = route.params;
+  const [orderedItems, setOrderedItem] = useState([]);
   useEffect(() => {
-    OrderApi.fetchOrder('/api/member/order/history/item', id, setItem);
-  }, [id]);
+    OrderApi.fetchOrder(
+      '/api/member/order/history/item',
+      orderId,
+      setOrderedItem,
+    );
+  }, [orderId]);
 
-  const renderItems = ({item}: {item: any}) => {
+  const renderItems = ({item}: {item: OrderedItem}) => {
     return (
       <View>
         <Card>
@@ -40,9 +44,9 @@ const OrderItemDetailScreen = ({route}: any) => {
       <View style={styles.orderList}>
         <Text>{orderDate}</Text>
         <FlatList
-          data={items}
+          data={orderedItems}
           renderItem={renderItems}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(orderedItem, index) => index.toString()}
         />
       </View>
       <NavBarBottom />

@@ -24,7 +24,7 @@ const CartItemList = (prop: any) => {
     flashMessage('削除しました', '', 500, 'red');
   };
 
-  const renderItem = ({item}: {item: any}) => {
+  const renderItem = ({item}: {item: CartItem}) => {
     return (
       <Card>
         <CardItem>

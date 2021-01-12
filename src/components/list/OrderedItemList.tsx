@@ -4,25 +4,11 @@ import {Text, List, ListItem, Body, Left, Right} from 'native-base';
 import {FlatList} from 'react-native';
 import UrlApi from '../../api/UrlApi';
 
-const OrderedItemList = (prop: any) => {
-  // const [orderItems, setItems] = useState([]);
-  // const orderId = prop.orderId;
-  const {orderItem} = prop;
-  // useEffect(() => {
-  //   let isMounted = true;
-  //   OrderApi.fetchOrderDetails(
-  //     '/api/member/order/orderedItemList',
-  //     orderId,
-  //     setItems,
-  //     isMounted,
-  //   );
-  //   return () => {
-  //     isMounted = false;
-  //   };
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+// prop の型指定
+const OrderedItemList = (prop: {cartItem: CartItem[]}) => {
+  const {cartItem} = prop;
 
-  const renderItems = ({item}: any) => {
+  const renderItems = ({item}: {item: CartItem}) => {
     return (
       <List>
         <ListItem noIndent>
@@ -47,7 +33,7 @@ const OrderedItemList = (prop: any) => {
 
   return (
     <FlatList
-      data={orderItem}
+      data={cartItem}
       renderItem={renderItems}
       keyExtractor={(item, index) => index.toString()}
     />

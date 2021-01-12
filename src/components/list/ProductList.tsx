@@ -5,7 +5,6 @@ import {useNavigation} from '@react-navigation/native';
 import {FlatList} from 'react-native';
 import Storage from '../../Storage';
 import UrlApi from '../../api/UrlApi';
-import {Product} from '../../interface/Interface';
 import ProductApi from '../../api/ProductApi';
 import CarApi from '../../api/CartApi';
 import {flashMessage} from '../flashMessage/FlashMessage';

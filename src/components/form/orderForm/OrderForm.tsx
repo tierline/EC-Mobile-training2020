@@ -17,7 +17,7 @@ const OrderForm = () => {
     MemberApi.fetchMemberAddress('/api/member/address', email, reset);
   }, [reset]);
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: OrderFormData) => {
     navigation.navigate('OrderVerification', {formData: data});
   };
 

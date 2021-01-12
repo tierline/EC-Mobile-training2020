@@ -57,7 +57,6 @@ export default class OrderApi {
     axios
       .get(url)
       .then((res) => {
-        console.log('orderDate', res.data);
         setState(res.data);
       })
       .catch(() => {

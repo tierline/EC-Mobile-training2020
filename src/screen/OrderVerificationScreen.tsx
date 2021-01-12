@@ -7,16 +7,17 @@ import OrderApi from '../api/OrderApi';
 import OrderDetailList from '../components/list/OrderDetailList';
 import CartApi from '../api/CartApi';
 
-const OrderVerificationScreen = ({route}: any) => {
+const OrderVerificationScreen = ({route}: RouteForOrderFormData) => {
   const navigation = useNavigation();
-  const formData = route.params.formData;
-  const [items, setItems] = useState();
+  const formData = route.params;
+  console.log(formData);
+  const [cartItem, setOrderItems] = useState();
   const [totalAmount, setTotalAmount] = useState();
   useEffect(() => {
     let mounted = true;
     CartApi.fetchCartItems(
       '/api/member/cart/list',
-      setItems,
+      setOrderItems,
       mounted,
       setTotalAmount,
     );
@@ -25,7 +26,7 @@ const OrderVerificationScreen = ({route}: any) => {
     };
   }, []);
 
-  const navi = (id: any) => {
+  const navi = (id: {orderId: number}) => {
     navigation.navigate('Complete', {
       orderId: id,
     });
@@ -43,7 +44,7 @@ const OrderVerificationScreen = ({route}: any) => {
         <Content style={styles.h2content}>
           <H2>注文商品</H2>
         </Content>
-        <OrderedItemList orderItem={items} />
+        <OrderedItemList cartItem={cartItem} />
         <View style={styles.totalPrice}>
           <Text style={styles.totalPriceH2}>合計金額{totalAmount}円</Text>
         </View>

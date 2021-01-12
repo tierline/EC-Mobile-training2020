@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 import {Button, Container, Content, Text, H2, Body, H3} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
 
-const CompleteScreen = ({route}: any) => {
+const CompleteScreen = ({route}: RouteForOrderId) => {
   const nav = useNavigation();
   const orderId = route.params.orderId;
 

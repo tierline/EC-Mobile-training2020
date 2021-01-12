@@ -8,7 +8,7 @@ import MemberApi from '../../api/MemberApi';
 
 const OrderList = () => {
   const navigation = useNavigation();
-  const [items, setItem] = useState([]);
+  const [orderHistory, setOrderHistory] = useState([]);
   useEffect(() => {
     const email = {email: Storage.getEmail()};
     MemberApi.fetchMemberAddress(
@@ -19,15 +19,17 @@ const OrderList = () => {
   }, []);
 
   const orderDate = (id: number) => {
-    OrderApi.fetchOrder('/api/member/order/history', id, setItem);
+    OrderApi.fetchOrder('/api/member/order/history', id, setOrderHistory);
   };
 
   const dataArray = () => {
-    const list: any[] = [];
-    for (let key in items) {
+    const list = [];
+    for (let key in orderHistory) {
       const data = {
         title: `${key}月`,
-        content: <DailyOrderList navi={navigation} items={items[key]} />,
+        content: (
+          <DailyOrderList navi={navigation} orderHistory={orderHistory[key]} />
+        ),
       };
       list.push(data);
     }
