@@ -10,7 +10,7 @@ const DailyOrderList = (props: any) => {
         title={`${item.date}日`}
         onPress={() => {
           navi.navigate('OrderItemDetail', {
-            id: item.orderId,
+            orderId: item.orderId,
             orderDate: item.date,
           });
         }}
