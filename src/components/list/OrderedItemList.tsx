@@ -5,7 +5,7 @@ import {FlatList} from 'react-native';
 import UrlApi from '../../api/UrlApi';
 
 // prop の型指定
-const OrderedItemList = (prop: {cartItem: CartItem[]}) => {
+const OrderedItemList = (prop: {cartItem: any}) => {
   const {cartItem} = prop;
 
   const renderItems = ({item}: {item: CartItem}) => {

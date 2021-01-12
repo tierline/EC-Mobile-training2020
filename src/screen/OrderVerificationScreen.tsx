@@ -7,9 +7,9 @@ import OrderApi from '../api/OrderApi';
 import OrderDetailList from '../components/list/OrderDetailList';
 import CartApi from '../api/CartApi';
 
-const OrderVerificationScreen = ({route}: RouteForOrderFormData) => {
+const OrderVerificationScreen = ({route}: any) => {
   const navigation = useNavigation();
-  const formData = route.params;
+  const formData = route.params.formData;
   console.log(formData);
   const [cartItem, setOrderItems] = useState();
   const [totalAmount, setTotalAmount] = useState();
