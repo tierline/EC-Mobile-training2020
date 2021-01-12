@@ -1,15 +1,15 @@
 import React from 'react';
-import {Footer, FooterTab, Button, Text} from 'native-base';
-import {useNavigation} from '@react-navigation/native';
-import {Alert} from 'react-native';
+import { Footer, FooterTab, Button, Text } from 'native-base';
+import { useNavigation } from '@react-navigation/native';
+import { Alert } from 'react-native';
 import Api from '../../api/Api';
 const NavBarBottom = () => {
   const navigation = useNavigation();
 
   const logoutConfirmation = () => {
     Alert.alert('ログアウトしますか？', '', [
-      {text: 'ログアウトする', onPress: () => logout()},
-      {text: 'やめる', onPress: () => console.log()},
+      { text: 'ログアウトする', onPress: () => logout() },
+      { text: 'やめる', onPress: () => console.log() },
     ]);
   };
   const logout = () => {

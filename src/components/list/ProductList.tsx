@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {StyleSheet, Image, Dimensions} from 'react-native';
-import {Card, CardItem, Text, Button, Left, Body, Right} from 'native-base';
-import {useNavigation} from '@react-navigation/native';
-import {FlatList} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Image, Dimensions } from 'react-native';
+import { Card, CardItem, Text, Button, Left, Body, Right } from 'native-base';
+import { useNavigation } from '@react-navigation/native';
+import { FlatList } from 'react-native';
 import Storage from '../../Storage';
 import UrlApi from '../../api/UrlApi';
-import {flashMessage} from '../flashMessage/FlashMessage';
+import { flashMessage } from '../flashMessage/FlashMessage';
 import Api from '../../api/Api';
 
 const ProductList = () => {
@@ -20,7 +20,7 @@ const ProductList = () => {
     Api.post(`/api/member/cart/add/${productId}`);
   };
 
-  const renderItems = ({item}: {item: Product}) => {
+  const renderItems = ({ item }: { item: Product }) => {
     return (
       <Card style={styles.card}>
         <CardItem>
@@ -35,7 +35,7 @@ const ProductList = () => {
           <Image
             style={styles.image}
             resizeMode={'contain'}
-            source={{uri: UrlApi.image(item.imagePath)}}
+            source={{ uri: UrlApi.image(item.imagePath) }}
           />
         </CardItem>
         {Storage.getAuth() ? (

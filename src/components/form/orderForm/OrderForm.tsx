@@ -6,6 +6,7 @@ import { StyleSheet, TextInput, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Storage from '../../../Storage';
 import Api from '../../../api/Api';
+// import FormController from './FormController';
 
 export const FormContext = createContext({ label: '', max: 0 });
 
