@@ -4,7 +4,7 @@ import {Button, Container, Content, Text, H2, Body, H3} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
 
 const CompleteScreen = ({route}: any) => {
-  const nav = useNavigation();
+  const navigation = useNavigation();
   const orderId = route.params.orderId;
 
   return (
@@ -22,7 +22,7 @@ const CompleteScreen = ({route}: any) => {
         </Content>
         <Content style={styles.button}>
           <Body>
-            <Button onPress={() => nav.navigate('Home')}>
+            <Button onPress={() => navigation.navigate('Home')}>
               <Text>ホームに戻る</Text>
             </Button>
           </Body>

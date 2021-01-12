@@ -4,8 +4,8 @@ import {useForm, Controller} from 'react-hook-form';
 import {Text, Button} from 'native-base';
 import {StyleSheet, TextInput, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import MemberApi from '../../../api/MemberApi';
 import Storage from '../../../Storage';
+import Api from '../../../api/Api';
 
 export const FormContext = createContext({label: '', max: 0});
 
@@ -14,7 +14,7 @@ const OrderForm = () => {
   const navigation = useNavigation();
   useEffect(() => {
     const email = {email: Storage.getEmail()};
-    MemberApi.fetchMemberAddress('/api/member/address', email, reset);
+    Api.post('/api/member/address', email, reset);
   }, [reset]);
 
   const onSubmit = (data: any) => {

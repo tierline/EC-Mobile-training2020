@@ -3,9 +3,9 @@ import {StyleSheet, View} from 'react-native';
 import {Button, Container, Content, Text, H1, H2, Body} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
 import OrderedItemList from '../components/list/OrderedItemList';
-import OrderApi from '../api/OrderApi';
 import OrderDetailList from '../components/list/OrderDetailList';
 import CartApi from '../api/CartApi';
+import Api from '../api/Api';
 
 const OrderVerificationScreen = ({route}: any) => {
   const navigation = useNavigation();
@@ -31,7 +31,7 @@ const OrderVerificationScreen = ({route}: any) => {
     });
   };
   const onSubmit = () => {
-    OrderApi.saveOrderDetail('/api/member/order/save', formData, navi);
+    Api.post('/api/member/order/save', formData, navi);
   };
   return (
     <Container>

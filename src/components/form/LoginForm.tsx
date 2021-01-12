@@ -4,19 +4,20 @@ import {useForm, Controller} from 'react-hook-form';
 import {useNavigation} from '@react-navigation/native';
 import {FormData} from '../../interface/Interface';
 import Member from '../../domain/Member';
-import MemberApi from '../../api/MemberApi';
+import Api from '../../api/Api';
 
 const LoginForm = () => {
   const {control, handleSubmit, errors} = useForm();
   const navigation = useNavigation();
 
-  const nav = () => {
+  const navi = () => {
     navigation.navigate('Home');
   };
 
   const onSubmit = (formData: FormData) => {
+    //member変える
     const member = new Member(formData.email, formData.password);
-    MemberApi.login('/api/member/login', member, nav);
+    Api.auth('/api/member/login', member, navi);
   };
 
   return (

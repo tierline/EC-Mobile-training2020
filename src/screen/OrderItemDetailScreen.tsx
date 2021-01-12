@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList, View, Text, StyleSheet} from 'react-native';
 import {CardItem, Left, Body, Thumbnail, Card} from 'native-base';
-import OrderApi from '../api/OrderApi';
 import UrlApi from '../api/UrlApi';
 import NavBarBottom from '../components/nav/NavBarBottom';
+import Api from '../api/Api';
 
 const OrderItemDetailScreen = ({route}: any) => {
   const {id, orderDate} = route.params;
   const [items, setItem] = useState([]);
   useEffect(() => {
-    OrderApi.fetchOrder('/api/member/order/history/item', id, setItem);
+    Api.get(`/api/member/order/history/item/${id}`, setItem);
   }, [id]);
 
   const renderItems = ({item}: {item: any}) => {

@@ -14,7 +14,7 @@ export default class CartApi {
   static async fetchCartItems(
     request: string,
     setState: Function,
-    mounted: boolean,
+    mounted?: boolean,
     setAmount?: Function,
   ) {
     try {
@@ -39,15 +39,15 @@ export default class CartApi {
    * @param request
    * @param id
    */
-  static async addProductToCart(request: string, id: number) {
-    const url = UrlApi.get(`${request}/${id}`);
-    try {
-      await axios.post(url, id);
-    } catch (error) {
-      console.log('通信エラー' + error);
-      Alert.alert('通信エラー' + error);
-    }
-  }
+  // static async addProductToCart(request: string, id: number) {
+  //   const url = UrlApi.get(`${request}/${id}`);
+  //   try {
+  //     await axios.post(url, id);
+  //   } catch (error) {
+  //     console.log('通信エラー' + error);
+  //     Alert.alert('通信エラー' + error);
+  //   }
+  // }
 
   /**
    *
@@ -56,11 +56,17 @@ export default class CartApi {
    * @param request
    * @param id
    */
-  static async cartFromParticularProductsAllRemove(
-    request: string,
-    id: number,
-  ) {
-    const url = UrlApi.get(`${request}/${id}`);
+  // static async cartFromParticularProductsAllRemove(request: string, id?: any) {
+  //   const url = UrlApi.get(request);
+  //   try {
+  //     await axios.post(url, id);
+  //   } catch (error) {
+  //     console.log('通信エラー' + error);
+  //     Alert.alert('通信エラー' + error);
+  //   }
+  // }
+  static async post(request: string) {
+    const url = UrlApi.get(request);
     try {
       await axios.post(url);
     } catch (error) {

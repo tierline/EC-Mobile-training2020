@@ -4,7 +4,7 @@ import {Text, Button, H2} from 'native-base';
 import NavBarBottom from '../components/nav/NavBarBottom';
 import {useNavigation} from '@react-navigation/native';
 import CartItemList from '../components/list/CartItemList';
-import CartApi from '../api/CartApi';
+import Api from '../api/Api';
 
 const CartScreen = () => {
   const navigation = useNavigation();
@@ -13,7 +13,7 @@ const CartScreen = () => {
   useEffect(() => {
     let unmounted = false;
     if (!unmounted) {
-      CartApi.hasItem('/api/member/cart/hasItem', setHasItem);
+      Api.get('/api/member/cart/hasItem', setHasItem);
     }
     return () => {
       unmounted = true;

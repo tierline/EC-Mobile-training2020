@@ -5,22 +5,7 @@ import {FlatList} from 'react-native';
 import UrlApi from '../../api/UrlApi';
 
 const OrderedItemList = (prop: any) => {
-  // const [orderItems, setItems] = useState([]);
-  // const orderId = prop.orderId;
   const {orderItem} = prop;
-  // useEffect(() => {
-  //   let isMounted = true;
-  //   OrderApi.fetchOrderDetails(
-  //     '/api/member/order/orderedItemList',
-  //     orderId,
-  //     setItems,
-  //     isMounted,
-  //   );
-  //   return () => {
-  //     isMounted = false;
-  //   };
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
 
   const renderItems = ({item}: any) => {
     return (

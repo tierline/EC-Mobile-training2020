@@ -1,26 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import {Accordion} from 'native-base';
-import OrderApi from '../../api/OrderApi';
 import Storage from '../../Storage';
 import {useNavigation} from '@react-navigation/native';
 import DailyOrderList from './DailyOrderList';
-import MemberApi from '../../api/MemberApi';
+import Api from '../../api/Api';
 
 const OrderList = () => {
   const navigation = useNavigation();
   const [items, setItem] = useState([]);
+
+  //購入履歴の取得
   useEffect(() => {
     const email = {email: Storage.getEmail()};
-    MemberApi.fetchMemberAddress(
-      '/api/member/order/member_id',
-      email,
-      orderDate,
-    );
+    Api.post('/api/member/order/history', email, setItem);
   }, []);
-
-  const orderDate = (id: number) => {
-    OrderApi.fetchOrder('/api/member/order/history', id, setItem);
-  };
 
   const dataArray = () => {
     const list: any[] = [];

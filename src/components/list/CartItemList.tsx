@@ -4,6 +4,7 @@ import {FlatList, Image, StyleSheet} from 'react-native';
 import CartApi from '../../api/CartApi';
 import UrlApi from '../../api/UrlApi';
 import {flashMessage} from '../flashMessage/FlashMessage';
+import Api from '../../api/Api';
 
 const CartItemList = (prop: any) => {
   const [cartItems, setItems] = useState([]);
@@ -14,16 +15,14 @@ const CartItemList = (prop: any) => {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [cartItems]);
 
   const removeParticularProduct = async (productId: number) => {
-    await CartApi.cartFromParticularProductsAllRemove(
-      '/api/member/cart/delete',
-      productId,
-    );
+    await Api.post(`/api/member/cart/delete/${productId}`);
+    // await Api.get('/api/member/cart/hasItem', setItems);
     await CartApi.fetchCartItems('/api/member/cart/list', setItems, true);
-    await CartApi.hasItem('/api/member/cart/hasItem', prop.setHasItem);
-    flashMessage('削除しました', '', 200, 'red');
+    await Api.get('/api/member/cart/hasItem', prop.setHasItem);
+    flashMessage('削除しました', '', 500, 'red');
   };
 
   const renderItem = ({item}: {item: any}) => {
