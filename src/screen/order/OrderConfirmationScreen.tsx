@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button, Container, Content, Text, H1, H2 } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
-import OrderedItemList from '../components/list/OrderedItemList';
-import OrderDetailList from '../components/list/OrderDetailList';
-import Api from '../api/Api';
+import OrderedItemList from '../../components/list/order/OrderedItemList';
+import OrderDetailList from '../../components/list/order/OrderDetailList';
+import Api from '../../api/Api';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const OrderVerificationScreen = ({ route }: RouteForOrderFormData) => {
+const OrderConfirmationScreen = ({ route }: RouteForOrderFormData) => {
   const navigation = useNavigation();
   const orderFormData = route.params.orderFormData;
   const [cartItem, setOrderItems] = useState();
@@ -72,4 +72,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OrderVerificationScreen;
+export default OrderConfirmationScreen;

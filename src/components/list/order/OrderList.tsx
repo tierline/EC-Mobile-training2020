@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Accordion } from 'native-base';
-import Storage from '../../Storage';
+import Storage from '../../../Storage';
 import { useNavigation } from '@react-navigation/native';
 import DailyOrderList from './DailyOrderList';
-import Api from '../../api/Api';
+import Api from '../../../api/Api';
 
 const OrderList = () => {
   const navigation = useNavigation();

@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import NavBarBottom from '../components/nav/NavBarBottom';
-import OrderList from '../components/list/OrderList';
+import NavBarBottom from '../../components/nav/NavBarBottom';
+import OrderList from '../../components/list/order/OrderList';
 
-const MyPageScreen = () => {
+const OrderHistoryScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.orderList}>
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
     flex: 8,
   },
 });
-export default MyPageScreen;
+export default OrderHistoryScreen;

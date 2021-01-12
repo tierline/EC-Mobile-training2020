@@ -1,40 +1,36 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Text, Form, Item, Input, Button } from 'native-base';
 import { useForm, Controller } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
-import Member from '../../domain/Member';
-import Api from '../../api/Api';
+import Member from '../../../domain/Member';
+import Api from '../../../api/Api';
 
 const MemberApplicateForm = () => {
   const { control, handleSubmit, errors } = useForm();
   const navigation = useNavigation();
 
-  const nav = () => {
+  const navi = () => {
     navigation.navigate('Home');
   };
 
   const onSubmit = (formData: MemberApplicateFormData) => {
     const member = new Member(formData.email, formData.password);
-    Api.auth('/api/member/applicate', member, nav);
+    Api.auth('/api/member/applicate', member, navi);
   };
-  // const onSubmit = (formData: FormData) => {
-  //   const member = new Member(formData.email, formData.password);
-  //   MemberApi.applicate('/api/member/applicate', member, nav);
-  // };
 
-  // Formはコンポーネントで共通化したい
   return (
-    <View>
+    <Form>
       <Text style={styles.label}>メールアドレス</Text>
-      {errors.email && <Text style={styles.error}>正しく入力してください</Text>}
       <Controller
         control={control}
         render={({ onChange, value }) => (
-          <TextInput
-            style={styles.input}
-            onChangeText={(value) => onChange(value)}
-            value={value}
-          />
+          <Item>
+            <Input
+              onChangeText={(emailValue) => onChange(emailValue)}
+              value={value}
+            />
+          </Item>
         )}
         name="email"
         rules={{
@@ -43,6 +39,7 @@ const MemberApplicateForm = () => {
         }}
         defaultValue=""
       />
+      {errors.email && <Text style={styles.error}>正しく入力してください</Text>}
 
       <Text style={styles.label}>パスワード</Text>
 
@@ -52,47 +49,59 @@ const MemberApplicateForm = () => {
       <Controller
         control={control}
         render={({ onChange, value }) => (
-          <TextInput
-            style={styles.input}
-            secureTextEntry={true}
-            onChangeText={(value) => onChange(value)}
-            value={value}
-          />
+          <Item>
+            <Input
+              secureTextEntry={true}
+              onChangeText={(passwordValue) => onChange(passwordValue)}
+              value={value}
+            />
+          </Item>
         )}
         name="password"
         rules={{ required: true, minLength: 4 }}
         defaultValue=""
       />
-      <View style={styles.button}>
-        <Button title="新規登録" onPress={handleSubmit(onSubmit)} />
-      </View>
-      <View style={styles.button}>
+      <View style={styles.buttonArea}>
         <Button
-          title="ログイン画面へ"
-          onPress={() => navigation.navigate('Login')}
-        />
+          success
+          rounded
+          block
+          style={styles.button}
+          onPress={handleSubmit(onSubmit)}>
+          <Text>新規登録</Text>
+        </Button>
+        <Button
+          rounded
+          block
+          style={styles.button}
+          onPress={() => navigation.navigate('Login')}>
+          <Text>ログイン画面へ</Text>
+        </Button>
       </View>
-    </View>
+    </Form>
   );
 };
 const styles = StyleSheet.create({
   label: {
     marginLeft: 10,
   },
-  input: {
-    marginBottom: 20,
-    marginRight: 10,
-    borderBottomWidth: 2,
-    borderBottomColor: 'red',
-  },
   form: {
     marginBottom: 20,
   },
+  inputArea: {
+    paddingTop: 20,
+  },
+  buttonArea: {
+    paddingTop: 20,
+  },
   button: {
     marginTop: 20,
+    marginLeft: 20,
+    marginRight: 20,
   },
   error: {
     color: 'red',
+    marginLeft: 20,
   },
 });
 export default MemberApplicateForm;

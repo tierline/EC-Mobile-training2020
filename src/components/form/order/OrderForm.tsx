@@ -19,7 +19,7 @@ const OrderForm = () => {
   }, [reset]);
 
   const onSubmit = (data: OrderFormData) => {
-    navigation.navigate('OrderVerification', { orderFormData: data });
+    navigation.navigate('OrderConfirmation', { orderFormData: data });
   };
 
   return (

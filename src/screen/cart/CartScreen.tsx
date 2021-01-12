@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Text, Button, H2 } from 'native-base';
-import NavBarBottom from '../components/nav/NavBarBottom';
+import NavBarBottom from '../../components/nav/NavBarBottom';
 import { useNavigation } from '@react-navigation/native';
-import CartItemList from '../components/list/CartItemList';
-import Api from '../api/Api';
+import CartItemList from '../../components/list/cart/CartItemList';
+import Api from '../../api/Api';
 
 const CartScreen = () => {
   const navigation = useNavigation();

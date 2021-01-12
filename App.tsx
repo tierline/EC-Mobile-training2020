@@ -1,19 +1,19 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import CartScreen from './src/screen/CartScreen';
+import CartScreen from './src/screen/cart/CartScreen';
 import HomeScreen from './src/screen/HomeScreen';
-import OrderFormScreen from './src/screen/OrderFormScreen';
-import CompleteScreen from './src/screen/CompleteScreen';
-import LoginScreen from './src/screen/LoginScreen';
-import MemberApplicateScreen from './src/screen/MemberApplicateScreen';
-import MyPageScreen from './src/screen/MyPageScreen';
+import OrderFormScreen from './src/screen/order/OrderFormScreen';
+import CompleteScreen from './src/screen/order/CompleteScreen';
+import LoginScreen from './src/screen/auth/LoginScreen';
+import MemberApplicateScreen from './src/screen/auth/MemberApplicateScreen';
+import OrderHistoryScreen from './src/screen/orderHistory/OrderHistoryScreen';
 import ProductDetailScreen from './src/screen/ProductDetailScreen';
-import OrderItemDetailScreen from './src/screen/OrderItemDetailScreen';
+import OrderItemDetailScreen from './src/screen/orderHistory/OrderItemDetailScreen';
 import { HeaderBackButton } from '@react-navigation/stack';
 import { StyleSheet } from 'react-native';
 import FlashMessage from 'react-native-flash-message';
-import OrderVerificationScreen from './src/screen/OrderVerificationScreen';
+import OrderVerificationScreen from './src/screen/order/OrderConfirmationScreen';
 const App = () => {
   const Stack = createStackNavigator();
   return (
@@ -72,7 +72,7 @@ const App = () => {
         />
         <Stack.Screen
           name="MyPage"
-          component={MyPageScreen}
+          component={OrderHistoryScreen}
           options={{ title: '購入履歴' }}
         />
         <Stack.Screen
@@ -82,7 +82,7 @@ const App = () => {
         />
         {/* まだ */}
         <Stack.Screen
-          name="OrderVerification"
+          name="OrderConfirmation"
           component={OrderVerificationScreen}
           options={{ title: '注文確認' }}
         />

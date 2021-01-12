@@ -1,5 +1,5 @@
 import React from 'react';
-import { Footer, FooterTab, Button, Text } from 'native-base';
+import { Footer, FooterTab, Button, Icon } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
 import Api from '../../api/Api';
@@ -21,17 +21,17 @@ const NavBarBottom = () => {
   return (
     <Footer>
       <FooterTab>
-        <Button dark onPress={() => navigation.navigate('Home')}>
-          <Text>ホーム</Text>
+        <Button onPress={() => navigation.navigate('Home')}>
+          <Icon name="home" />
         </Button>
-        <Button dark onPress={() => navigation.navigate('Cart')}>
-          <Text>カート</Text>
+        <Button onPress={() => navigation.navigate('Cart')}>
+          <Icon name="cart" />
         </Button>
-        <Button dark onPress={() => navigation.navigate('MyPage')}>
-          <Text>購入履歴</Text>
+        <Button onPress={() => navigation.navigate('MyPage')}>
+          <Icon name="person" />
         </Button>
-        <Button dark onPress={() => logoutConfirmation()}>
-          <Text>ログアウト</Text>
+        <Button onPress={() => logoutConfirmation()}>
+          <Icon name="exit" />
         </Button>
       </FooterTab>
     </Footer>
