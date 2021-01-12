@@ -1,15 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import {StyleSheet, Image, Dimensions} from 'react-native';
-import {Card, CardItem, Text, Button, Left, Body, Right} from 'native-base';
-import {useNavigation} from '@react-navigation/native';
-import {FlatList} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Image, Dimensions } from 'react-native';
+import { Card, CardItem, Text, Button, Left, Body, Right } from 'native-base';
+import { useNavigation } from '@react-navigation/native';
+import { FlatList } from 'react-native';
 import Storage from '../../Storage';
 import UrlApi from '../../api/UrlApi';
-import {Product} from '../../interface/Interface';
-import {flashMessage} from '../flashMessage/FlashMessage';
+import { flashMessage } from '../flashMessage/FlashMessage';
 import Api from '../../api/Api';
 
-const ItemList = () => {
+const ProductList = () => {
   const navigation = useNavigation();
   const [items, setItems] = useState([]);
   useEffect(() => {
@@ -21,13 +20,13 @@ const ItemList = () => {
     Api.post(`/api/member/cart/add/${productId}`);
   };
 
-  const renderItems = ({item}: {item: Product}) => {
+  const renderItems = ({ item }: { item: Product }) => {
     return (
       <Card style={styles.card}>
         <CardItem>
           <Left>
             <Body>
-              <Text>商品名:{item.name}</Text>
+              <Text style={styles.itemName}>{item.name}</Text>
               <Text>価格:{item.price}円</Text>
             </Body>
           </Left>
@@ -36,7 +35,7 @@ const ItemList = () => {
           <Image
             style={styles.image}
             resizeMode={'contain'}
-            source={{uri: UrlApi.image(item.imagePath)}}
+            source={{ uri: UrlApi.image(item.imagePath) }}
           />
         </CardItem>
         {Storage.getAuth() ? (
@@ -93,10 +92,14 @@ const styles = StyleSheet.create({
     width: window.width,
     height: 250,
   },
+  itemName: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
   message: {
     fontSize: 20,
     fontWeight: 'bold',
   },
 });
 
-export default ItemList;
+export default ProductList;

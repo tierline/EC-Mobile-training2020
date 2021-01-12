@@ -1,21 +1,19 @@
 import React from 'react';
-import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
-import {useForm, Controller} from 'react-hook-form';
-import {useNavigation} from '@react-navigation/native';
-import {FormData} from '../../interface/Interface';
+import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
+import { useForm, Controller } from 'react-hook-form';
+import { useNavigation } from '@react-navigation/native';
 import Member from '../../domain/Member';
 import Api from '../../api/Api';
 
 const LoginForm = () => {
-  const {control, handleSubmit, errors} = useForm();
+  const { control, handleSubmit, errors } = useForm();
   const navigation = useNavigation();
 
   const navi = () => {
     navigation.navigate('Home');
   };
 
-  const onSubmit = (formData: FormData) => {
-    //member変える
+  const onSubmit = (formData: MemberLoginFormData) => {
     const member = new Member(formData.email, formData.password);
     Api.auth('/api/member/login', member, navi);
   };
@@ -26,7 +24,7 @@ const LoginForm = () => {
       {errors.email && <Text style={styles.error}>正しく入力してください</Text>}
       <Controller
         control={control}
-        render={({onChange, value}) => (
+        render={({ onChange, value }) => (
           <TextInput
             style={styles.input}
             onChangeText={(value) => onChange(value)}
@@ -48,7 +46,7 @@ const LoginForm = () => {
       )}
       <Controller
         control={control}
-        render={({onChange, value}) => (
+        render={({ onChange, value }) => (
           <TextInput
             style={styles.input}
             secureTextEntry={true}
@@ -57,7 +55,7 @@ const LoginForm = () => {
           />
         )}
         name="password"
-        rules={{required: true, minLength: 4}}
+        rules={{ required: true, minLength: 4 }}
         defaultValue="test"
       />
       <View style={styles.button}>

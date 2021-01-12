@@ -1,30 +1,30 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {createContext, useEffect} from 'react';
-import {useForm, Controller} from 'react-hook-form';
-import {Text, Button} from 'native-base';
-import {StyleSheet, TextInput, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import React, { createContext, useEffect } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { Text, Button } from 'native-base';
+import { StyleSheet, TextInput, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Storage from '../../../Storage';
 import Api from '../../../api/Api';
-import FormController from './FormController';
+// import FormController from './FormController';
 
-export const FormContext = createContext({label: '', max: 0});
+export const FormContext = createContext({ label: '', max: 0 });
 
 const OrderForm = () => {
-  const {control, handleSubmit, errors, reset} = useForm();
+  const { control, handleSubmit, errors, reset } = useForm();
   const navigation = useNavigation();
   useEffect(() => {
-    const email = {email: Storage.getEmail()};
+    const email = { email: Storage.getEmail() };
     Api.post('/api/member/address', email, reset);
   }, [reset]);
 
-  const onSubmit = (data: any) => {
-    navigation.navigate('OrderVerification', {formData: data});
+  const onSubmit = (data: OrderFormData) => {
+    navigation.navigate('OrderVerification', { orderFormData: data });
   };
 
   return (
     //コンポーネントを作る
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       {/* 姓 */}
       <View
         style={{
@@ -32,14 +32,13 @@ const OrderForm = () => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <View style={{flex: 0.2, alignItems: 'flex-end'}}>
+        <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
           <Text>姓</Text>
         </View>
-        <View style={{flex: 0.8}}>
-          {/* <FormController name="lastName" maxLength={6} /> */}
+        <View style={{ flex: 0.8 }}>
           <Controller
             control={control}
-            render={({onChange, onBlur, value}) => (
+            render={({ onChange, onBlur, value }) => (
               <TextInput
                 style={styles.input}
                 onBlur={onBlur}
@@ -55,10 +54,10 @@ const OrderForm = () => {
             }}
           />
           {errors.lastName && errors.lastName.type === 'required' && (
-            <Text style={{color: 'red'}}>姓は必須です。</Text>
+            <Text style={{ color: 'red' }}>姓は必須です。</Text>
           )}
           {errors.lastName && errors.lastName.type === 'maxLength' && (
-            <Text style={{color: 'red'}}>
+            <Text style={{ color: 'red' }}>
               姓は６文字以内で入力してください。
             </Text>
           )}
@@ -71,13 +70,13 @@ const OrderForm = () => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <View style={{flex: 0.2, alignItems: 'flex-end'}}>
+        <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
           <Text>名</Text>
         </View>
-        <View style={{flex: 0.8}}>
+        <View style={{ flex: 0.8 }}>
           <Controller
             control={control}
-            render={({onChange, onBlur, value}) => (
+            render={({ onChange, onBlur, value }) => (
               <TextInput
                 style={{
                   borderBottomWidth: 1,
@@ -100,10 +99,10 @@ const OrderForm = () => {
             }}
           />
           {errors.firstName && errors.firstName.type === 'required' && (
-            <Text style={{color: 'red'}}>名は必須です。</Text>
+            <Text style={{ color: 'red' }}>名は必須です。</Text>
           )}
           {errors.firstName && errors.firstName.type === 'maxLength' && (
-            <Text style={{color: 'red'}}>
+            <Text style={{ color: 'red' }}>
               名は６文字以内で入力してください。
             </Text>
           )}
@@ -116,14 +115,14 @@ const OrderForm = () => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <View style={{flex: 0.2, alignItems: 'flex-end'}}>
+        <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
           <Text>email</Text>
         </View>
-        <View style={{flex: 0.8}}>
+        <View style={{ flex: 0.8 }}>
           <Controller
             control={control}
             defaultValue=""
-            render={({onChange, onBlur, value}) => (
+            render={({ onChange, onBlur, value }) => (
               <TextInput
                 style={{
                   borderBottomWidth: 1,
@@ -146,15 +145,15 @@ const OrderForm = () => {
             }}
           />
           {errors.email && errors.email.type === 'required' && (
-            <Text style={{color: 'red'}}>メールアドレスは必須です。</Text>
+            <Text style={{ color: 'red' }}>メールアドレスは必須です。</Text>
           )}
           {errors.email && errors.email.type === 'maxLength' && (
-            <Text style={{color: 'red'}}>
+            <Text style={{ color: 'red' }}>
               メールアドレスは22文字以内で入力してください。
             </Text>
           )}
           {errors.email && errors.email.type === 'pattern' && (
-            <Text style={{color: 'red'}}>
+            <Text style={{ color: 'red' }}>
               メールアドレスのフォーマットが不正です。
             </Text>
           )}
@@ -167,14 +166,14 @@ const OrderForm = () => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <View style={{flex: 0.2, alignItems: 'flex-end'}}>
+        <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
           <Text>電話番号</Text>
         </View>
-        <View style={{flex: 0.8}}>
+        <View style={{ flex: 0.8 }}>
           <Controller
             control={control}
             defaultValue=""
-            render={({onChange, onBlur, value}) => (
+            render={({ onChange, onBlur, value }) => (
               <TextInput
                 style={{
                   borderBottomWidth: 1,
@@ -197,15 +196,15 @@ const OrderForm = () => {
             }}
           />
           {errors.phoneNumber && errors.phoneNumber.type === 'required' && (
-            <Text style={{color: 'red'}}>電話番号は必須です。</Text>
+            <Text style={{ color: 'red' }}>電話番号は必須です。</Text>
           )}
           {errors.phoneNumber && errors.phoneNumber.type === 'maxLength' && (
-            <Text style={{color: 'red'}}>
+            <Text style={{ color: 'red' }}>
               電話番号は13文字以内で入力してください。
             </Text>
           )}
           {errors.phoneNumber && errors.phoneNumber.type === 'pattern' && (
-            <Text style={{color: 'red'}}>
+            <Text style={{ color: 'red' }}>
               電話番号のフォーマットが不正です。
             </Text>
           )}
@@ -218,14 +217,14 @@ const OrderForm = () => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <View style={{flex: 0.2, alignItems: 'flex-end'}}>
+        <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
           <Text>郵便番号</Text>
         </View>
-        <View style={{flex: 0.8}}>
+        <View style={{ flex: 0.8 }}>
           <Controller
             control={control}
             defaultValue=""
-            render={({onChange, onBlur, value}) => (
+            render={({ onChange, onBlur, value }) => (
               <TextInput
                 style={{
                   borderBottomWidth: 1,
@@ -248,15 +247,15 @@ const OrderForm = () => {
             }}
           />
           {errors.postcode && errors.postcode.type === 'required' && (
-            <Text style={{color: 'red'}}>郵便番号</Text>
+            <Text style={{ color: 'red' }}>郵便番号</Text>
           )}
           {errors.postcode && errors.postcode.type === 'maxLength' && (
-            <Text style={{color: 'red'}}>
+            <Text style={{ color: 'red' }}>
               郵便番号はは8文字以内で入力してください。
             </Text>
           )}
           {errors.phoneNumber && errors.phoneNumber.type === 'pattern' && (
-            <Text style={{color: 'red'}}>
+            <Text style={{ color: 'red' }}>
               郵便番号のフォーマットが不正です。
             </Text>
           )}
@@ -269,14 +268,14 @@ const OrderForm = () => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <View style={{flex: 0.2, alignItems: 'flex-end'}}>
+        <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
           <Text>都道府県</Text>
         </View>
-        <View style={{flex: 0.8}}>
+        <View style={{ flex: 0.8 }}>
           <Controller
             control={control}
             defaultValue=""
-            render={({onChange, onBlur, value}) => (
+            render={({ onChange, onBlur, value }) => (
               <TextInput
                 style={styles.input}
                 placeholder=""
@@ -292,10 +291,10 @@ const OrderForm = () => {
             }}
           />
           {errors.prefecture && errors.prefecture.type === 'required' && (
-            <Text style={{color: 'red'}}>住所は必須です。</Text>
+            <Text style={{ color: 'red' }}>住所は必須です。</Text>
           )}
           {errors.prefecture && errors.prefecture.type === 'maxLength' && (
-            <Text style={{color: 'red'}}>
+            <Text style={{ color: 'red' }}>
               住所は100文字以内で入力してください。
             </Text>
           )}
@@ -308,14 +307,14 @@ const OrderForm = () => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <View style={{flex: 0.2, alignItems: 'flex-end'}}>
+        <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
           <Text>市区町村</Text>
         </View>
-        <View style={{flex: 0.8}}>
+        <View style={{ flex: 0.8 }}>
           <Controller
             control={control}
             defaultValue=""
-            render={({onChange, onBlur, value}) => (
+            render={({ onChange, onBlur, value }) => (
               <TextInput
                 style={styles.input}
                 placeholder=""
@@ -331,10 +330,10 @@ const OrderForm = () => {
             }}
           />
           {errors.city && errors.city.type === 'required' && (
-            <Text style={{color: 'red'}}>住所は必須です。</Text>
+            <Text style={{ color: 'red' }}>住所は必須です。</Text>
           )}
           {errors.city && errors.city.type === 'maxLength' && (
-            <Text style={{color: 'red'}}>
+            <Text style={{ color: 'red' }}>
               住所は100文字以内で入力してください。
             </Text>
           )}
@@ -347,13 +346,13 @@ const OrderForm = () => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <View style={{flex: 0.2, alignItems: 'flex-end'}}>
+        <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
           <Text>番地</Text>
         </View>
-        <View style={{flex: 0.8}}>
+        <View style={{ flex: 0.8 }}>
           <Controller
             control={control}
-            render={({onChange, onBlur, value}) => (
+            render={({ onChange, onBlur, value }) => (
               <TextInput
                 style={styles.input}
                 placeholder=""
@@ -370,10 +369,10 @@ const OrderForm = () => {
             }}
           />
           {errors.block && errors.block.type === 'required' && (
-            <Text style={{color: 'red'}}>番地は必須です。</Text>
+            <Text style={{ color: 'red' }}>番地は必須です。</Text>
           )}
           {errors.block && errors.block.type === 'maxLength' && (
-            <Text style={{color: 'red'}}>
+            <Text style={{ color: 'red' }}>
               番地は100文字以内で入力してください。
             </Text>
           )}

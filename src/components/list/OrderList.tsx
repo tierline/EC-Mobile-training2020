@@ -1,26 +1,26 @@
-import React, {useEffect, useState} from 'react';
-import {Accordion} from 'native-base';
+import React, { useEffect, useState } from 'react';
+import { Accordion } from 'native-base';
 import Storage from '../../Storage';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import DailyOrderList from './DailyOrderList';
 import Api from '../../api/Api';
 
 const OrderList = () => {
   const navigation = useNavigation();
-  const [items, setItem] = useState([]);
-
-  //購入履歴の取得
+  const [orderHistory, setOrderHistory] = useState([]);
   useEffect(() => {
-    const email = {email: Storage.getEmail()};
-    Api.post('/api/member/order/history', email, setItem);
+    const email = { email: Storage.getEmail() };
+    Api.post('/api/member/order/history', email, setOrderHistory);
   }, []);
 
   const dataArray = () => {
-    const list: any[] = [];
-    for (let key in items) {
+    const list = [];
+    for (let key in orderHistory) {
       const data = {
         title: `${key}月`,
-        content: <DailyOrderList navi={navigation} items={items[key]} />,
+        content: (
+          <DailyOrderList navi={navigation} orderHistory={orderHistory[key]} />
+        ),
       };
       list.push(data);
     }

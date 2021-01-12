@@ -1,19 +1,19 @@
 import React from 'react';
-import {View, StyleSheet, TextInput, Text} from 'react-native';
-import {useForm, Controller} from 'react-hook-form';
+import { View, StyleSheet, TextInput, Text } from 'react-native';
+import { useForm, Controller } from 'react-hook-form';
 
 type OrderFormProp = {
   name: string;
   maxLength: number;
 };
 const FormController = (prop: OrderFormProp) => {
-  const {control, errors} = useForm();
-  const {name, maxLength} = prop;
+  const { control, errors } = useForm();
+  const { name, maxLength } = prop;
   return (
     <View>
       <Controller
         control={control}
-        render={({onChange, onBlur, value}) => (
+        render={({ onChange, onBlur, value }) => (
           <TextInput
             style={styles.input}
             onBlur={onBlur}

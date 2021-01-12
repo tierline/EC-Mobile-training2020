@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {View, StyleSheet} from 'react-native';
-import {Text, Button, H2} from 'native-base';
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { Text, Button, H2 } from 'native-base';
 import NavBarBottom from '../components/nav/NavBarBottom';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import CartItemList from '../components/list/CartItemList';
 import Api from '../api/Api';
 
@@ -31,7 +31,7 @@ const CartScreen = () => {
           primary
           large
           onPress={() => navigation.navigate('OrderForm')}>
-          <Text>注文する</Text>
+          <Text>入力フォームへ進む</Text>
         </Button>
       ) : (
         <View style={styles.message}>

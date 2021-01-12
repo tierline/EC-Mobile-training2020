@@ -1,21 +1,19 @@
 import React from 'react';
-import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
-import {useForm, Controller} from 'react-hook-form';
-import {useNavigation} from '@react-navigation/native';
-import {FormData} from '../../interface/Interface';
+import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
+import { useForm, Controller } from 'react-hook-form';
+import { useNavigation } from '@react-navigation/native';
 import Member from '../../domain/Member';
 import Api from '../../api/Api';
 
 const MemberApplicateForm = () => {
-  const {control, handleSubmit, errors} = useForm();
+  const { control, handleSubmit, errors } = useForm();
   const navigation = useNavigation();
 
   const nav = () => {
     navigation.navigate('Home');
   };
 
-  const onSubmit = (formData: FormData) => {
-    //member変える
+  const onSubmit = (formData: MemberApplicateFormData) => {
     const member = new Member(formData.email, formData.password);
     Api.auth('/api/member/applicate', member, nav);
   };
@@ -24,13 +22,14 @@ const MemberApplicateForm = () => {
   //   MemberApi.applicate('/api/member/applicate', member, nav);
   // };
 
+  // Formはコンポーネントで共通化したい
   return (
     <View>
       <Text style={styles.label}>メールアドレス</Text>
       {errors.email && <Text style={styles.error}>正しく入力してください</Text>}
       <Controller
         control={control}
-        render={({onChange, value}) => (
+        render={({ onChange, value }) => (
           <TextInput
             style={styles.input}
             onChangeText={(value) => onChange(value)}
@@ -52,7 +51,7 @@ const MemberApplicateForm = () => {
       )}
       <Controller
         control={control}
-        render={({onChange, value}) => (
+        render={({ onChange, value }) => (
           <TextInput
             style={styles.input}
             secureTextEntry={true}
@@ -61,7 +60,7 @@ const MemberApplicateForm = () => {
           />
         )}
         name="password"
-        rules={{required: true, minLength: 4}}
+        rules={{ required: true, minLength: 4 }}
         defaultValue=""
       />
       <View style={styles.button}>
@@ -77,9 +76,6 @@ const MemberApplicateForm = () => {
   );
 };
 const styles = StyleSheet.create({
-  constent: {
-    flex: 2,
-  },
   label: {
     marginLeft: 10,
   },

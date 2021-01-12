@@ -1,7 +1,7 @@
 import React from 'react';
-import {Button, Container, Content, Text, Body} from 'native-base';
+import { Button, Container, Content, Text, Body } from 'native-base';
 import NavBarBottom from '../components/nav/NavBarBottom';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 const OrderScreen = () => {
   const navigation = useNavigation();

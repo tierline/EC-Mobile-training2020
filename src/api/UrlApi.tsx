@@ -1,4 +1,4 @@
-import {Platform} from 'react-native';
+import { Platform } from 'react-native';
 
 export default class Url {
   static isDev = true;
@@ -13,7 +13,7 @@ export default class Url {
 
   static baseUrl() {
     const android = 'http://10.0.2.2:8080';
-    const ios = 'http://192.168.1.16:8080';
+    const ios = 'http://127.0.0.1:8080';
     if (Platform.OS === 'ios') {
       return ios;
     } else {

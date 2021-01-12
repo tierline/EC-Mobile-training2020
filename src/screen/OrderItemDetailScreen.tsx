@@ -1,18 +1,18 @@
-import React, {useEffect, useState} from 'react';
-import {FlatList, View, Text, StyleSheet} from 'react-native';
-import {CardItem, Left, Body, Thumbnail, Card} from 'native-base';
+import React, { useEffect, useState } from 'react';
+import { FlatList, View, Text, StyleSheet } from 'react-native';
+import { CardItem, Left, Body, Thumbnail, Card } from 'native-base';
 import UrlApi from '../api/UrlApi';
 import NavBarBottom from '../components/nav/NavBarBottom';
 import Api from '../api/Api';
 
-const OrderItemDetailScreen = ({route}: any) => {
-  const {id, orderDate} = route.params;
-  const [items, setItem] = useState([]);
+const OrderItemDetailScreen = ({ route }: RouteForOrderHistory) => {
+  const { orderId, orderDate } = route.params;
+  const [orderedItems, setOrderedItem] = useState([]);
   useEffect(() => {
-    Api.get(`/api/member/order/history/item/${id}`, setItem);
-  }, [id]);
+    Api.get(`/api/member/order/history/item/${orderId}`, setOrderedItem);
+  }, [orderId]);
 
-  const renderItems = ({item}: {item: any}) => {
+  const renderItems = ({ item }: { item: OrderedItem }) => {
     return (
       <View>
         <Card>
@@ -40,9 +40,9 @@ const OrderItemDetailScreen = ({route}: any) => {
       <View style={styles.orderList}>
         <Text>{orderDate}</Text>
         <FlatList
-          data={items}
+          data={orderedItems}
           renderItem={renderItems}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(orderedItem, index) => index.toString()}
         />
       </View>
       <NavBarBottom />

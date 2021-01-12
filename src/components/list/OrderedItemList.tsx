@@ -1,13 +1,14 @@
 import React from 'react';
-import {Image, StyleSheet} from 'react-native';
-import {Text, List, ListItem, Body, Left, Right} from 'native-base';
-import {FlatList} from 'react-native';
+import { Image, StyleSheet } from 'react-native';
+import { Text, List, ListItem, Body, Left, Right } from 'native-base';
+import { FlatList } from 'react-native';
 import UrlApi from '../../api/UrlApi';
 
-const OrderedItemList = (prop: any) => {
-  const {orderItem} = prop;
+// prop に型を定義すると OrderVerificationScreen でエラーが出る。
+const OrderedItemList = (prop: { cartItem: any }) => {
+  const { cartItem } = prop;
 
-  const renderItems = ({item}: any) => {
+  const renderItems = ({ item }: { item: CartItem }) => {
     return (
       <List>
         <ListItem noIndent>
@@ -15,7 +16,7 @@ const OrderedItemList = (prop: any) => {
             <Image
               style={styles.image}
               resizeMode={'contain'}
-              source={{uri: UrlApi.image(item.productImage)}}
+              source={{ uri: UrlApi.image(item.productImage) }}
             />
           </Left>
           <Body>
@@ -32,7 +33,7 @@ const OrderedItemList = (prop: any) => {
 
   return (
     <FlatList
-      data={orderItem}
+      data={cartItem}
       renderItem={renderItems}
       keyExtractor={(item, index) => index.toString()}
     />

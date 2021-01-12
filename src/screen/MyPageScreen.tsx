@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import NavBarBottom from '../components/nav/NavBarBottom';
 import OrderList from '../components/list/OrderList';
 

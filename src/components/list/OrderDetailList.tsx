@@ -1,8 +1,8 @@
 import React from 'react';
-import {Text, List, ListItem, Body, Left} from 'native-base';
+import { Text, List, ListItem, Body, Left } from 'native-base';
 
-const OrderDetailList = (prop: any) => {
-  const orderDetail = prop.orderDetail;
+const OrderDetailList = (prop: PropForOrderFormData) => {
+  const orderFormData = prop.orderFormData;
   return (
     <List>
       <ListItem>
@@ -10,7 +10,7 @@ const OrderDetailList = (prop: any) => {
           <Text>お名前</Text>
         </Left>
         <Body>
-          <Text>{orderDetail.lastName + orderDetail.firstName}様</Text>
+          <Text>{orderFormData.lastName + orderFormData.firstName}様</Text>
         </Body>
       </ListItem>
       <ListItem>
@@ -18,9 +18,11 @@ const OrderDetailList = (prop: any) => {
           <Text>住所</Text>
         </Left>
         <Body>
-          <Text>{orderDetail.postcode}</Text>
+          <Text>〒{orderFormData.postcode}</Text>
           <Text>
-            {orderDetail.prefecture + orderDetail.city + orderDetail.block}
+            {orderFormData.prefecture +
+              orderFormData.city +
+              orderFormData.block}
           </Text>
         </Body>
       </ListItem>
@@ -29,7 +31,7 @@ const OrderDetailList = (prop: any) => {
           <Text>メールアドレス</Text>
         </Left>
         <Body>
-          <Text>{orderDetail.email}</Text>
+          <Text>{orderFormData.email}</Text>
         </Body>
       </ListItem>
       <ListItem>
@@ -37,7 +39,7 @@ const OrderDetailList = (prop: any) => {
           <Text>電話番号</Text>
         </Left>
         <Body>
-          <Text>{orderDetail.phoneNumber}</Text>
+          <Text>{orderFormData.phoneNumber}</Text>
         </Body>
       </ListItem>
     </List>

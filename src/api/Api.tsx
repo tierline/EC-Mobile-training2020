@@ -1,6 +1,6 @@
 import axios from 'axios';
-import {Alert} from 'react-native';
-import {flashMessage} from '../components/flashMessage/FlashMessage';
+import { Alert } from 'react-native';
+import { flashMessage } from '../components/flashMessage/FlashMessage';
 import Storage from '../Storage';
 import Url from './UrlApi';
 
@@ -16,8 +16,8 @@ export default class Api {
       } else {
         flashMessage('失敗', '', 1000, 'red');
       }
-    } catch {
-      Alert.alert('error:auth');
+    } catch (error) {
+      Alert.alert('auth error:' + error);
     }
   }
 
@@ -46,8 +46,8 @@ export default class Api {
         return;
       }
       setState(res.data);
-    } catch {
-      Alert.alert('error: get');
+    } catch (error) {
+      Alert.alert('get error:' + error);
     }
   }
 
@@ -61,8 +61,8 @@ export default class Api {
       } else {
         axios.post(url);
       }
-    } catch {
-      Alert.alert('error: post');
+    } catch (error) {
+      Alert.alert('post error:' + error);
     }
   }
 }

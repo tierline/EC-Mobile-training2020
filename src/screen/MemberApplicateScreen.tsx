@@ -1,6 +1,6 @@
 import React from 'react';
-import {Container, Content} from 'native-base';
-import {StyleSheet} from 'react-native';
+import { Container, Content } from 'native-base';
+import { StyleSheet } from 'react-native';
 import MemberApplicateForm from '../components/form/MemberApplicateForm';
 const ApplicateScreen = () => {
   return (
