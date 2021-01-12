@@ -10,7 +10,7 @@ const OrderItemDetailScreen = ({ route }: RouteForOrderHistory) => {
   const [orderedItems, setOrderedItem] = useState([]);
   useEffect(() => {
     Api.get(`/api/member/order/history/item/${orderId}`, setOrderedItem);
-  }, [id]);
+  }, [orderId]);
 
   const renderItems = ({ item }: { item: OrderedItem }) => {
     return (
