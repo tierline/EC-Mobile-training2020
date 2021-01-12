@@ -14,7 +14,7 @@ const CartItemList = (prop: { setHasItem: Function }) => {
     return () => {
       mounted = false;
     };
-  }, [cartItems]);
+  }, []);
 
   // 綺麗にしたい
   const removeParticularProduct = async (productId: number) => {

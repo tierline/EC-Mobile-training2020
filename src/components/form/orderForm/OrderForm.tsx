@@ -26,12 +26,7 @@ const OrderForm = () => {
     //コンポーネントを作る
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       {/* 姓 */}
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+      <View style={styles.form}>
         <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
           <Text>姓</Text>
         </View>
@@ -64,12 +59,7 @@ const OrderForm = () => {
         </View>
       </View>
       {/* 名 */}
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+      <View style={styles.form}>
         <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
           <Text>名</Text>
         </View>
@@ -78,13 +68,7 @@ const OrderForm = () => {
             control={control}
             render={({ onChange, onBlur, value }) => (
               <TextInput
-                style={{
-                  borderBottomWidth: 1,
-                  borderBottomColor: '#ccc',
-                  width: '80%',
-                  fontSize: 20,
-                  margin: '4%',
-                }}
+                style={styles.input}
                 placeholder=""
                 onBlur={onBlur}
                 onChangeText={(firstNameValue) => onChange(firstNameValue)}
@@ -109,12 +93,7 @@ const OrderForm = () => {
         </View>
       </View>
       {/* メールアドレス */}
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+      <View style={styles.form}>
         <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
           <Text>email</Text>
         </View>
@@ -124,13 +103,7 @@ const OrderForm = () => {
             defaultValue=""
             render={({ onChange, onBlur, value }) => (
               <TextInput
-                style={{
-                  borderBottomWidth: 1,
-                  borderBottomColor: '#ccc',
-                  width: '80%',
-                  fontSize: 20,
-                  margin: '4%',
-                }}
+                style={styles.input}
                 placeholder=""
                 onBlur={onBlur}
                 onChangeText={(emailValue) => onChange(emailValue)}
@@ -160,12 +133,7 @@ const OrderForm = () => {
         </View>
       </View>
       {/* 電話番号 */}
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+      <View style={styles.form}>
         <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
           <Text>電話番号</Text>
         </View>
@@ -175,13 +143,7 @@ const OrderForm = () => {
             defaultValue=""
             render={({ onChange, onBlur, value }) => (
               <TextInput
-                style={{
-                  borderBottomWidth: 1,
-                  borderBottomColor: '#ccc',
-                  width: '80%',
-                  fontSize: 20,
-                  margin: '4%',
-                }}
+                style={styles.input}
                 placeholder=""
                 onBlur={onBlur}
                 onChangeText={(phoneValue) => onChange(phoneValue)}
@@ -211,12 +173,7 @@ const OrderForm = () => {
         </View>
       </View>
       {/* 郵便番号 */}
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+      <View style={styles.form}>
         <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
           <Text>郵便番号</Text>
         </View>
@@ -226,13 +183,7 @@ const OrderForm = () => {
             defaultValue=""
             render={({ onChange, onBlur, value }) => (
               <TextInput
-                style={{
-                  borderBottomWidth: 1,
-                  borderBottomColor: '#ccc',
-                  width: '80%',
-                  fontSize: 20,
-                  margin: '4%',
-                }}
+                style={styles.input}
                 placeholder=""
                 onBlur={onBlur}
                 onChangeText={(address1Value) => onChange(address1Value)}
@@ -262,12 +213,7 @@ const OrderForm = () => {
         </View>
       </View>
       {/* 住所 */}
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+      <View style={styles.form}>
         <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
           <Text>都道府県</Text>
         </View>
@@ -301,12 +247,7 @@ const OrderForm = () => {
         </View>
       </View>
       {/* 市区町村 */}
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+      <View style={styles.form}>
         <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
           <Text>市区町村</Text>
         </View>
@@ -340,12 +281,7 @@ const OrderForm = () => {
         </View>
       </View>
       {/* 番地 */}
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+      <View style={styles.form}>
         <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
           <Text>番地</Text>
         </View>
@@ -378,22 +314,25 @@ const OrderForm = () => {
           )}
         </View>
       </View>
-      <View>
-        <Button primary onPress={handleSubmit(onSubmit)}>
-          <Text>注文確認画面へ</Text>
-        </Button>
-      </View>
+      <Button full large primary onPress={handleSubmit(onSubmit)}>
+        <Text>注文確認画面へ</Text>
+      </Button>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  form: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   input: {
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
     width: '80%',
     fontSize: 20,
-    margin: '4%',
+    margin: '5%',
   },
 });
 export default OrderForm;
