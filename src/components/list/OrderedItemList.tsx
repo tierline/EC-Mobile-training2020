@@ -4,7 +4,8 @@ import { Text, List, ListItem, Body, Left, Right } from 'native-base';
 import { FlatList } from 'react-native';
 import UrlApi from '../../api/UrlApi';
 
-const OrderedItemList = (prop: PropForCartItem) => {
+// prop に型を定義すると OrderVerificationScreen でエラーが出る。
+const OrderedItemList = (prop: { cartItem: any }) => {
   const { cartItem } = prop;
 
   const renderItems = ({ item }: { item: CartItem }) => {

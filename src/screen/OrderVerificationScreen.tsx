@@ -1,25 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Button, Container, Content, Text, H1, H2, Body } from 'native-base';
+import { Button, Container, Content, Text, H1, H2 } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import OrderedItemList from '../components/list/OrderedItemList';
 import OrderDetailList from '../components/list/OrderDetailList';
-import CartApi from '../api/CartApi';
 import Api from '../api/Api';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const OrderVerificationScreen = ({ route }: RouteForOrderFormData) => {
   const navigation = useNavigation();
   const orderFormData = route.params.orderFormData;
   const [cartItem, setOrderItems] = useState();
   const [totalAmount, setTotalAmount] = useState();
+
   useEffect(() => {
     let mounted = true;
-    CartApi.fetchCartItems(
-      '/api/member/cart/list',
-      setOrderItems,
-      mounted,
-      setTotalAmount,
-    );
+    Api.get('/api/member/cart/list', setOrderItems, mounted, setTotalAmount);
     return () => {
       mounted = false;
     };
@@ -42,18 +38,16 @@ const OrderVerificationScreen = ({ route }: RouteForOrderFormData) => {
         <Content style={styles.h2content}>
           <H2>注文商品</H2>
         </Content>
-        <OrderedItemList cartItem={cartItem} />
+        <SafeAreaView>
+          <OrderedItemList cartItem={cartItem} />
+        </SafeAreaView>
         <View style={styles.totalPrice}>
           <Text style={styles.totalPriceH2}>合計金額{totalAmount}円</Text>
         </View>
-        <View>
-          <Body style={styles.button}>
-            <Button onPress={() => onSubmit()}>
-              <Text>注文する</Text>
-            </Button>
-          </Body>
-        </View>
       </Content>
+      <Button full large onPress={() => onSubmit()}>
+        <Text>注文する</Text>
+      </Button>
     </Container>
   );
 };
@@ -75,9 +69,6 @@ const styles = StyleSheet.create({
   totalPriceH2: {
     fontSize: 20,
     fontWeight: '500',
-  },
-  button: {
-    marginBottom: '5%',
   },
 });
 

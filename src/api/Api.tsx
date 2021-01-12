@@ -28,10 +28,23 @@ export default class Api {
     });
   }
 
-  static async get(request: string, setState: Function, mounted?: boolean) {
+  //素直に分けるべき？
+  static async get(
+    request: string,
+    setState: Function,
+    mounted?: boolean,
+    setAmount?: Function,
+  ) {
     const url = Url.get(request);
     try {
       const res = await axios.get(url);
+      if (mounted) {
+        setState(res.data.items);
+        if (setAmount) {
+          setAmount(res.data.totalAmount);
+        }
+        return;
+      }
       setState(res.data);
     } catch (error) {
       Alert.alert('get error:' + error);

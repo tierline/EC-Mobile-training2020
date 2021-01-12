@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {Alert} from 'react-native';
-import UrlApi from './UrlApi';
+import UrlApi from '../api/UrlApi';
 
 export default class CartApi {
   /**
@@ -65,15 +65,6 @@ export default class CartApi {
   //     Alert.alert('通信エラー' + error);
   //   }
   // }
-  static async post(request: string) {
-    const url = UrlApi.get(request);
-    try {
-      await axios.post(url);
-    } catch (error) {
-      console.log('通信エラー' + error);
-      Alert.alert('通信エラー' + error);
-    }
-  }
 
   /**
    *
