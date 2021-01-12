@@ -1,25 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Button, Container, Content, Text, H1, H2, Body} from 'native-base';
+import {Button, Container, Content, Text, H1, H2} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
 import OrderedItemList from '../components/list/OrderedItemList';
 import OrderDetailList from '../components/list/OrderDetailList';
-import CartApi from '../api/CartApi';
 import Api from '../api/Api';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const OrderVerificationScreen = ({route}: any) => {
   const navigation = useNavigation();
   const formData = route.params.formData;
   const [items, setItems] = useState();
   const [totalAmount, setTotalAmount] = useState();
+
   useEffect(() => {
     let mounted = true;
-    CartApi.fetchCartItems(
-      '/api/member/cart/list',
-      setItems,
-      mounted,
-      setTotalAmount,
-    );
+    Api.get('/api/member/cart/list', setItems, mounted, setTotalAmount);
     return () => {
       mounted = false;
     };
@@ -30,6 +26,7 @@ const OrderVerificationScreen = ({route}: any) => {
       orderId: id,
     });
   };
+
   const onSubmit = () => {
     Api.post('/api/member/order/save', formData, navi);
   };
@@ -43,18 +40,16 @@ const OrderVerificationScreen = ({route}: any) => {
         <Content style={styles.h2content}>
           <H2>注文商品</H2>
         </Content>
-        <OrderedItemList orderItem={items} />
+        <SafeAreaView>
+          <OrderedItemList orderItem={items} />
+        </SafeAreaView>
         <View style={styles.totalPrice}>
           <Text style={styles.totalPriceH2}>合計金額{totalAmount}円</Text>
         </View>
-        <View>
-          <Body style={styles.button}>
-            <Button onPress={() => onSubmit()}>
-              <Text>注文する</Text>
-            </Button>
-          </Body>
-        </View>
       </Content>
+      <Button full large onPress={() => onSubmit()}>
+        <Text>注文する</Text>
+      </Button>
     </Container>
   );
 };
@@ -76,9 +71,6 @@ const styles = StyleSheet.create({
   totalPriceH2: {
     fontSize: 20,
     fontWeight: '500',
-  },
-  button: {
-    marginBottom: '5%',
   },
 });
 

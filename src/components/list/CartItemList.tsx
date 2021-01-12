@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Card, CardItem, Text, Right, Button, H3} from 'native-base';
 import {FlatList, Image, StyleSheet} from 'react-native';
-import CartApi from '../../api/CartApi';
 import UrlApi from '../../api/UrlApi';
 import {flashMessage} from '../flashMessage/FlashMessage';
 import Api from '../../api/Api';
@@ -11,7 +10,7 @@ const CartItemList = (prop: any) => {
 
   useEffect(() => {
     let mounted = true;
-    CartApi.fetchCartItems('/api/member/cart/list', setItems, mounted);
+    Api.get('/api/member/cart/list', setItems, mounted);
     return () => {
       mounted = false;
     };
@@ -19,8 +18,7 @@ const CartItemList = (prop: any) => {
 
   const removeParticularProduct = async (productId: number) => {
     await Api.post(`/api/member/cart/delete/${productId}`);
-    // await Api.get('/api/member/cart/hasItem', setItems);
-    await CartApi.fetchCartItems('/api/member/cart/list', setItems, true);
+    await Api.get('/api/member/cart/list', setItems, true);
     await Api.get('/api/member/cart/hasItem', prop.setHasItem);
     flashMessage('削除しました', '', 500, 'red');
   };
