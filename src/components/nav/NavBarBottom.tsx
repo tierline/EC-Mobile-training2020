@@ -2,7 +2,7 @@ import React from 'react';
 import {Footer, FooterTab, Button, Text} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
 import {Alert} from 'react-native';
-import MemberApi from '../../api/MemberApi';
+import Api from '../../api/Api';
 const NavBarBottom = () => {
   const navigation = useNavigation();
 
@@ -13,7 +13,7 @@ const NavBarBottom = () => {
     ]);
   };
   const logout = () => {
-    MemberApi.logout('/member/logout');
+    Api.logout('/member/logout');
     Alert.alert('ログアウトしました');
     navigation.navigate('Login');
   };

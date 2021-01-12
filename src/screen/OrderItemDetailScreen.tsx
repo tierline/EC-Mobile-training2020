@@ -1,22 +1,18 @@
-import React, {useEffect, useState} from 'react';
-import {FlatList, View, Text, StyleSheet} from 'react-native';
-import {CardItem, Left, Body, Thumbnail, Card} from 'native-base';
-import OrderApi from '../api/OrderApi';
+import React, { useEffect, useState } from 'react';
+import { FlatList, View, Text, StyleSheet } from 'react-native';
+import { CardItem, Left, Body, Thumbnail, Card } from 'native-base';
 import UrlApi from '../api/UrlApi';
 import NavBarBottom from '../components/nav/NavBarBottom';
+import Api from '../api/Api';
 
-const OrderItemDetailScreen = ({route}: RouteForOrderHistory) => {
-  const {orderId, orderDate} = route.params;
+const OrderItemDetailScreen = ({ route }: RouteForOrderHistory) => {
+  const { orderId, orderDate } = route.params;
   const [orderedItems, setOrderedItem] = useState([]);
   useEffect(() => {
-    OrderApi.fetchOrder(
-      '/api/member/order/history/item',
-      orderId,
-      setOrderedItem,
-    );
-  }, [orderId]);
+    Api.get(`/api/member/order/history/item/${orderId}`, setOrderedItem);
+  }, [id]);
 
-  const renderItems = ({item}: {item: OrderedItem}) => {
+  const renderItems = ({ item }: { item: OrderedItem }) => {
     return (
       <View>
         <Card>

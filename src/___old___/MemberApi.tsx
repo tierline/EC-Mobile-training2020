@@ -2,7 +2,7 @@ import axios from 'axios';
 import {Alert} from 'react-native';
 import {flashMessage} from '../components/flashMessage/FlashMessage';
 import Storage from '../Storage';
-import UrlApi from './UrlApi';
+import UrlApi from '../api/UrlApi';
 
 export default class MemberApi {
   //loginとapplicateの処理がほぼ同じなのでどうにかしたい

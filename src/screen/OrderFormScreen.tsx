@@ -1,6 +1,6 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import {Container, Content, H2, Body} from 'native-base';
+import { StyleSheet, View } from 'react-native';
+import { Container, Content, H2, Body } from 'native-base';
 import OrderForm from '../components/form/orderForm/OrderForm';
 
 const OrderFormScreen = () => {

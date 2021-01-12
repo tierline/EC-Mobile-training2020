@@ -1,14 +1,13 @@
 import React from 'react';
-import {Image, StyleSheet} from 'react-native';
-import {Text, List, ListItem, Body, Left, Right} from 'native-base';
-import {FlatList} from 'react-native';
+import { Image, StyleSheet } from 'react-native';
+import { Text, List, ListItem, Body, Left, Right } from 'native-base';
+import { FlatList } from 'react-native';
 import UrlApi from '../../api/UrlApi';
 
-// prop の型指定
-const OrderedItemList = (prop: {cartItem: any}) => {
-  const {cartItem} = prop;
+const OrderedItemList = (prop: PropForCartItem) => {
+  const { cartItem } = prop;
 
-  const renderItems = ({item}: {item: CartItem}) => {
+  const renderItems = ({ item }: { item: CartItem }) => {
     return (
       <List>
         <ListItem noIndent>
@@ -16,7 +15,7 @@ const OrderedItemList = (prop: {cartItem: any}) => {
             <Image
               style={styles.image}
               resizeMode={'contain'}
-              source={{uri: UrlApi.image(item.productImage)}}
+              source={{ uri: UrlApi.image(item.productImage) }}
             />
           </Left>
           <Body>

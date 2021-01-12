@@ -5,19 +5,19 @@ import {useNavigation} from '@react-navigation/native';
 import {FlatList} from 'react-native';
 import Storage from '../../Storage';
 import UrlApi from '../../api/UrlApi';
-import ProductApi from '../../api/ProductApi';
-import CarApi from '../../api/CartApi';
 import {flashMessage} from '../flashMessage/FlashMessage';
+import Api from '../../api/Api';
+
 const ProductList = () => {
   const navigation = useNavigation();
   const [items, setItems] = useState([]);
   useEffect(() => {
-    ProductApi.fetchProduct('/api/product', setItems);
+    Api.get('/api/product', setItems);
   }, []);
 
   const addProduct = (productId: number, productName: string) => {
     flashMessage(`${productName}を`, 'カートに追加しました', 500, '#f4511e');
-    CarApi.addProductToCart('/api/member/cart/add', productId);
+    Api.post(`/api/member/cart/add/${productId}`);
   };
 
   const renderItems = ({item}: {item: Product}) => {

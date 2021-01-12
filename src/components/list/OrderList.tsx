@@ -1,26 +1,17 @@
-import React, {useEffect, useState} from 'react';
-import {Accordion} from 'native-base';
-import OrderApi from '../../api/OrderApi';
+import React, { useEffect, useState } from 'react';
+import { Accordion } from 'native-base';
 import Storage from '../../Storage';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import DailyOrderList from './DailyOrderList';
-import MemberApi from '../../api/MemberApi';
+import Api from '../../api/Api';
 
 const OrderList = () => {
   const navigation = useNavigation();
   const [orderHistory, setOrderHistory] = useState([]);
   useEffect(() => {
-    const email = {email: Storage.getEmail()};
-    MemberApi.fetchMemberAddress(
-      '/api/member/order/member_id',
-      email,
-      orderDate,
-    );
+    const email = { email: Storage.getEmail() };
+    Api.post('/api/member/order/history', email, setOrderHistory);
   }, []);
-
-  const orderDate = (id: number) => {
-    OrderApi.fetchOrder('/api/member/order/history', id, setOrderHistory);
-  };
 
   const dataArray = () => {
     const list = [];

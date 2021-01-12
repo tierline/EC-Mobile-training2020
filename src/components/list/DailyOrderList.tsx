@@ -1,11 +1,10 @@
 import React from 'react';
-import {FlatList, StyleSheet, Button} from 'react-native';
+import { FlatList, StyleSheet, Button } from 'react-native';
 
 const DailyOrderList = (props: any) => {
-  console.log(props);
-  const {navi, orderHistory} = props;
+  const { navi, orderHistory } = props;
 
-  const renderItems = ({item}: {item: OrderHistory}) => {
+  const renderItems = ({ item }: { item: OrderHistory }) => {
     return (
       <Button
         title={`${item.date}日`}

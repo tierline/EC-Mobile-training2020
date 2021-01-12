@@ -1,11 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import {Card, CardItem, Text, Right, Button, H3} from 'native-base';
-import {FlatList, Image, StyleSheet} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Card, CardItem, Text, Right, Button, H3 } from 'native-base';
+import { FlatList, Image, StyleSheet } from 'react-native';
 import CartApi from '../../api/CartApi';
 import UrlApi from '../../api/UrlApi';
-import {flashMessage} from '../flashMessage/FlashMessage';
+import { flashMessage } from '../flashMessage/FlashMessage';
+import Api from '../../api/Api';
 
-const CartItemList = (prop: any) => {
+const CartItemList = (prop: { setHasItem: Function }) => {
   const [cartItems, setItems] = useState([]);
 
   useEffect(() => {
@@ -14,24 +15,25 @@ const CartItemList = (prop: any) => {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [cartItems]);
 
   // 綺麗にしたい
   const removeParticularProduct = async (productId: number) => {
-    await CartApi.removeProduct('/api/member/cart/delete', productId);
+    await Api.post(`/api/member/cart/delete/${productId}`);
+    // await Api.get('/api/member/cart/hasItem', setItems);
     await CartApi.fetchCartItems('/api/member/cart/list', setItems, true);
-    await CartApi.hasItem('/api/member/cart/hasItem', prop.setHasItem);
+    await Api.get('/api/member/cart/hasItem', prop.setHasItem);
     flashMessage('削除しました', '', 500, 'red');
   };
 
-  const renderItem = ({item}: {item: CartItem}) => {
+  const renderItem = ({ item }: { item: CartItem }) => {
     return (
       <Card>
         <CardItem>
           <Image
             style={styles.image}
             resizeMode={'contain'}
-            source={{uri: UrlApi.image(item.productImage)}}
+            source={{ uri: UrlApi.image(item.productImage) }}
           />
           <Right>
             <H3>

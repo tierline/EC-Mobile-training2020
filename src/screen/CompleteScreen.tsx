@@ -1,10 +1,10 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {Button, Container, Content, Text, H2, Body, H3} from 'native-base';
-import {useNavigation} from '@react-navigation/native';
+import { StyleSheet } from 'react-native';
+import { Button, Container, Content, Text, H2, Body, H3 } from 'native-base';
+import { useNavigation } from '@react-navigation/native';
 
-const CompleteScreen = ({route}: RouteForOrderId) => {
-  const nav = useNavigation();
+const CompleteScreen = ({ route }: RouteForOrderId) => {
+  const navigation = useNavigation();
   const orderId = route.params.orderId;
 
   return (
@@ -22,7 +22,7 @@ const CompleteScreen = ({route}: RouteForOrderId) => {
         </Content>
         <Content style={styles.button}>
           <Body>
-            <Button onPress={() => nav.navigate('Home')}>
+            <Button onPress={() => navigation.navigate('Home')}>
               <Text>ホームに戻る</Text>
             </Button>
           </Body>

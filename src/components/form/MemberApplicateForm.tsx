@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import {useNavigation} from '@react-navigation/native';
 import Member from '../../domain/Member';
-import MemberApi from '../../api/MemberApi';
+import Api from '../../api/Api';
 
 const MemberApplicateForm = () => {
   const {control, handleSubmit, errors} = useForm();
@@ -15,8 +15,12 @@ const MemberApplicateForm = () => {
 
   const onSubmit = (formData: MemberApplicateFormData) => {
     const member = new Member(formData.email, formData.password);
-    MemberApi.applicate('/api/member/applicate', member, nav);
+    Api.auth('/api/member/applicate', member, nav);
   };
+  // const onSubmit = (formData: FormData) => {
+  //   const member = new Member(formData.email, formData.password);
+  //   MemberApi.applicate('/api/member/applicate', member, nav);
+  // };
 
   // Formはコンポーネントで共通化したい
   return (

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {Alert} from 'react-native';
-import UrlApi from './UrlApi';
+import UrlApi from '../api/UrlApi';
 
 export default class OrderApi {
   /**

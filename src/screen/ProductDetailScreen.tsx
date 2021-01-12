@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet} from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 import {
   Container,
   Left,
@@ -12,14 +12,14 @@ import {
 } from 'native-base';
 import NavBarBottom from '../components/nav/NavBarBottom';
 import UrlGenerator from '../api/UrlApi';
-import CartApi from '../api/CartApi';
-import {flashMessage} from '../components/flashMessage/FlashMessage';
+import { flashMessage } from '../components/flashMessage/FlashMessage';
+import Api from '../api/Api';
 
-const ProductDetailScreen = ({route}: RouteForProduct) => {
-  const {id, name, price, description, imagePath} = route.params;
+const ProductDetailScreen = ({ route }: RouteForProduct) => {
+  const { id, name, price, description, imagePath } = route.params;
   const addProduct = (productId: number, productName: string) => {
-    flashMessage(`${productName}を`, 'カートに追加しました', 100, '#f4511e');
-    CartApi.addProductToCart('/api/member/cart/add', productId);
+    flashMessage(`${productName}を`, 'カートに追加しました', 500, '#f4511e');
+    Api.post(`/api/member/cart/add/${productId}`);
   };
   return (
     <Container>
