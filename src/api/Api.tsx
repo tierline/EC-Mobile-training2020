@@ -5,7 +5,12 @@ import Storage from '../Storage';
 import Url from './UrlApi';
 
 export default class Api {
-  static async auth(request: string, data: any, navi: Function) {
+  static async auth(
+    request: string,
+    data: any,
+    navi: Function,
+    message: string,
+  ) {
     const url = Url.get(request);
     try {
       const res = await axios.post(url, data);
@@ -14,10 +19,28 @@ export default class Api {
         Storage.setEmail(data.email);
         navi();
       } else {
-        flashMessage('失敗', '', 1000, 'red');
+        this.authCheck(message);
       }
     } catch (error) {
       Alert.alert('auth error:' + error);
+    }
+  }
+  // こんなやり方でいいのか？書く場所、、、
+  static authCheck(message: string) {
+    if (message === 'login') {
+      flashMessage(
+        'ログインに失敗しました。',
+        'メールアドレス、パスワードを確認してください。',
+        3000,
+        'red',
+      );
+    } else {
+      flashMessage(
+        '新規登録に失敗しました。',
+        '既に登録されています。',
+        3000,
+        'red',
+      );
     }
   }
 

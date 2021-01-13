@@ -23,20 +23,26 @@ const NavBarBottom = () => {
   return (
     <Footer>
       <FooterTab>
-        <Button dark onPress={() => navigation.navigate('Home')}>
-          <Text>ホーム</Text>
+        <Button
+          style={styles.button}
+          onPress={() => navigation.navigate('Home')}>
+          <Text style={styles.text}>ホーム</Text>
           <Icon name="home" size={30} style={styles.icon} />
         </Button>
-        <Button dark onPress={() => navigation.navigate('Cart')}>
-          <Text>カート</Text>
+        <Button
+          style={styles.button}
+          onPress={() => navigation.navigate('Cart')}>
+          <Text style={styles.text}>カート</Text>
           <Icon name="shopping-cart" size={30} style={styles.icon} />
         </Button>
-        <Button dark onPress={() => navigation.navigate('MyPage')}>
-          <Text>購入履歴</Text>
+        <Button
+          style={styles.button}
+          onPress={() => navigation.navigate('MyPage')}>
+          <Text style={styles.text}>購入履歴</Text>
           <Icon name="history" size={30} style={styles.icon} />
         </Button>
-        <Button dark onPress={() => logoutConfirmation()}>
-          <Text>ログアウト</Text>
+        <Button style={styles.button} onPress={() => logoutConfirmation()}>
+          <Text style={styles.text}>ログアウト</Text>
           <Icon name="share" size={30} style={styles.icon} />
         </Button>
       </FooterTab>
@@ -44,8 +50,14 @@ const NavBarBottom = () => {
   );
 };
 const styles = StyleSheet.create({
+  button: {
+    backgroundColor: '#dc5f36',
+  },
+  text: {
+    color: '#fff',
+  },
   icon: {
-    color: 'white',
+    color: '#fff',
   },
 });
 export default NavBarBottom;

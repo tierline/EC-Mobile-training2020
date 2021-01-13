@@ -15,7 +15,7 @@ const MemberApplicateForm = () => {
 
   const onSubmit = (formData: MemberApplicateFormData) => {
     const member = new Member(formData.email, formData.password);
-    Api.auth('/api/member/applicate', member, nav);
+    Api.auth('/api/member/applicate', member, nav, 'applicate');
   };
   // const onSubmit = (formData: FormData) => {
   //   const member = new Member(formData.email, formData.password);

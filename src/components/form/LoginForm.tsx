@@ -15,7 +15,7 @@ const LoginForm = () => {
 
   const onSubmit = (formData: MemberLoginFormData) => {
     const member = new Member(formData.email, formData.password);
-    Api.auth('/api/member/login', member, navi);
+    Api.auth('/api/member/login', member, navi, 'login');
   };
 
   return (
