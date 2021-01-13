@@ -21,8 +21,8 @@ const OrderConfirmationScreen = ({ route }: RouteForOrderFormData) => {
     };
   }, []);
 
-  const navi = (id: { orderId: number }) => {
-    navigation.navigate('Complete', id);
+  const navi = (orderId: { orderId: number }) => {
+    navigation.navigate('Complete', orderId);
   };
 
   const onSubmit = () => {

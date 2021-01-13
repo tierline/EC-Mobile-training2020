@@ -131,8 +131,6 @@ type OrderedItem = {
 
 type RouteForOrderId = {
   route: {
-    params: {
-      orderId: number;
-    };
+    params: number;
   };
 };

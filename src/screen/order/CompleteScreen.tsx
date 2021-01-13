@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const CompleteScreen = ({ route }: RouteForOrderId) => {
   const navigation = useNavigation();
-  const orderId = route.params.orderId;
+  const orderId = route.params;
 
   return (
     <Container>
