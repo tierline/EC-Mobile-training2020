@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Content, H1 } from 'native-base';
 import LoginForm from '../../components/form/auth/LoginForm';
 import { StyleSheet } from 'react-native';
+
 const LoginScreen = () => {
   return (
     <Container>

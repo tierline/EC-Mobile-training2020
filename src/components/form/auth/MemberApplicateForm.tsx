@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Text, Form, Item, Input, Button } from 'native-base';
-import { useForm, Controller } from 'react-hook-form';
+import { Text, Form, Button } from 'native-base';
+import { useForm } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
 import Member from '../../../domain/Member';
+import FormController from './FormController';
 import Api from '../../../api/Api';
 
 const MemberApplicateForm = () => {
@@ -21,46 +22,35 @@ const MemberApplicateForm = () => {
 
   return (
     <Form>
-      <Text style={styles.label}>メールアドレス</Text>
-      <Controller
+      <Text style={styles.label}>Eメールアドレス</Text>
+      <FormController
         control={control}
-        render={({ onChange, value }) => (
-          <Item>
-            <Input
-              onChangeText={(emailValue) => onChange(emailValue)}
-              value={value}
-            />
-          </Item>
-        )}
-        name="email"
+        name={'email'}
         rules={{
           required: true,
           pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
         }}
-        defaultValue=""
+        secureTextEntry={false}
+        defaultValue={''}
+        placeholder={'Eメール'}
       />
       {errors.email && <Text style={styles.error}>正しく入力してください</Text>}
 
-      <Text style={styles.label}>パスワード</Text>
-
-      {errors.password && (
-        <Text style={styles.error}>文字数が少なすぎます</Text>
-      )}
-      <Controller
-        control={control}
-        render={({ onChange, value }) => (
-          <Item>
-            <Input
-              secureTextEntry={true}
-              onChangeText={(passwordValue) => onChange(passwordValue)}
-              value={value}
-            />
-          </Item>
+      <View style={styles.inputArea}>
+        <Text style={styles.label}>パスワード</Text>
+        <FormController
+          control={control}
+          name={'password'}
+          rules={{ required: true, minLength: 4 }}
+          secureTextEntry={true}
+          defaultValue={''}
+          placeholder={'パスワード'}
+        />
+        {errors.password && (
+          <Text style={styles.error}>文字数が少なすぎます</Text>
         )}
-        name="password"
-        rules={{ required: true, minLength: 4 }}
-        defaultValue=""
-      />
+      </View>
+
       <View style={styles.buttonArea}>
         <Button
           success
