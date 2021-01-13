@@ -13,6 +13,9 @@ const OrderList = () => {
     Api.post('/api/member/order/history', email, setOrderHistory);
   }, []);
 
+  //androidだとこの部分で
+  //VirtualizedList: Encountered an error while measuring a list's offset from its containing VirtualizedList.
+  //iosだと出ない
   const dataArray = () => {
     const list = [];
     for (let key in orderHistory) {
@@ -26,7 +29,15 @@ const OrderList = () => {
     }
     return list;
   };
-  return <Accordion dataArray={dataArray()} expanded={0} />;
+  return (
+    <Accordion
+      dataArray={dataArray()}
+      icon="add"
+      expandedIcon="remove"
+      iconStyle={{ color: 'green' }}
+      expandedIconStyle={{ color: 'red' }}
+    />
+  );
 };
 
 export default OrderList;

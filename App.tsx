@@ -7,13 +7,14 @@ import OrderFormScreen from './src/screen/OrderFormScreen';
 import CompleteScreen from './src/screen/CompleteScreen';
 import LoginScreen from './src/screen/LoginScreen';
 import MemberApplicateScreen from './src/screen/MemberApplicateScreen';
-import MyPageScreen from './src/screen/MyPageScreen';
+import OrderHistoryScreen from './src/screen/OrderHistoryScreen';
 import ProductDetailScreen from './src/screen/ProductDetailScreen';
 import OrderItemDetailScreen from './src/screen/OrderItemDetailScreen';
 import { HeaderBackButton } from '@react-navigation/stack';
 import { StyleSheet } from 'react-native';
 import FlashMessage from 'react-native-flash-message';
 import OrderVerificationScreen from './src/screen/OrderVerificationScreen';
+
 const App = () => {
   const Stack = createStackNavigator();
   return (
@@ -72,7 +73,7 @@ const App = () => {
         />
         <Stack.Screen
           name="MyPage"
-          component={MyPageScreen}
+          component={OrderHistoryScreen}
           options={{ title: '購入履歴' }}
         />
         <Stack.Screen
