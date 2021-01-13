@@ -1,8 +1,10 @@
 import React from 'react';
-import { Footer, FooterTab, Button, Icon } from 'native-base';
+import { Footer, FooterTab, Button } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
-import { Alert } from 'react-native';
+import { Alert, StyleSheet } from 'react-native';
 import Api from '../../api/Api';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 const NavBarBottom = () => {
   const navigation = useNavigation();
 
@@ -22,19 +24,24 @@ const NavBarBottom = () => {
     <Footer>
       <FooterTab>
         <Button onPress={() => navigation.navigate('Home')}>
-          <Icon name="home" />
+          <Icon name="home" size={20} style={styles.icon} />
         </Button>
         <Button onPress={() => navigation.navigate('Cart')}>
-          <Icon name="cart" />
+          <Icon name="shopping-cart" size={20} style={styles.icon} />
         </Button>
         <Button onPress={() => navigation.navigate('MyPage')}>
-          <Icon name="person" />
+          <Icon name="history" size={20} style={styles.icon} />
         </Button>
         <Button onPress={() => logoutConfirmation()}>
-          <Icon name="exit" />
+          <Icon name="share" size={20} style={styles.icon} />
         </Button>
       </FooterTab>
     </Footer>
   );
 };
+const styles = StyleSheet.create({
+  icon: {
+    color: 'white',
+  },
+});
 export default NavBarBottom;

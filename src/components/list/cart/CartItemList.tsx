@@ -17,11 +17,14 @@ const CartItemList = (prop: { setHasItem: Function }) => {
   }, [cartItems]);
 
   // 綺麗にしたい
-  const removeParticularProduct = async (productId: number) => {
+  const removeParticularProduct = async (
+    productId: number,
+    productName: string,
+  ) => {
     await Api.post(`/api/member/cart/delete/${productId}`);
     await Api.get('/api/member/cart/list', setItems, true);
     await Api.get('/api/member/cart/hasItem', prop.setHasItem);
-    flashMessage('削除しました', '', 500, 'red');
+    flashMessage(productName, '削除しました', 500, 'red');
   };
 
   const renderItem = ({ item }: { item: CartItem }) => {
@@ -41,7 +44,9 @@ const CartItemList = (prop: { setHasItem: Function }) => {
             <Button
               danger
               small
-              onPress={() => removeParticularProduct(item.productId)}>
+              onPress={() =>
+                removeParticularProduct(item.productId, item.productName)
+              }>
               <Text>削除する</Text>
             </Button>
           </Right>

@@ -13,7 +13,7 @@ import OrderItemDetailScreen from './src/screen/orderHistory/OrderItemDetailScre
 import { HeaderBackButton } from '@react-navigation/stack';
 import { StyleSheet } from 'react-native';
 import FlashMessage from 'react-native-flash-message';
-import OrderVerificationScreen from './src/screen/order/OrderConfirmationScreen';
+import OrderConfirmationScreen from './src/screen/order/OrderConfirmationScreen';
 const App = () => {
   const Stack = createStackNavigator();
   return (
@@ -83,7 +83,7 @@ const App = () => {
         {/* まだ */}
         <Stack.Screen
           name="OrderConfirmation"
-          component={OrderVerificationScreen}
+          component={OrderConfirmationScreen}
           options={{ title: '注文確認' }}
         />
       </Stack.Navigator>

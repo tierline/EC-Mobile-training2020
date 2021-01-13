@@ -13,9 +13,10 @@ const CompleteScreen = ({ route }: RouteForOrderId) => {
         <Content style={styles.text}>
           <Body>
             <H2>ご注文ありがとうございました。</H2>
+            <Text style={styles.text}>自動でホームに戻ります。</Text>
           </Body>
         </Content>
-        <Content style={styles.text}>
+        <Content style={styles.h3}>
           <Body>
             <H3>注文番号:{orderId}</H3>
           </Body>
@@ -34,6 +35,10 @@ const CompleteScreen = ({ route }: RouteForOrderId) => {
 
 const styles = StyleSheet.create({
   text: {
+    marginTop: 10,
+    fontSize: 15,
+  },
+  h3: {
     marginTop: '20%',
   },
   button: {

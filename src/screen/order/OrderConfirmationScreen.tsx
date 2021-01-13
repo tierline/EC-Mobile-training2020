@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Button, Container, Content, Text, H1, H2 } from 'native-base';
+import { Button, Container, Text } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import OrderedItemList from '../../components/list/order/OrderedItemList';
 import OrderDetailList from '../../components/list/order/OrderDetailList';
 import Api from '../../api/Api';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 const OrderConfirmationScreen = ({ route }: RouteForOrderFormData) => {
   const navigation = useNavigation();
@@ -29,30 +28,39 @@ const OrderConfirmationScreen = ({ route }: RouteForOrderFormData) => {
     Api.post('/api/member/order/save', orderFormData, navi);
   };
   return (
-    <Container>
-      <Content>
-        <Content style={styles.h1content}>
-          <H1>お届け先情報</H1>
-        </Content>
+    <Container style={styles.container}>
+      <View style={styles.order}>
+        <Text style={styles.orderItemText}>お届け先</Text>
         <OrderDetailList orderFormData={orderFormData} />
-        <Content style={styles.h2content}>
-          <H2>注文商品</H2>
-        </Content>
-        <SafeAreaView>
-          <OrderedItemList cartItem={cartItem} />
-        </SafeAreaView>
+      </View>
+      <View style={styles.orderItem}>
+        <Text style={styles.orderItemText}>注文商品</Text>
+        <OrderedItemList cartItem={cartItem} />
         <View style={styles.totalPrice}>
-          <Text style={styles.totalPriceH2}>合計金額{totalAmount}円</Text>
+          <Text>合計金額{totalAmount}円</Text>
         </View>
-      </Content>
-      <Button full large onPress={() => onSubmit()}>
-        <Text>注文する</Text>
-      </Button>
+        <Button full large onPress={() => onSubmit()}>
+          <Text>注文する</Text>
+        </Button>
+      </View>
     </Container>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  order: {
+    flex: 1,
+  },
+  orderItem: {
+    flex: 1.2,
+  },
+  orderItemText: {
+    fontSize: 20,
+    marginLeft: '5%',
+  },
   h1content: {
     paddingTop: '2%',
     paddingLeft: '5%',
@@ -64,12 +72,12 @@ const styles = StyleSheet.create({
   totalPrice: {
     alignItems: 'center',
     backgroundColor: '#eee',
-    padding: 25,
+    padding: 5,
   },
-  totalPriceH2: {
-    fontSize: 20,
-    fontWeight: '500',
-  },
+  // totalPriceH2: {
+  //   fontSize: 20,
+  //   fontWeight: '500',
+  // },
 });
 
 export default OrderConfirmationScreen;

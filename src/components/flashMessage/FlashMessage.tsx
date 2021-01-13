@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {showMessage} from 'react-native-flash-message';
+import { StyleSheet } from 'react-native';
+import { showMessage } from 'react-native-flash-message';
 
 export const flashMessage = (
   message: string,
@@ -21,10 +21,11 @@ export const flashMessage = (
 
 const styles = StyleSheet.create({
   card: {
-    height: 100,
+    height: 70,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   message: {
-    marginTop: 20,
     fontWeight: 'bold',
   },
   description: {
