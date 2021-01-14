@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     color: '#fff',
-    marginRight: 10,
+    margin: 10,
   },
   button: {
     borderRadius: 10,

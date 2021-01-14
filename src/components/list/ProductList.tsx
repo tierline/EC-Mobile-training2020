@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Image, Dimensions } from 'react-native';
-import { Card, CardItem, Text, Button, Left, Body, Right } from 'native-base';
+import { Card, CardItem, Text, Button, Left, Right } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import { FlatList } from 'react-native';
 import Storage from '../../Storage';
@@ -26,11 +26,13 @@ const ProductList = () => {
       <Card style={styles.card}>
         <CardItem>
           <Left>
-            <Body>
-              <Text style={styles.itemName}>{item.name}</Text>
-              <Text>価格:{item.price}円</Text>
-            </Body>
+            {/* <Body> */}
+            <Text style={styles.itemName}>{item.name}</Text>
+            {/* </Body> */}
           </Left>
+          <Right>
+            <Text style={styles.itemPrice}>価格:{item.price}円</Text>
+          </Right>
         </CardItem>
         <CardItem cardBody>
           <Image
@@ -86,7 +88,8 @@ const ProductList = () => {
 const window = Dimensions.get('window');
 const styles = StyleSheet.create({
   list: {
-    margin: 5,
+    marginLeft: 15,
+    marginRight: 15,
   },
   card: {
     marginTop: 10,
@@ -109,14 +112,14 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     width: window.width,
     height: 250,
+    margin: 15,
   },
   itemName: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
   },
-  message: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  itemPrice: {
+    fontSize: 18,
   },
 });
 

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Text, Button, H2 } from 'native-base';
+import { H2 } from 'native-base';
 import NavBarBottom from '../../components/nav/NavBarBottom';
 import { useNavigation } from '@react-navigation/native';
 import CartItemList from '../../components/list/cart/CartItemList';
 import Api from '../../api/Api';
+import LargeButton from '../../components/button/LargeButton';
 
 const CartScreen = () => {
   const navigation = useNavigation();
@@ -20,19 +21,17 @@ const CartScreen = () => {
     };
   }, []);
 
+  const navi = () => {
+    navigation.navigate('OrderForm');
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.itemList}>
         <CartItemList setHasItem={setHasItem} />
       </View>
       {hasItem ? (
-        <Button
-          full
-          primary
-          large
-          onPress={() => navigation.navigate('OrderForm')}>
-          <Text>入力フォームへ進む</Text>
-        </Button>
+        <LargeButton text={'入力フォームへ進む'} onPress={navi} />
       ) : (
         <View style={styles.message}>
           <H2>カートに商品がありません</H2>

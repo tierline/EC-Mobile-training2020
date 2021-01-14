@@ -18,26 +18,27 @@ const MemberApplicateForm = () => {
 
   const onSubmit = (formData: MemberApplicateFormData) => {
     const member = new Member(formData.email, formData.password);
-    Api.auth('/api/member/applicate', member, navi);
+    Api.auth('/api/member/applicate', member, navi, 'applicate');
   };
 
   return (
     <Form>
-      <FormComponent
-        label={'Eメールアドレス'}
-        errors={errors}
-        errorMessage={'正しく入力してください'}
-        control={control}
-        name={'email'}
-        rules={{
-          required: true,
-          pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-        }}
-        secureTextEntry={false}
-        defaultValue={''}
-        placeholder={'Eメール'}
-      />
-
+      <View style={styles.inputArea}>
+        <FormComponent
+          label={'Eメールアドレス'}
+          errors={errors}
+          errorMessage={'正しく入力してください'}
+          control={control}
+          name={'email'}
+          rules={{
+            required: true,
+            pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+          }}
+          secureTextEntry={false}
+          defaultValue={''}
+          placeholder={'Eメール'}
+        />
+      </View>
       <View style={styles.inputArea}>
         <FormComponent
           label={'パスワード'}
@@ -68,6 +69,8 @@ const MemberApplicateForm = () => {
 const styles = StyleSheet.create({
   inputArea: {
     paddingTop: 20,
+    borderBottomWidth: 2,
+    borderBottomColor: '#dc5f36',
   },
   buttonArea: {
     paddingTop: 20,

@@ -22,26 +22,20 @@ const NavBarBottom = () => {
 
   return (
     <Footer>
-      <FooterTab>
-        <Button
-          style={styles.button}
-          onPress={() => navigation.navigate('Home')}>
+      <FooterTab style={styles.button}>
+        <Button onPress={() => navigation.navigate('Home')}>
           <Text style={styles.text}>ホーム</Text>
           <Icon name="home" size={25} style={styles.icon} />
         </Button>
-        <Button
-          style={styles.button}
-          onPress={() => navigation.navigate('Cart')}>
+        <Button onPress={() => navigation.navigate('Cart')}>
           <Text style={styles.text}>カート</Text>
           <Icon name="shopping-cart" size={25} style={styles.icon} />
         </Button>
-        <Button
-          style={styles.button}
-          onPress={() => navigation.navigate('MyPage')}>
+        <Button onPress={() => navigation.navigate('MyPage')}>
           <Text style={styles.text}>購入履歴</Text>
           <Icon name="history" size={25} style={styles.icon} />
         </Button>
-        <Button style={styles.button} onPress={() => logoutConfirmation()}>
+        <Button onPress={() => logoutConfirmation()}>
           <Text style={styles.text}>ログアウト</Text>
           <Icon name="share" size={25} style={styles.icon} />
         </Button>

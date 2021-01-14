@@ -1,11 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { createContext, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { Text, Button } from 'native-base';
+import { Text } from 'native-base';
 import { StyleSheet, TextInput, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Storage from '../../../Storage';
 import Api from '../../../api/Api';
+import LargeButton from '../../button/LargeButton';
 // import FormController from './FormController';
 
 export const FormContext = createContext({ label: '', max: 0 });
@@ -314,9 +315,7 @@ const OrderForm = () => {
           )}
         </View>
       </View>
-      <Button full large primary onPress={handleSubmit(onSubmit)}>
-        <Text>注文確認画面へ</Text>
-      </Button>
+      <LargeButton text={'注文確認画面へ'} onPress={handleSubmit(onSubmit)} />
     </View>
   );
 };

@@ -13,7 +13,6 @@ const CompleteScreen = ({ route }: RouteForOrderId) => {
         <Content style={styles.text}>
           <Body>
             <H2>ご注文ありがとうございました。</H2>
-            <Text style={styles.text}>自動でホームに戻ります。</Text>
           </Body>
         </Content>
         <Content style={styles.h3}>
