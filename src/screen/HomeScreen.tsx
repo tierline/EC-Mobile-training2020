@@ -1,5 +1,5 @@
 import React from 'react';
-import {} from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Button, Container, Text } from 'native-base';
 import ItemList from '../components/list/ProductList';
 import NavBarBottom from '../components/nav/NavBarBottom';
@@ -9,7 +9,7 @@ import Storage from '../Storage';
 const HomeScreen = () => {
   const navigation = useNavigation();
   return (
-    <Container>
+    <Container style={styles.container}>
       <ItemList />
       {Storage.getAuth() ? (
         <NavBarBottom />
@@ -26,4 +26,10 @@ const HomeScreen = () => {
     </Container>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#f7e3af',
+  },
+})
 export default HomeScreen;

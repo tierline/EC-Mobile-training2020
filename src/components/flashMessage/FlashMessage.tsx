@@ -21,7 +21,7 @@ export const flashMessage = (
 
 const styles = StyleSheet.create({
   card: {
-    height: 70,
+    height: 80,
     alignItems: 'center',
     justifyContent: 'center',
   },

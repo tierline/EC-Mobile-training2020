@@ -14,6 +14,7 @@ const SimpleButton = (props: any) => {
 
 const styles = StyleSheet.create({
   button: {
+    backgroundColor: '#dc5f36',
     marginTop: 20,
     marginLeft: 20,
     marginRight: 20,

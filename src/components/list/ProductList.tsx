@@ -7,6 +7,7 @@ import Storage from '../../Storage';
 import UrlApi from '../../api/UrlApi';
 import { flashMessage } from '../flashMessage/FlashMessage';
 import Api from '../../api/Api';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const ProductList = () => {
   const navigation = useNavigation();
@@ -41,12 +42,16 @@ const ProductList = () => {
         {Storage.getAuth() ? (
           <CardItem>
             <Left>
-              <Button danger onPress={() => addProduct(item.id, item.name)}>
-                <Text>カートに入れる</Text>
+              <Button
+                style={styles.button}
+                onPress={() => addProduct(item.id, item.name)}>
+                <Icon style={styles.icon} name="shopping-cart" size={30} />
+                <Text style={styles.text}>カートに入れる</Text>
               </Button>
             </Left>
             <Right>
               <Button
+                style={styles.button}
                 onPress={() =>
                   navigation.navigate('ProductDetail', {
                     id: item.id,
@@ -56,7 +61,8 @@ const ProductList = () => {
                     imagePath: item.imagePath,
                   })
                 }>
-                <Text>詳細</Text>
+                <Icon style={styles.icon} name="info" size={25} />
+                <Text style={styles.text}>詳細</Text>
               </Button>
             </Right>
           </CardItem>
@@ -80,11 +86,23 @@ const ProductList = () => {
 const window = Dimensions.get('window');
 const styles = StyleSheet.create({
   list: {
-    margin: 5,
+    margin: 20,
   },
   card: {
     marginTop: 10,
     marginBottom: 20,
+  },
+  text: {
+    fontSize: 17,
+    color: '#fff',
+  },
+  icon: {
+    color: '#fff',
+    marginLeft: 10,
+  },
+  button: {
+    borderRadius: 10,
+    backgroundColor: '#70372c',
   },
   image: {
     flex: 1,

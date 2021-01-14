@@ -2,7 +2,7 @@ import { Platform } from 'react-native';
 
 export default class Url {
   static get(request: string): string {
-    if (__DEV__) {
+    if (!__DEV__) {
       return this.baseUrl() + request;
     } else {
       return 'https://training-tierline.cf' + request;
