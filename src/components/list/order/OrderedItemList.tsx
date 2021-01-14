@@ -2,9 +2,9 @@ import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { Text, List, ListItem, Body, Left, Right } from 'native-base';
 import { FlatList } from 'react-native';
-import UrlApi from '../../api/UrlApi';
+import UrlApi from '../../../api/UrlApi';
 
-// prop に型を定義すると OrderVerificationScreen でエラーが出る。
+// prop に型を定義すると OrderConfirmationScreen でエラーが出る。
 const OrderedItemList = (prop: { cartItem: any }) => {
   const { cartItem } = prop;
 

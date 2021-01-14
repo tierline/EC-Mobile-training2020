@@ -45,7 +45,7 @@ const ProductList = () => {
               <Button
                 style={styles.button}
                 onPress={() => addProduct(item.id, item.name)}>
-                <Icon style={styles.icon} name="shopping-cart" size={30} />
+                <Icon style={styles.icon} name="shopping-cart" size={20} />
                 <Text style={styles.text}>カートに入れる</Text>
               </Button>
             </Left>
@@ -61,7 +61,7 @@ const ProductList = () => {
                     imagePath: item.imagePath,
                   })
                 }>
-                <Icon style={styles.icon} name="info" size={25} />
+                <Icon style={styles.icon} name="info" size={20} />
                 <Text style={styles.text}>詳細</Text>
               </Button>
             </Right>

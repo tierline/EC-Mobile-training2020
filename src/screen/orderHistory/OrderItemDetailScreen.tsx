@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, View, Text, StyleSheet } from 'react-native';
 import { CardItem, Left, Body, Thumbnail, Card } from 'native-base';
-import UrlApi from '../api/UrlApi';
-import NavBarBottom from '../components/nav/NavBarBottom';
-import Api from '../api/Api';
+import UrlApi from '../../api/UrlApi';
+import NavBarBottom from '../../components/nav/NavBarBottom';
+import Api from '../../api/Api';
 
 const OrderItemDetailScreen = ({ route }: RouteForOrderHistory) => {
   const { orderId, orderDate } = route.params;

@@ -1,16 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Button, Container, Content, Text, H2, Body, H3 } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 
 const CompleteScreen = ({ route }: RouteForOrderId) => {
   const navigation = useNavigation();
-  const orderId = route.params.orderId;
-  useEffect(() => {
-    setTimeout(() => {
-      navigation.navigate('Home');
-    }, 3000);
-  }, [navigation]);
+  const orderId = route.params;
 
   return (
     <Container>

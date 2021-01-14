@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button, Container, Text } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
-import OrderedItemList from '../components/list/OrderedItemList';
-import OrderDetailList from '../components/list/OrderDetailList';
-import Api from '../api/Api';
+import OrderedItemList from '../../components/list/order/OrderedItemList';
+import OrderDetailList from '../../components/list/order/OrderDetailList';
+import Api from '../../api/Api';
 
-const OrderVerificationScreen = ({ route }: RouteForOrderFormData) => {
+const OrderConfirmationScreen = ({ route }: RouteForOrderFormData) => {
   const navigation = useNavigation();
   const orderFormData = route.params.orderFormData;
   const [cartItem, setOrderItems] = useState();
@@ -20,8 +20,8 @@ const OrderVerificationScreen = ({ route }: RouteForOrderFormData) => {
     };
   }, []);
 
-  const navi = (id: number) => {
-    navigation.navigate('Complete', { orderId: id });
+  const navi = (orderId: { orderId: number }) => {
+    navigation.navigate('Complete', orderId);
   };
 
   const onSubmit = () => {
@@ -80,4 +80,4 @@ const styles = StyleSheet.create({
   // },
 });
 
-export default OrderVerificationScreen;
+export default OrderConfirmationScreen;

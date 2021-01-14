@@ -1,11 +1,10 @@
 import React from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, Text } from 'react-native';
 import {
   Container,
   Left,
   Button,
   Body,
-  Text,
   Content,
   CardItem,
   Card,
@@ -14,6 +13,7 @@ import NavBarBottom from '../components/nav/NavBarBottom';
 import UrlGenerator from '../api/UrlApi';
 import { flashMessage } from '../components/flashMessage/FlashMessage';
 import Api from '../api/Api';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const ProductDetailScreen = ({ route }: RouteForProduct) => {
   const { id, name, price, description, imagePath } = route.params;
@@ -48,8 +48,11 @@ const ProductDetailScreen = ({ route }: RouteForProduct) => {
           </CardItem>
           <CardItem>
             <Body>
-              <Button danger onPress={() => addProduct(id, name)}>
-                <Text>カートに入れる</Text>
+              <Button
+                style={styles.button}
+                onPress={() => addProduct(id, name)}>
+                <Icon style={styles.icon} name="shopping-cart" size={25} />
+                <Text style={styles.text}>カートに入れる</Text>
               </Button>
             </Body>
           </CardItem>
@@ -65,6 +68,20 @@ const styles = StyleSheet.create({
     height: 300,
     width: '100%',
     flex: 1,
+  },
+  icon: {
+    color: '#fff',
+    marginRight: 10,
+  },
+  button: {
+    borderRadius: 10,
+    backgroundColor: '#70372c',
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  text: {
+    fontSize: 17,
+    color: '#fff',
   },
 });
 

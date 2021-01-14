@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Card, CardItem, Text, Right, Button, H3 } from 'native-base';
 import { FlatList, Image, StyleSheet } from 'react-native';
-import UrlApi from '../../api/UrlApi';
-import { flashMessage } from '../flashMessage/FlashMessage';
-import Api from '../../api/Api';
+import UrlApi from '../../../api/UrlApi';
+import { flashMessage } from '../../flashMessage/FlashMessage';
+import Api from '../../../api/Api';
 
 const CartItemList = (prop: { setHasItem: Function }) => {
   const [cartItems, setItems] = useState([]);
