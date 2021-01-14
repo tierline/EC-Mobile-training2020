@@ -1,13 +1,11 @@
 import { Platform } from 'react-native';
 
 export default class Url {
-  static isDev = true;
-
   static get(request: string): string {
-    if (this.isDev) {
+    if (__DEV__) {
       return this.baseUrl() + request;
     } else {
-      return 'http://54.249.96.111' + request;
+      return 'https://training-tierline.cf' + request;
     }
   }
 
