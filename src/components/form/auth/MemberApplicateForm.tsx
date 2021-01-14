@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Text, Form, Button } from 'native-base';
+import { StyleSheet } from 'react-native';
+import { Form, View } from 'native-base';
 import { useForm } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
 import Member from '../../../domain/Member';
-import FormController from './FormController';
+import FormComponent from './FormComponent';
+import SimpleButton from '../../button/SimpleButton';
 import Api from '../../../api/Api';
 
 const MemberApplicateForm = () => {
@@ -22,8 +23,10 @@ const MemberApplicateForm = () => {
 
   return (
     <Form>
-      <Text style={styles.label}>Eメールアドレス</Text>
-      <FormController
+      <FormComponent
+        label={'Eメールアドレス'}
+        errors={errors}
+        errorMessage={'正しく入力してください'}
         control={control}
         name={'email'}
         rules={{
@@ -34,64 +37,40 @@ const MemberApplicateForm = () => {
         defaultValue={''}
         placeholder={'Eメール'}
       />
-      {errors.email && <Text style={styles.error}>正しく入力してください</Text>}
 
       <View style={styles.inputArea}>
-        <Text style={styles.label}>パスワード</Text>
-        <FormController
+        <FormComponent
+          label={'パスワード'}
+          errors={errors}
+          errorMessage={'文字数が少なすぎます'}
           control={control}
           name={'password'}
-          rules={{ required: true, minLength: 4 }}
+          rules={{
+            required: true,
+            minLength: 4,
+          }}
           secureTextEntry={true}
           defaultValue={''}
           placeholder={'パスワード'}
         />
-        {errors.password && (
-          <Text style={styles.error}>文字数が少なすぎます</Text>
-        )}
       </View>
 
       <View style={styles.buttonArea}>
-        <Button
-          success
-          rounded
-          block
-          style={styles.button}
-          onPress={handleSubmit(onSubmit)}>
-          <Text>新規登録</Text>
-        </Button>
-        <Button
-          rounded
-          block
-          style={styles.button}
-          onPress={() => navigation.navigate('Login')}>
-          <Text>ログイン画面へ</Text>
-        </Button>
+        <SimpleButton text={'新規登録'} onPress={handleSubmit(onSubmit)} />
+        <SimpleButton
+          text={'ログイン画面へ'}
+          onPress={() => navigation.navigate('Login')}
+        />
       </View>
     </Form>
   );
 };
 const styles = StyleSheet.create({
-  label: {
-    marginLeft: 10,
-  },
-  form: {
-    marginBottom: 20,
-  },
   inputArea: {
     paddingTop: 20,
   },
   buttonArea: {
     paddingTop: 20,
-  },
-  button: {
-    marginTop: 20,
-    marginLeft: 20,
-    marginRight: 20,
-  },
-  error: {
-    color: 'red',
-    marginLeft: 20,
   },
 });
 export default MemberApplicateForm;

@@ -6,7 +6,7 @@ import { StyleSheet } from 'react-native';
 const LoginScreen = () => {
   return (
     <Container>
-      <H1 style={styles.h1}>ログイン・登録</H1>
+      <H1 style={styles.h1}>ログイン</H1>
       <Content style={styles.content}>
         <LoginForm />
       </Content>

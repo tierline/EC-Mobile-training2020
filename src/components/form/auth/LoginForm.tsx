@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Text, Form, Button } from 'native-base';
+import { StyleSheet } from 'react-native';
+import { Form, View } from 'native-base';
 import { useForm } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
 import Member from '../../../domain/Member';
-import FormController from './FormController';
+import FormComponent from './FormComponent';
+import SimpleButton from '../../button/SimpleButton';
 import Api from '../../../api/Api';
 
 const LoginForm = () => {
@@ -21,11 +22,11 @@ const LoginForm = () => {
   };
 
   return (
-    // Labelとエラーメッセージをコンポーネントに含めるかどうか。
-    // 含める場合、errors.~ にどのように値を渡すか
     <Form>
-      <Text style={styles.label}>Eメールアドレス</Text>
-      <FormController
+      <FormComponent
+        label={'Eメールアドレス'}
+        errors={errors}
+        errorMessage={'正しく入力してください'}
         control={control}
         name={'email'}
         rules={{
@@ -36,11 +37,12 @@ const LoginForm = () => {
         defaultValue={'test@example.com'}
         placeholder={'Eメール'}
       />
-      {errors.email && <Text style={styles.error}>正しく入力してください</Text>}
 
       <View style={styles.inputArea}>
-        <Text style={styles.label}>パスワード</Text>
-        <FormController
+        <FormComponent
+          label={'パスワード'}
+          errors={errors}
+          errorMessage={'文字数が少なすぎます'}
           control={control}
           name={'password'}
           rules={{
@@ -51,52 +53,24 @@ const LoginForm = () => {
           defaultValue={'test'}
           placeholder={'パスワード'}
         />
-        {errors.password && (
-          <Text style={styles.error}>文字数が少なすぎます</Text>
-        )}
       </View>
 
       <View style={styles.buttonArea}>
-        <Button
-          success
-          rounded
-          block
-          onPress={handleSubmit(onSubmit)}
-          style={styles.button}>
-          <Text>ログイン</Text>
-        </Button>
-        <Button
-          rounded
-          block
-          style={styles.button}
-          onPress={() => navigation.navigate('MemberApplicate')}>
-          <Text>新規登録画面へ</Text>
-        </Button>
+        <SimpleButton text={'ログイン'} onPress={handleSubmit(onSubmit)} />
+        <SimpleButton
+          text={'新規登録画面へ'}
+          onPress={() => navigation.navigate('MemberApplicate')}
+        />
       </View>
     </Form>
   );
 };
 const styles = StyleSheet.create({
-  label: {
-    marginLeft: 10,
-  },
-  form: {
-    marginBottom: 20,
-  },
   inputArea: {
     paddingTop: 20,
   },
   buttonArea: {
     paddingTop: 20,
-  },
-  button: {
-    marginTop: 20,
-    marginLeft: 20,
-    marginRight: 20,
-  },
-  error: {
-    color: 'red',
-    marginLeft: 20,
   },
 });
 export default LoginForm;

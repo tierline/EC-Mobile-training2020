@@ -22,7 +22,7 @@ const NavBarBottom = () => {
 
   return (
     <Footer>
-      <FooterTab>
+      <FooterTab style={{ backgroundColor: 'black' }}>
         <Button onPress={() => navigation.navigate('Home')}>
           <Icon name="home" size={20} style={styles.icon} />
         </Button>
@@ -39,9 +39,11 @@ const NavBarBottom = () => {
     </Footer>
   );
 };
+
 const styles = StyleSheet.create({
   icon: {
     color: 'white',
   },
 });
+
 export default NavBarBottom;
