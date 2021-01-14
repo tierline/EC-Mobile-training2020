@@ -4,11 +4,11 @@ import { Form, View } from 'native-base';
 import { useForm } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
 import Member from '../../../domain/Member';
-import FormComponent from './FormComponent';
+import SimpleInput from '../../input/SimpleInput';
 import SimpleButton from '../../button/SimpleButton';
 import Api from '../../../api/Api';
 
-const MemberApplicateForm = () => {
+const LoginForm = () => {
   const { control, handleSubmit, errors } = useForm();
   const navigation = useNavigation();
 
@@ -16,14 +16,14 @@ const MemberApplicateForm = () => {
     navigation.navigate('Home');
   };
 
-  const onSubmit = (formData: MemberApplicateFormData) => {
+  const onSubmit = (formData: MemberLoginFormData) => {
     const member = new Member(formData.email, formData.password);
-    Api.auth('/api/member/applicate', member, navi);
+    Api.auth('/api/member/login', member, navi, 'login');
   };
 
   return (
     <Form>
-      <FormComponent
+      <SimpleInput
         label={'Eメールアドレス'}
         errors={errors}
         errorMessage={'正しく入力してください'}
@@ -34,12 +34,12 @@ const MemberApplicateForm = () => {
           pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
         }}
         secureTextEntry={false}
-        defaultValue={''}
-        placeholder={'Eメール'}
+        defaultValue={'test@example.com'}
+        placeholder={'Eメールを入力してください'}
       />
 
       <View style={styles.inputArea}>
-        <FormComponent
+        <SimpleInput
           label={'パスワード'}
           errors={errors}
           errorMessage={'文字数が少なすぎます'}
@@ -50,16 +50,16 @@ const MemberApplicateForm = () => {
             minLength: 4,
           }}
           secureTextEntry={true}
-          defaultValue={''}
-          placeholder={'パスワード'}
+          defaultValue={'test'}
+          placeholder={'パスワードを入力してください'}
         />
       </View>
 
       <View style={styles.buttonArea}>
-        <SimpleButton text={'新規登録'} onPress={handleSubmit(onSubmit)} />
+        <SimpleButton text={'ログイン'} onPress={handleSubmit(onSubmit)} />
         <SimpleButton
-          text={'ログイン画面へ'}
-          onPress={() => navigation.navigate('Login')}
+          text={'新規登録画面へ'}
+          onPress={() => navigation.navigate('MemberApplicate')}
         />
       </View>
     </Form>
@@ -73,4 +73,4 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
 });
-export default MemberApplicateForm;
+export default LoginForm;

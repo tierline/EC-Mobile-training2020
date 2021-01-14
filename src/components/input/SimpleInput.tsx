@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Input, Item, Text, View } from 'native-base';
 import { Controller } from 'react-hook-form';
 
-const FormComponent = (props: any) => {
+const SimpleInput = (props: any) => {
   const {
     label,
     errors,
@@ -54,4 +54,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FormComponent;
+export default SimpleInput;

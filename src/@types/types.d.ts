@@ -134,3 +134,15 @@ type RouteForOrderId = {
     params: number;
   };
 };
+
+/**
+ * コンポーネント系
+ */
+
+type PropForAuthForm = {
+  apiUrl: string;
+  message: string;
+  buttonText1: string;
+  buttonText2: string;
+  navDestination: string;
+};

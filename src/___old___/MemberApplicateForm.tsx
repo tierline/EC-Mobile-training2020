@@ -4,11 +4,11 @@ import { Form, View } from 'native-base';
 import { useForm } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
 import Member from '../../../domain/Member';
-import FormComponent from './FormComponent';
+import SimpleInput from '../../input/SimpleInput';
 import SimpleButton from '../../button/SimpleButton';
 import Api from '../../../api/Api';
 
-const LoginForm = () => {
+const MemberApplicateForm = () => {
   const { control, handleSubmit, errors } = useForm();
   const navigation = useNavigation();
 
@@ -16,14 +16,14 @@ const LoginForm = () => {
     navigation.navigate('Home');
   };
 
-  const onSubmit = (formData: MemberLoginFormData) => {
+  const onSubmit = (formData: MemberApplicateFormData) => {
     const member = new Member(formData.email, formData.password);
-    Api.auth('/api/member/login', member, navi, 'login');
+    Api.auth('/api/member/applicate', member, navi, 'applicate');
   };
 
   return (
     <Form>
-      <FormComponent
+      <SimpleInput
         label={'Eメールアドレス'}
         errors={errors}
         errorMessage={'正しく入力してください'}
@@ -34,12 +34,12 @@ const LoginForm = () => {
           pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
         }}
         secureTextEntry={false}
-        defaultValue={'test@example.com'}
+        defaultValue={''}
         placeholder={'Eメール'}
       />
 
       <View style={styles.inputArea}>
-        <FormComponent
+        <SimpleInput
           label={'パスワード'}
           errors={errors}
           errorMessage={'文字数が少なすぎます'}
@@ -50,16 +50,16 @@ const LoginForm = () => {
             minLength: 4,
           }}
           secureTextEntry={true}
-          defaultValue={'test'}
+          defaultValue={''}
           placeholder={'パスワード'}
         />
       </View>
 
       <View style={styles.buttonArea}>
-        <SimpleButton text={'ログイン'} onPress={handleSubmit(onSubmit)} />
+        <SimpleButton text={'新規登録'} onPress={handleSubmit(onSubmit)} />
         <SimpleButton
-          text={'新規登録画面へ'}
-          onPress={() => navigation.navigate('MemberApplicate')}
+          text={'ログイン画面へ'}
+          onPress={() => navigation.navigate('Login')}
         />
       </View>
     </Form>
@@ -73,4 +73,4 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
 });
-export default LoginForm;
+export default MemberApplicateForm;

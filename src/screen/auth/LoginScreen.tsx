@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Content, H1 } from 'native-base';
-import LoginForm from '../../components/form/auth/LoginForm';
+import AuthForm from '../../components/form/auth/AuthForm';
 import { StyleSheet } from 'react-native';
 
 const LoginScreen = () => {
@@ -8,11 +8,18 @@ const LoginScreen = () => {
     <Container>
       <H1 style={styles.h1}>ログイン</H1>
       <Content style={styles.content}>
-        <LoginForm />
+        <AuthForm
+          apiUrl={'/api/member/login'}
+          message={'login'}
+          buttonText1={'ログイン'}
+          buttonText2={'新規会員登録へ'}
+          navDestination={'MemberApplicate'}
+        />
       </Content>
     </Container>
   );
 };
+
 const styles = StyleSheet.create({
   h1: {
     paddingTop: 15,
