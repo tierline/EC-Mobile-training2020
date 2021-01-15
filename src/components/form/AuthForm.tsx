@@ -28,7 +28,10 @@ const AuthForm = (props: PropForAuthForm) => {
       <SimpleInput
         label={'Eメールアドレス'}
         errors={errors}
-        errorMessage={'正しく入力してください'}
+        errorType={[
+          { type: 'required', errorMessage: '入力は必須です' },
+          { type: 'pattern', errorMessage: 'Eメールの形式が間違っています' },
+        ]}
         control={control}
         name={'email'}
         rules={{
@@ -44,7 +47,10 @@ const AuthForm = (props: PropForAuthForm) => {
         <SimpleInput
           label={'パスワード'}
           errors={errors}
-          errorMessage={'文字数が少なすぎます'}
+          errorType={[
+            { type: 'required', errorMessage: '入力は必須です' },
+            { type: 'minLength', errorMessage: 'パスワードが短すぎます' },
+          ]}
           control={control}
           name={'password'}
           rules={{

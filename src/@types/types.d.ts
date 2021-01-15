@@ -144,11 +144,11 @@ type RouteForOrderId = {
 type PropForSimpleInput = {
   label: string;
   errors: any;
-  errorMessage: string;
+  errorType: any[]; // TOREVIEW : 配列の中のオブジェクトの型指定
   control: any;
   name: string;
   // rules: { required: boolean; pattern: RegExp };
-  rules: any; // rules は場合によって変更がある。　minLength, maxLength等
+  rules: any; // 型指定。rules は場合によって変更がある。　minLength, maxLength等
   secureTextEntry: boolean;
   defaultValue: string;
   placeholder: string;

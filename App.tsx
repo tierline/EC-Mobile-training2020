@@ -60,7 +60,7 @@ const App = () => {
         <Stack.Screen
           name="OrderForm"
           component={OrderFormScreen}
-          options={{ title: '住所入力フォーム' }}
+          options={{ title: 'お届け先入力フォーム' }}
         />
         <Stack.Screen
           name="Complete"

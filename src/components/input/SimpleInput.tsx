@@ -7,7 +7,7 @@ const SimpleInput = (props: PropForSimpleInput) => {
   const {
     label,
     errors,
-    errorMessage,
+    errorType,
     control,
     name,
     rules,
@@ -16,15 +16,17 @@ const SimpleInput = (props: PropForSimpleInput) => {
     placeholder,
   } = props;
 
+  // TOREVIEW : input に label が必要かどうか
   return (
     <View style={styles.view}>
       <Text style={styles.label}>{label}</Text>
       <Controller
         control={control}
-        render={({ onChange, value }) => (
+        render={({ onChange, onBlur, value }) => (
           <Item>
             <Input
               secureTextEntry={secureTextEntry}
+              onBlur={onBlur}
               placeholder={placeholder}
               onChangeText={(textValue) => onChange(textValue)}
               value={value}
@@ -35,7 +37,14 @@ const SimpleInput = (props: PropForSimpleInput) => {
         rules={rules}
         defaultValue={defaultValue}
       />
-      {errors[name] && <Text style={styles.error}>{errorMessage}</Text>}
+      {errorType.map((v) => {
+        return (
+          errors[name] &&
+          errors[name].type === v.type && (
+            <Text style={styles.error}>{v.errorMessage}</Text>
+          )
+        );
+      })}
     </View>
   );
 };
@@ -44,6 +53,7 @@ const styles = StyleSheet.create({
   view: {
     marginLeft: 20,
     marginRight: 20,
+    paddingTop: 10,
   },
   label: {
     marginLeft: 5,
