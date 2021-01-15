@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Content, H1 } from 'native-base';
-import AuthForm from '../../components/form/auth/AuthForm';
+import AuthForm from '../../components/form/AuthForm';
 import { StyleSheet } from 'react-native';
 
 const LoginScreen = () => {

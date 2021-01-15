@@ -3,10 +3,10 @@ import { StyleSheet } from 'react-native';
 import { Form, View } from 'native-base';
 import { useForm } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
-import Member from '../../../domain/Member';
-import SimpleInput from '../../input/SimpleInput';
-import SimpleButton from '../../button/SimpleButton';
-import Api from '../../../api/Api';
+import Member from '../../domain/Member';
+import SimpleInput from '../input/SimpleInput';
+import SimpleButton from '../button/SimpleButton';
+import Api from '../../api/Api';
 
 const AuthForm = (props: PropForAuthForm) => {
   const { apiUrl, message, buttonText1, buttonText2, navDestination } = props;
@@ -36,7 +36,7 @@ const AuthForm = (props: PropForAuthForm) => {
           pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
         }}
         secureTextEntry={false}
-        defaultValue={''}
+        defaultValue={'test@example.com'}
         placeholder={'Eメールを入力してください'}
       />
 
@@ -52,7 +52,7 @@ const AuthForm = (props: PropForAuthForm) => {
             minLength: 4,
           }}
           secureTextEntry={true}
-          defaultValue={''}
+          defaultValue={'test'}
           placeholder={'パスワードを入力してください'}
         />
       </View>

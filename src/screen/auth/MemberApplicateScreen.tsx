@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Content, H1 } from 'native-base';
 import { StyleSheet } from 'react-native';
-import AuthForm from '../../components/form/auth/AuthForm';
+import AuthForm from '../../components/form/AuthForm';
 
 const ApplicateScreen = () => {
   return (
