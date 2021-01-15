@@ -35,6 +35,7 @@ const ProductList = () => {
   };
 
   const renderItems = ({ item }: { item: Product }) => {
+    // ProductImageComponent 的な。
     return (
       <Card style={styles.card}>
         <CardItem>

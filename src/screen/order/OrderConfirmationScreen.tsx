@@ -7,6 +7,11 @@ import OrderDetailList from '../../components/list/order/OrderDetailList';
 import Api from '../../api/Api';
 import LargeButton from '../../components/button/LargeButton';
 
+// お届け先の表示順
+// お届け先と注文商品の間のスペース
+// 単価の合計金額
+// 全体の合計金額を大きくする
+// 消費税も考慮する
 const OrderConfirmationScreen = ({ route }: RouteForOrderFormData) => {
   const navigation = useNavigation();
   const orderFormData = route.params.orderFormData;

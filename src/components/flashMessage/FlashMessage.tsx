@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
 
+// cartFlashMessage... etc...
 export const flashMessage = (
   message: string,
   description: string,
