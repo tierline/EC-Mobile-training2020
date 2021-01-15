@@ -73,10 +73,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#eee',
     padding: 5,
   },
-  // totalPriceH2: {
-  //   fontSize: 20,
-  //   fontWeight: '500',
-  // },
 });
 
 export default OrderConfirmationScreen;

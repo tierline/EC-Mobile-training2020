@@ -4,7 +4,7 @@ import { Text, List, ListItem, Body, Left, Right } from 'native-base';
 import { FlatList } from 'react-native';
 import UrlApi from '../../../api/UrlApi';
 
-// prop に型を定義すると OrderConfirmationScreen でエラーが出る。
+// TOREVIEW : prop に型を定義すると OrderConfirmationScreen でエラーが出る。
 const OrderedItemList = (prop: { cartItem: any }) => {
   const { cartItem } = prop;
 

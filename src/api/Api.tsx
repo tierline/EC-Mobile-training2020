@@ -25,7 +25,7 @@ export default class Api {
       Alert.alert('auth error:' + error);
     }
   }
-  // こんなやり方でいいのか？書く場所、、、
+  // TOREVIEW : こんなやり方でいいのか？書く場所、、、
   static authCheck(message: string) {
     if (message === 'login') {
       flashMessage(
@@ -51,7 +51,7 @@ export default class Api {
     });
   }
 
-  //素直に分けるべき？
+  //TOREVIEW : 素直に分けるべき？
   static async get(
     request: string,
     setState: Function,
@@ -74,7 +74,7 @@ export default class Api {
     }
   }
 
-  //なんか違う、、、
+  // TOREVIEW : なんか違う、、、
   static async post(request: string, data?: any, callback?: Function) {
     const url = Url.get(request);
     try {

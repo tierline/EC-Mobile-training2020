@@ -1,5 +1,5 @@
 class Storage {
-  //これでいいのか？
+  // TOREVIEW これでいいのか？
   private memory: any;
   constructor() {
     this.memory = new Map();
