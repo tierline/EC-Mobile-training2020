@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Input, Item, Text, View } from 'native-base';
 import { Controller } from 'react-hook-form';
 
-const SimpleInput = (props: any) => {
+const SimpleInput = (props: PropForSimpleInput) => {
   const {
     label,
     errors,

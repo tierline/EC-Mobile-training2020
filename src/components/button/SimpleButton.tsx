@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Button, Text } from 'native-base';
 
-const SimpleButton = (props: any) => {
+const SimpleButton = (props: PropForButton) => {
   const { text, onPress } = props;
 
   return (

@@ -1,3 +1,5 @@
+// TOREVIEW 似たような型が多い。フォルダ分けしたい。PropやRouteを書くべきかどうか。
+
 /**
  * フォーム系
  */
@@ -139,10 +141,34 @@ type RouteForOrderId = {
  * コンポーネント系
  */
 
+type PropForSimpleInput = {
+  label: string;
+  errors: any;
+  errorMessage: string;
+  control: any;
+  name: string;
+  // rules: { required: boolean; pattern: RegExp };
+  rules: any; // rules は場合によって変更がある。　minLength, maxLength等
+  secureTextEntry: boolean;
+  defaultValue: string;
+  placeholder: string;
+};
+
 type PropForAuthForm = {
   apiUrl: string;
   message: string;
   buttonText1: string;
   buttonText2: string;
   navDestination: string;
+};
+
+type PropForButton = {
+  text: string;
+  onPress: function;
+};
+
+type PropForIconButton = {
+  text: string;
+  onPress: function;
+  iconName: string;
 };

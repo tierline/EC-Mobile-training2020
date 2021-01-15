@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Button, Text } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const SmallIconButton = (props: any) => {
+const SmallIconButton = (props: PropForIconButton) => {
   const { text, onPress, iconName } = props;
 
   return (

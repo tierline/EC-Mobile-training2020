@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Button, Text } from 'native-base';
 
-const LargeButton = (props: any) => {
+const LargeButton = (props: PropForButton) => {
   const { text, onPress } = props;
 
   return (

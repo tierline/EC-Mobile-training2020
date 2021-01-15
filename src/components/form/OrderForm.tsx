@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import Storage from '../../Storage';
 import Api from '../../api/Api';
 import LargeButton from '../button/LargeButton';
+// import SimpleInput from '../input/SimpleInput';
 
 export const FormContext = createContext({ label: '', max: 0 });
 
@@ -31,6 +32,7 @@ const OrderForm = () => {
           <Text>姓</Text>
         </View>
         <View style={{ flex: 0.8 }}>
+          {/* <SimpleInput></SimpleInput> */}
           <Controller
             control={control}
             render={({ onChange, onBlur, value }) => (
