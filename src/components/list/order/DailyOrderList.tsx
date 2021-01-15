@@ -1,6 +1,7 @@
 import React from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 import { Button, Text, View } from 'native-base';
+
 const DailyOrderList = (props: any) => {
   const { navi, orderHistory } = props;
 

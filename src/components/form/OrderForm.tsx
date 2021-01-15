@@ -142,6 +142,7 @@ const OrderForm = () => {
           />
         </View>
       </View>
+
       {/* 郵便番号 */}
       <View style={styles.form}>
         <View style={{ flex: 0.2, alignItems: 'flex-end' }}>

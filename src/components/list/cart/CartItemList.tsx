@@ -5,6 +5,7 @@ import UrlApi from '../../../api/UrlApi';
 import { flashMessage } from '../../flashMessage/FlashMessage';
 import Api from '../../../api/Api';
 
+// TOREVIEW : リストもコンポーネントに切り出したい
 const CartItemList = (prop: { setHasItem: Function }) => {
   const [cartItems, setItems] = useState([]);
 
