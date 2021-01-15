@@ -2,11 +2,11 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Button, Text } from 'native-base';
 
-const SimpleButton = (props: any) => {
+const LargeButton = (props: any) => {
   const { text, onPress } = props;
 
   return (
-    <Button rounded block onPress={onPress} style={styles.button}>
+    <Button style={styles.button} full large onPress={onPress}>
       <Text style={styles.text}>{text}</Text>
     </Button>
   );
@@ -14,9 +14,6 @@ const SimpleButton = (props: any) => {
 
 const styles = StyleSheet.create({
   button: {
-    marginTop: 20,
-    marginLeft: 20,
-    marginRight: 20,
     backgroundColor: '#70372c',
   },
   text: {
@@ -24,4 +21,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SimpleButton;
+export default LargeButton;

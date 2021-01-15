@@ -3,18 +3,17 @@ import { Image, StyleSheet } from 'react-native';
 import {
   Container,
   Left,
-  Button,
   Body,
-  Text,
   Content,
   CardItem,
   Card,
+  Text,
 } from 'native-base';
 import NavBarBottom from '../components/nav/NavBarBottom';
+import MediumIconButton from '../components/button/MediumIconButton';
 import UrlGenerator from '../api/UrlApi';
 import { flashMessage } from '../components/flashMessage/FlashMessage';
 import Api from '../api/Api';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 const ProductDetailScreen = ({ route }: RouteForProduct) => {
   const { id, name, price, description, imagePath } = route.params;
@@ -49,15 +48,11 @@ const ProductDetailScreen = ({ route }: RouteForProduct) => {
           </CardItem>
           <CardItem>
             <Body>
-              <Button
-                style={styles.button}
-                onPress={() => addProduct(id, name)}>
-                <Icon style={styles.icon} name="shopping-cart" size={25} />
-                <Text style={styles.text}>カートに入れる</Text>
-              </Button>
-              {/* <Button danger onPress={() => addProduct(id, name)}>
-                <Text>カートに入れる</Text>
-              </Button> */}
+              <MediumIconButton
+                text={'カートに入れる'}
+                onPress={() => addProduct(id, name)}
+                iconName={'shopping-cart'}
+              />
             </Body>
           </CardItem>
         </Card>
@@ -68,22 +63,8 @@ const ProductDetailScreen = ({ route }: RouteForProduct) => {
 };
 
 const styles = StyleSheet.create({
-  icon: {
-    color: '#fff',
-    margin: 10,
-  },
-  button: {
-    borderRadius: 10,
-    backgroundColor: '#70372c',
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-  text: {
-    fontSize: 17,
-    color: '#fff',
-  },
   img: {
-    height: 300,
+    height: 250,
     width: '100%',
     flex: 1,
   },

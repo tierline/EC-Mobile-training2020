@@ -68,6 +68,8 @@ const LoginForm = () => {
 const styles = StyleSheet.create({
   inputArea: {
     paddingTop: 20,
+    borderBottomWidth: 2,
+    borderBottomColor: '#dc5f36',
   },
   buttonArea: {
     paddingTop: 20,

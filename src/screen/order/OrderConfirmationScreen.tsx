@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Button, Container, Text } from 'native-base';
+import { Container, Text } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import OrderedItemList from '../../components/list/order/OrderedItemList';
 import OrderDetailList from '../../components/list/order/OrderDetailList';
 import Api from '../../api/Api';
+import LargeButton from '../../components/button/LargeButton';
 
 const OrderConfirmationScreen = ({ route }: RouteForOrderFormData) => {
   const navigation = useNavigation();
@@ -39,9 +40,7 @@ const OrderConfirmationScreen = ({ route }: RouteForOrderFormData) => {
         <View style={styles.totalPrice}>
           <Text>合計金額{totalAmount}円</Text>
         </View>
-        <Button full large onPress={() => onSubmit()}>
-          <Text>注文する</Text>
-        </Button>
+        <LargeButton text={'注文する'} onPress={onSubmit} />
       </View>
     </Container>
   );

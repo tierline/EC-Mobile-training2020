@@ -26,7 +26,7 @@ const SimpleInput = (props: any) => {
             <Input
               secureTextEntry={secureTextEntry}
               placeholder={placeholder}
-              onChangeText={(value) => onChange(value)}
+              onChangeText={(textValue) => onChange(textValue)}
               value={value}
             />
           </Item>

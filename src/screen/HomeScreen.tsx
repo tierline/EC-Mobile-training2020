@@ -31,5 +31,5 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#f7e3af',
   },
-})
+});
 export default HomeScreen;
