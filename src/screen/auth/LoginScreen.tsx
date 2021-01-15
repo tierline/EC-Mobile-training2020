@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Content, H1 } from 'native-base';
 import AuthForm from '../../components/form/AuthForm';
-import { StyleSheet } from 'react-native';
+import { Alert, StyleSheet } from 'react-native';
 
 const LoginScreen = () => {
   return (
@@ -18,6 +18,35 @@ const LoginScreen = () => {
       </Content>
     </Container>
   );
+};
+
+const wait = async () => {
+  return new Promise((resolve) => {
+    setTimeout(function () {
+      resolve('slow');
+      console.log('slow promise is done');
+    }, 2000);
+  });
+  // console.log('setTimeout外 実行されるか？');
+};
+const asyncGet = async () => {
+  try {
+    const waitResult = await wait();
+    console.log(waitResult);
+  } catch (error) {
+    Alert.alert('get error:' + error);
+  }
+  console.log('asyncGet last done');
+};
+const thenGet = async () => {
+  wait()
+    .then((waitResult) => {
+      console.log(waitResult);
+    })
+    .catch((error) => {
+      Alert.alert('get error:' + error);
+    });
+  console.log('thenGet last done');
 };
 
 const styles = StyleSheet.create({
