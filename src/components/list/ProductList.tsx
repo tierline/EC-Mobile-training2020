@@ -10,6 +10,7 @@ import Storage from '../../Storage';
 import UrlApi from '../../api/UrlApi';
 import { flashMessage } from '../flashMessage/FlashMessage';
 import Api from '../../api/Api';
+import { Product } from '../../domain/Product';
 
 // TOREVIEW : リストもコンポーネントに切り出したい
 const ProductList = () => {
@@ -40,9 +41,7 @@ const ProductList = () => {
       <Card style={styles.card}>
         <CardItem>
           <Left>
-            {/* <Body> */}
             <Text style={styles.itemName}>{item.name}</Text>
-            {/* </Body> */}
           </Left>
           <Right>
             <Text style={styles.itemPrice}>価格:{item.price}円</Text>

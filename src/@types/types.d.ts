@@ -64,50 +64,6 @@ type RouteForOrderFormData = {
  * ドメイン系
  */
 
-type Product = {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-  imagePath: string;
-};
-
-type RouteForProduct = {
-  route: {
-    params: {
-      id: number;
-      name: string;
-      price: number;
-      description: string;
-      imagePath: string;
-    };
-  };
-};
-
-type CartItem = {
-  quantity: number;
-  empty: boolean;
-  totalAmount: number;
-  productName: string;
-  productPrice: number;
-  productImage: string;
-  productId: number;
-};
-
-type PropForCartItem = {
-  cartItem: [
-    {
-      quantity: number;
-      empty: boolean;
-      totalAmount: number;
-      productName: string;
-      productPrice: number;
-      productImage: string;
-      productId: number;
-    },
-  ];
-};
-
 type OrderHistory = {
   orderId: number;
   date: string;
@@ -153,8 +109,7 @@ type PropForSimpleInput = {
   errorType: any[]; // TOREVIEW : 配列の中のオブジェクトの型指定
   control: any;
   name: string;
-  // rules: { required: boolean; pattern: RegExp };
-  rules: any; // 型指定。rules は場合によって変更がある。　minLength, maxLength等
+  rules: any;
   secureTextEntry: boolean;
   defaultValue: string;
   placeholder: string;

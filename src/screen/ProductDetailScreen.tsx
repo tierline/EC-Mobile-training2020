@@ -14,6 +14,7 @@ import MediumIconButton from '../components/button/MediumIconButton';
 import UrlGenerator from '../api/UrlApi';
 import { flashMessage } from '../components/flashMessage/FlashMessage';
 import Api from '../api/Api';
+import { RouteForProduct } from '../domain/Product';
 
 const ProductDetailScreen = ({ route }: RouteForProduct) => {
   const { id, name, price, description, imagePath } = route.params;

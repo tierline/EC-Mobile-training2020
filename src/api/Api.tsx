@@ -126,7 +126,7 @@ export default class Api {
         axios.post(url);
       }
     } catch (error) {
-      Alert.alert('post error:' + error);
+      Alert.alert('post error!!!:' + error + '\n' + request);
     }
   }
 }
