@@ -35,6 +35,7 @@ const ProductList = () => {
   };
 
   const renderItems = ({ item }: { item: Product }) => {
+    // ProductImageComponent 的な。
     return (
       <Card style={styles.card}>
         <CardItem>
@@ -48,6 +49,7 @@ const ProductList = () => {
           </Right>
         </CardItem>
         <CardItem cardBody>
+          {/* コンポーネント化 */}
           <Image
             style={styles.image}
             resizeMode={'contain'}

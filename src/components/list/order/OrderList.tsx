@@ -9,13 +9,14 @@ const OrderList = () => {
   const navigation = useNavigation();
   const [orderHistory, setOrderHistory] = useState([]);
   useEffect(() => {
-    const email = { email: Storage.getEmail() };
-    Api.post('/api/member/order/history', email, setOrderHistory);
+    // const email = { email: Storage.getEmail() };
+    Api.get('/api/member/order/history', setOrderHistory);
   }, []);
 
-  //androidだとこの部分で
-  //VirtualizedList: Encountered an error while measuring a list's offset from its containing VirtualizedList.
-  //iosだと出ない
+  // TOREVIEW
+  // androidだとこの部分で
+  // VirtualizedList: Encountered an error while measuring a list's offset from its containing VirtualizedList.
+  // iosだと出ない
   const dataArray = () => {
     const list = [];
     for (let key in orderHistory) {

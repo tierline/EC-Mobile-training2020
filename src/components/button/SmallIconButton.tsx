@@ -7,7 +7,7 @@ const SmallIconButton = (props: PropForIconButton) => {
   const { text, onPress, iconName } = props;
 
   return (
-    <Button rounded style={styles.button} onPress={onPress}>
+    <Button style={styles.button} onPress={onPress}>
       <Icon style={styles.icon} name={iconName} size={20} />
       <Text style={styles.text}>{text}</Text>
     </Button>
@@ -17,7 +17,7 @@ const SmallIconButton = (props: PropForIconButton) => {
 const styles = StyleSheet.create({
   button: {
     // TOREVIEW : rounded か radius か
-    // borderRadius: 10,
+    borderRadius: 10,
     padding: 5,
     backgroundColor: '#70372c',
   },

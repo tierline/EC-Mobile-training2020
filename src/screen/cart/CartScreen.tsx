@@ -31,7 +31,7 @@ const CartScreen = () => {
         <CartItemList setHasItem={setHasItem} />
       </View>
       {hasItem ? (
-        <LargeButton text={'入力フォームへ進む'} onPress={navi} />
+        <LargeButton text={'注文処理へ進む'} onPress={navi} /> // アイコン
       ) : (
         <View style={styles.message}>
           <H2>カートに商品がありません</H2>

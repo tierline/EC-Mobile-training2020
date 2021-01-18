@@ -1,12 +1,13 @@
 import React from 'react';
 import { Container, Content, H1 } from 'native-base';
 import AuthForm from '../../components/form/AuthForm';
-import { Alert, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
+// ログイン画面、アプリ名を表示する
 const LoginScreen = () => {
   return (
     <Container>
-      <H1 style={styles.h1}>ログイン</H1>
+      <H1 style={styles.h1}>T＆Kスーパーショップ</H1>
       <Content style={styles.content}>
         <AuthForm
           apiUrl={'/api/member/login'}
@@ -18,35 +19,6 @@ const LoginScreen = () => {
       </Content>
     </Container>
   );
-};
-
-const wait = async () => {
-  return new Promise((resolve) => {
-    setTimeout(function () {
-      resolve('slow');
-      console.log('slow promise is done');
-    }, 2000);
-  });
-  // console.log('setTimeout外 実行されるか？');
-};
-const asyncGet = async () => {
-  try {
-    const waitResult = await wait();
-    console.log(waitResult);
-  } catch (error) {
-    Alert.alert('get error:' + error);
-  }
-  console.log('asyncGet last done');
-};
-const thenGet = async () => {
-  wait()
-    .then((waitResult) => {
-      console.log(waitResult);
-    })
-    .catch((error) => {
-      Alert.alert('get error:' + error);
-    });
-  console.log('thenGet last done');
 };
 
 const styles = StyleSheet.create({

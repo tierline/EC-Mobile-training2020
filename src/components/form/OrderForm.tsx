@@ -15,8 +15,7 @@ const OrderForm = () => {
   const { control, handleSubmit, errors, reset } = useForm();
   const navigation = useNavigation();
   useEffect(() => {
-    const email = { email: Storage.getEmail() };
-    Api.post('/api/member/address', email, reset);
+    Api.get('/api/member/session', reset);
   }, [reset]);
 
   const onSubmit = (data: OrderFormData) => {
@@ -24,6 +23,7 @@ const OrderForm = () => {
   };
 
   // TOREVIEW : <Form>コンポーネントで返したい。labelではなくplaceholderに書いても良さそう。インラインのstyleを消す。
+  // アイコン検討
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       {/* 姓 */}
@@ -43,7 +43,7 @@ const OrderForm = () => {
             name={'lastName'}
             rules={{
               required: true,
-              maxLength: 6,
+              maxLength: 12,
             }}
             secureTextEntry={false}
             defaultValue={''}
@@ -69,7 +69,7 @@ const OrderForm = () => {
             name={'firstName'}
             rules={{
               required: true,
-              maxLength: 8,
+              maxLength: 12,
             }}
             secureTextEntry={false}
             defaultValue={''}

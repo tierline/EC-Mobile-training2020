@@ -25,7 +25,11 @@ export default class Api {
       Alert.alert('auth error:' + error);
     }
   }
-  // こんなやり方でいいのか？書く場所、、、
+  // TOREVIEW : こんなやり方でいいのか？書く場所、、、
+  // check?
+  // java のプロパティファイル的なメッセージファイル。
+  // @types的な。
+  // validationMessage, カート追加メッセージ、カート削除メッセージ で 共通化できる
   static authCheck(message: string) {
     if (message === 'login') {
       flashMessage(
@@ -51,7 +55,39 @@ export default class Api {
     });
   }
 
-  //素直に分けるべき？
+  static async wait() {
+    return new Promise((resolve) => {
+      setTimeout(function () {
+        console.log('WAIT FUNC');
+        resolve('waitから返した RESOLVE');
+      }, 5000);
+    });
+    // console.log('setTimeout外 実行されるか？');
+  }
+
+  static async asyncGet() {
+    try {
+      const waitResult = await Api.wait();
+      console.log(waitResult);
+    } catch (error) {
+      Alert.alert('get error:' + error);
+    }
+    console.log('asyncGet last done');
+  }
+
+  static thenGet() {
+    Api.wait()
+      .then((waitResult) => {
+        console.log(waitResult);
+      })
+      .catch((error) => {
+        Alert.alert('get error:' + error);
+      });
+    console.log('thenGet last done');
+  }
+
+  // //TOREVIEW : 素直に分けるべき？
+  // // clean up は
   static async get(
     request: string,
     setState: Function,
@@ -60,9 +96,14 @@ export default class Api {
   ) {
     const url = Url.get(request);
     try {
+      // await は書き換える。
+      // await でも非同期通信が可能ではある。
+      // then で繋ぐ場合は非同期通信でやってくれる。
       const res = await axios.get(url);
+      // remove mounted
       if (mounted) {
-        setState(res.data.items);
+        setState(res.data.items); // callBackFun(res.data) // setState以外の用途用
+        // remove setAmount
         if (setAmount) {
           setAmount(res.data.totalAmount);
         }
@@ -74,7 +115,7 @@ export default class Api {
     }
   }
 
-  //なんか違う、、、
+  // TOREVIEW : なんか違う、、、
   static async post(request: string, data?: any, callback?: Function) {
     const url = Url.get(request);
     try {
