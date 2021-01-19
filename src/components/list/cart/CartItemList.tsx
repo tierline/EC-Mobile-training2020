@@ -11,13 +11,15 @@ const CartItemList = (prop: { setHasItem: Function }) => {
 
   useEffect(() => {
     let mounted = true;
-    Api.get('/api/member/cart/list', setItems, mounted);
+    Api.get('/api/member/cart/', setItems, mounted);
     return () => {
       mounted = false;
     };
   }, [cartItems]);
 
-  // TOREVIEW　: 綺麗にしたい
+  console.log('waa');
+
+  // TOREVIEW: 綺麗にしたい
   const removeParticularProduct = async (
     productId: number,
     productName: string,
@@ -28,7 +30,7 @@ const CartItemList = (prop: { setHasItem: Function }) => {
     flashMessage(productName, '削除しました', 500, 'red');
   };
 
-  const renderItem = ({ item }: { item: CartItem }) => {
+  const renderItem = ({ item }: { item: any }) => {
     return (
       <Card>
         <CardItem>
