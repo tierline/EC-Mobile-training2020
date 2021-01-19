@@ -1,12 +1,12 @@
-export interface CartItem {
+export type CartItem = {
   quantity: number;
   empty: boolean;
   totalAmount: number;
-  productName: string;
-  productPrice: number;
   productImage: string;
+  productPrice: number;
+  productName: string;
   productId: number;
-}
+};
 
 export type PropForCartItem = {
   cartItem: [CartItem];

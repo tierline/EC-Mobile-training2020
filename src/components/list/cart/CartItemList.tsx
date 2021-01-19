@@ -9,36 +9,32 @@ import { CartItem } from '../../../domain/CartItem';
 // TOREVIEW : リストもコンポーネントに切り出したい
 // 個別の画面はほとんど共通化できない。
 // screenへ
-const CartItemList = (prop: { setHasItem: Function }) => {
+const CartItemList = () => {
   const [cartItems, setItems] = useState([]);
 
-  // useEffect(() => {
+  // const callBack = (res: any, mounted: boolean) => {
+  //   if (mounted) {
+  //     setItems(res.items);
+  //   }
+  // };
+
+  useEffect(() => {
+    Api.get('/api/member/cart/', setItems);
+  }, [cartItems]);
+
+  console.log('mugen');
+
   //   // clean up関数(必要になったら追加する)
+  // useEffect(() => {
   //   // let mounted = true;
   //   Api.get('/api/member/cart/list', setItems);
   // return () => {
   //   mounted = false;
   // };
-  // }, [cartItems]);
+  // }, [cartItems]);  const [orderedItems, setOrderedItem] = useState([]);
 
-  // 型はcart
-  const callBack = (res: any) => {
-    setItems(res.items);
-  };
-
-  useEffect(() => {
-    Api.get('/api/member/cart/', callBack);
-    console.log('無限ループ判定');
-  }, []);
-
-  // TOREVIEW: 綺麗にしたい
-  const removeParticularProduct = async (
-    productId: number,
-    productName: string,
-  ) => {
-    await Api.post(`/api/member/cart/delete/${productId}`);
-    await Api.get('/api/member/cart/', setItems);
-    await Api.get('/api/member/cart/hasItem', prop.setHasItem);
+  const removeParticularProduct = (productId: number, productName: string) => {
+    Api.post(`/api/member/cart/remove/${productId}`, setItems);
     flashMessage(productName, '削除しました', 500, 'red');
   };
 
@@ -71,6 +67,7 @@ const CartItemList = (prop: { setHasItem: Function }) => {
   };
 
   return (
+    // <Text>{cartItems}</Text>
     <FlatList
       data={cartItems}
       renderItem={renderItem}

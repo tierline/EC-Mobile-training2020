@@ -7,9 +7,9 @@ import Api from '../../api/Api';
 import { RouteForOrderHistory } from '../../domain/OrderHistory';
 
 const OrderItemDetailScreen = ({ route }: RouteForOrderHistory) => {
-  const { orderId, orderDate } = route.params;
+  const { orderId, date } = route.params;
   const [orderedItems, setOrderedItem] = useState([]);
-  console.log(orderedItems);
+
   useEffect(() => {
     Api.get(`/api/member/order/history/item/${orderId}`, setOrderedItem);
   }, [orderId]);
@@ -40,7 +40,7 @@ const OrderItemDetailScreen = ({ route }: RouteForOrderHistory) => {
   return (
     <View style={styles.container}>
       <View style={styles.orderList}>
-        <Text>{orderDate}</Text>
+        <Text>{date}</Text>
         <FlatList
           data={orderedItems}
           renderItem={renderItems}
