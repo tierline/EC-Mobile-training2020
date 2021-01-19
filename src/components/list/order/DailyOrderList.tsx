@@ -5,8 +5,10 @@ import { OrderHistory } from '../../../domain/OrderHistory';
 
 const DailyOrderList = (props: any) => {
   const { navi, orderHistory } = props;
+  console.log(orderHistory);
 
   const day = (date: string) => {
+    console.log(date);
     return date.slice(8, 10);
   };
 
@@ -19,14 +21,15 @@ const DailyOrderList = (props: any) => {
           onPress={() => {
             navi.navigate('OrderItemDetail', {
               orderId: item.orderId,
-              orderDate: item.orderDate,
+              orderDate: item.date,
             });
           }}>
-          <Text>{day(item.orderDate)}日</Text>
+          <Text>{day(item.date)}日</Text>
         </Button>
       </View>
     );
   };
+
   return (
     <FlatList
       style={styles.list}
