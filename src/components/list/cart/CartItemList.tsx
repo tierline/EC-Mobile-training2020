@@ -12,21 +12,32 @@ import { CartItem } from '../../../domain/CartItem';
 const CartItemList = (prop: { setHasItem: Function }) => {
   const [cartItems, setItems] = useState([]);
 
-  useEffect(() => {
-    let mounted = true;
-    Api.get('/api/member/cart/list', setItems, mounted);
-    return () => {
-      mounted = false;
-    };
-  }, [cartItems]);
+  // useEffect(() => {
+  //   // clean up関数(必要になったら追加する)
+  //   // let mounted = true;
+  //   Api.get('/api/member/cart/list', setItems);
+  // return () => {
+  //   mounted = false;
+  // };
+  // }, [cartItems]);
 
-  // TOREVIEW　: 綺麗にしたい
+  // 型はcart
+  const callBack = (res: any) => {
+    setItems(res.items);
+  };
+
+  useEffect(() => {
+    Api.get('/api/member/cart/', callBack);
+    console.log('無限ループ判定');
+  }, []);
+
+  // TOREVIEW: 綺麗にしたい
   const removeParticularProduct = async (
     productId: number,
     productName: string,
   ) => {
     await Api.post(`/api/member/cart/delete/${productId}`);
-    await Api.get('/api/member/cart/list', setItems, true);
+    await Api.get('/api/member/cart/', setItems);
     await Api.get('/api/member/cart/hasItem', prop.setHasItem);
     flashMessage(productName, '削除しました', 500, 'red');
   };

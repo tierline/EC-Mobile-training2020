@@ -10,7 +10,8 @@ const ApplicateScreen = () => {
       <Content style={styles.content}>
         <AuthForm
           apiUrl={'/api/member/applicate'}
-          message={'applicate'}
+          errorMessage={'新規登録に失敗しました。'}
+          description={'既に登録されたメールアドレスです。'}
           buttonText1={'新規会員登録'}
           buttonText2={'戻る'}
           navDestination={'Login'}

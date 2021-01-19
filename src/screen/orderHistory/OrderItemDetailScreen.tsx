@@ -4,10 +4,12 @@ import { CardItem, Left, Body, Thumbnail, Card } from 'native-base';
 import UrlApi from '../../api/UrlApi';
 import NavBarBottom from '../../components/nav/NavBarBottom';
 import Api from '../../api/Api';
+import { RouteForOrderHistory } from '../../domain/OrderHistory';
 
 const OrderItemDetailScreen = ({ route }: RouteForOrderHistory) => {
   const { orderId, orderDate } = route.params;
   const [orderedItems, setOrderedItem] = useState([]);
+  console.log(orderedItems);
   useEffect(() => {
     Api.get(`/api/member/order/history/item/${orderId}`, setOrderedItem);
   }, [orderId]);

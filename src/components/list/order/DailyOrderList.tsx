@@ -1,6 +1,7 @@
 import React from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 import { Button, Text, View } from 'native-base';
+import { OrderHistory } from '../../../domain/OrderHistory';
 
 const DailyOrderList = (props: any) => {
   const { navi, orderHistory } = props;
@@ -18,10 +19,10 @@ const DailyOrderList = (props: any) => {
           onPress={() => {
             navi.navigate('OrderItemDetail', {
               orderId: item.orderId,
-              orderDate: item.date,
+              orderDate: item.orderDate,
             });
           }}>
-          <Text>{day(item.date)}日</Text>
+          <Text>{day(item.orderDate)}日</Text>
         </Button>
       </View>
     );

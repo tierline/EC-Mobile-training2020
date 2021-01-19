@@ -18,12 +18,13 @@ const OrderConfirmationScreen = ({ route }: RouteForOrderFormData) => {
   const [cartItem, setOrderItems] = useState();
   const [totalAmount, setTotalAmount] = useState();
 
+  const callBack = (response: any) => {
+    setOrderItems(response.items);
+    setTotalAmount(response.totalAmount);
+  };
+
   useEffect(() => {
-    let mounted = true;
-    Api.get('/api/member/cart/list', setOrderItems, mounted, setTotalAmount);
-    return () => {
-      mounted = false;
-    };
+    Api.get('/api/member/cart/', callBack);
   }, []);
 
   const navi = (orderId: { orderId: number }) => {

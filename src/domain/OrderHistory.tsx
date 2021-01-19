@@ -1,4 +1,10 @@
-export type OrderHistory = {
+export interface OrderHistory {
   orderId: number;
-  date: string;
+  orderDate: string;
+}
+
+export type RouteForOrderHistory = {
+  route: {
+    params: OrderHistory;
+  };
 };

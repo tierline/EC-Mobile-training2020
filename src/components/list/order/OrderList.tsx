@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Accordion } from 'native-base';
-import Storage from '../../../Storage';
 import { useNavigation } from '@react-navigation/native';
 import DailyOrderList from './DailyOrderList';
 import Api from '../../../api/Api';
@@ -9,8 +8,7 @@ const OrderList = () => {
   const navigation = useNavigation();
   const [orderHistory, setOrderHistory] = useState([]);
   useEffect(() => {
-    const email = { email: Storage.getEmail() };
-    Api.post('/api/member/order/history', email, setOrderHistory);
+    Api.get('/api/member/order/history', setOrderHistory);
   }, []);
 
   // TOREVIEW
@@ -30,6 +28,7 @@ const OrderList = () => {
     }
     return list;
   };
+
   return (
     <Accordion
       dataArray={dataArray()}

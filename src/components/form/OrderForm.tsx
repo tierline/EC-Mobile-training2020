@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { Text, View } from 'native-base';
 import { StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Storage from '../../Storage';
 import Api from '../../api/Api';
 import LargeButton from '../button/LargeButton';
 import SimpleInput from '../input/SimpleInput';
@@ -15,8 +14,7 @@ const OrderForm = () => {
   const { control, handleSubmit, errors, reset } = useForm();
   const navigation = useNavigation();
   useEffect(() => {
-    const email = { email: Storage.getEmail() };
-    Api.post('/api/member/address', email, reset);
+    Api.get('/api/member/session', reset);
   }, [reset]);
 
   const onSubmit = (data: OrderFormData) => {

@@ -64,20 +64,6 @@ type RouteForOrderFormData = {
  * ドメイン系
  */
 
-type OrderHistory = {
-  orderId: number;
-  date: string;
-};
-
-type RouteForOrderHistory = {
-  route: {
-    params: {
-      orderId: number;
-      orderDate: string;
-    };
-  };
-};
-
 type PropForDailyOrder = {
   navi: any;
   orderHistory: {
@@ -117,7 +103,8 @@ type PropForSimpleInput = {
 
 type PropForAuthForm = {
   apiUrl: string;
-  message: string;
+  errorMessage: string;
+  description: string;
   buttonText1: string;
   buttonText2: string;
   navDestination: string;

@@ -14,6 +14,7 @@ import { HeaderBackButton } from '@react-navigation/stack';
 import { StyleSheet } from 'react-native';
 import FlashMessage from 'react-native-flash-message';
 import OrderConfirmationScreen from './src/screen/order/OrderConfirmationScreen';
+
 const App = () => {
   const Stack = createStackNavigator();
   return (
@@ -97,4 +98,5 @@ const styles = StyleSheet.create({
     display: 'none',
   },
 });
+
 export default App;
