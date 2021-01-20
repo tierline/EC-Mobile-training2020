@@ -18,7 +18,7 @@ const OrderFormScreen = () => {
 
 const styles = StyleSheet.create({
   body: {
-    flex: 1,
+    // flex: 1,
   },
   head: {
     paddingTop: '8%',

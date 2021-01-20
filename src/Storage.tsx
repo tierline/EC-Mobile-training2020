@@ -24,12 +24,6 @@ class Storage {
   getEmail(key = 'email'): string {
     return this.memory.get(key);
   }
-  setCart(cart: any): any {
-    this.memory.set('cart', cart);
-  }
-  getCart(): any {
-    return this.memory.get('cart');
-  }
 }
 
 export default new Storage();

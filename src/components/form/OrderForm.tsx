@@ -12,6 +12,7 @@ export const FormContext = createContext({ label: '', max: 0 });
 const OrderForm = () => {
   const { control, handleSubmit, errors, reset } = useForm();
   const navigation = useNavigation();
+
   useEffect(() => {
     Api.get('/api/member/session', reset);
   }, [reset]);
@@ -23,7 +24,7 @@ const OrderForm = () => {
   // TOREVIEW : <Form>コンポーネントで返したい。labelではなくplaceholderに書いても良さそう。インラインのstyleを消す。
   // アイコン検討
   return (
-    <View style={styles.form}>
+    <Form style={styles.form}>
       {/* 姓 */}
       <View style={styles.input}>
         <View style={styles.inputHeading}>
@@ -265,11 +266,10 @@ const OrderForm = () => {
           />
         </View>
       </View>
-
       <View style={styles.button}>
         <LargeButton text={'注文確認画面へ'} onPress={handleSubmit(onSubmit)} />
       </View>
-    </View>
+    </Form>
   );
 };
 
@@ -285,9 +285,7 @@ const styles = StyleSheet.create({
   },
   inputHeading: { flex: 2, alignItems: 'flex-end' },
   inputBody: { flex: 8 },
-  button: {
-    paddingTop: 50,
-  },
+  button: {},
 });
 
 export default OrderForm;
