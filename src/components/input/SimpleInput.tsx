@@ -5,7 +5,6 @@ import { Controller } from 'react-hook-form';
 
 const SimpleInput = (props: PropForSimpleInput) => {
   const {
-    label,
     errors,
     errorType,
     control,
@@ -19,7 +18,6 @@ const SimpleInput = (props: PropForSimpleInput) => {
   // TOREVIEW : input に label が必要かどうか
   return (
     <View style={styles.view}>
-      <Text style={styles.label}>{label}</Text>
       <Controller
         control={control}
         render={({ onChange, onBlur, value }) => (
@@ -54,9 +52,6 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
     paddingTop: 10,
-  },
-  label: {
-    marginLeft: 5,
   },
   error: {
     color: 'red',
