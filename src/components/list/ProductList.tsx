@@ -54,7 +54,7 @@ const ProductList = () => {
             source={{ uri: UrlApi.image(item.imagePath) }}
           />
         </CardItem>
-        {Storage.getAuth() ? (
+        {Storage.getIsAuthenticated() ? (
           <CardItem>
             <Left>
               <MediumIconButton

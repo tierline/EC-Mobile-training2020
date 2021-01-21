@@ -1,14 +1,14 @@
 import React from 'react';
 import { Container, Content, H1 } from 'native-base';
 import { StyleSheet } from 'react-native';
-import AuthForm from '../../components/form/AuthForm';
+import AuthenticationForm from '../../components/form/AuthenticationForm';
 
 const ApplicateScreen = () => {
   return (
     <Container>
       <H1 style={styles.h1}>新規登録</H1>
       <Content style={styles.content}>
-        <AuthForm
+        <AuthenticationForm
           apiUrl={'/api/member/applicate'}
           errorMessage={'新規登録に失敗しました。'}
           description={'既に登録されたメールアドレスです。'}

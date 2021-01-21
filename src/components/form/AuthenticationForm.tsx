@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Form, View } from 'native-base';
 import { useForm } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
-import { flashMessage } from '../../components/flashMessage/FlashMessage';
+import { flashMessage } from '../flashMessage/FlashMessage';
 import Storage from '../../Storage';
 import Member from '../../domain/Member';
 import SimpleInput from '../input/SimpleInput';
@@ -12,7 +12,7 @@ import Api from '../../api/Api';
 
 // screen の auth の下まで。
 // 共通化されないものはコンポーネントではなく...。
-const AuthForm = (props: PropForAuthForm) => {
+const AuthenticationForm = (props: PropForAuthForm) => {
   const {
     apiUrl,
     errorMessage,
@@ -31,7 +31,7 @@ const AuthForm = (props: PropForAuthForm) => {
 
   const callback = (isSucceeded: boolean): void => {
     if (isSucceeded) {
-      Storage.setAuth(true);
+      Storage.setIsAuthenticated(true);
       navi();
     } else {
       flashMessage(errorMessage, description, 3000, 'red');
@@ -104,4 +104,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AuthForm;
+export default AuthenticationForm;

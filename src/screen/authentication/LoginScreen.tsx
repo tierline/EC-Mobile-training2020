@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Content, H1 } from 'native-base';
-import AuthForm from '../../components/form/AuthForm';
+import AuthenticationForm from '../../components/form/AuthenticationForm';
 import { StyleSheet } from 'react-native';
 
 const LoginScreen = () => {
@@ -8,7 +8,7 @@ const LoginScreen = () => {
     <Container>
       <H1 style={styles.h1}>T＆Kスーパーショップ</H1>
       <Content style={styles.content}>
-        <AuthForm
+        <AuthenticationForm
           apiUrl={'/api/member/login'}
           errorMessage={'ログインに失敗しました。'}
           description={'メールアドレス、パスワードを確認してください。'}
