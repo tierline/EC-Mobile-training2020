@@ -3,9 +3,9 @@ import { StyleSheet } from 'react-native';
 import { Button, Container, Content, Text, H2, Body, H3 } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 
-const CompleteScreen = ({ route }: RouteForOrderId) => {
+const OrderCompleteScreen = ({ route }: any) => {
   const navigation = useNavigation();
-  const orderId = route.params;
+  const { orderId } = route.params;
 
   return (
     <Container>
@@ -45,4 +45,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CompleteScreen;
+export default OrderCompleteScreen;

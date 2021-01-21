@@ -12,7 +12,12 @@ const NavBarBottom = () => {
   const logoutConfirmation = () => {
     Alert.alert('ログアウトしますか？', '', [
       { text: 'ログアウトする', onPress: () => logout() },
-      { text: 'やめる', onPress: () => console.log() },
+      {
+        text: 'やめる',
+        onPress: () => {
+          return;
+        },
+      },
     ]);
   };
 

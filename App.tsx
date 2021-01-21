@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import CartScreen from './src/screen/cart/CartScreen';
 import HomeScreen from './src/screen/HomeScreen';
 import OrderFormScreen from './src/screen/order/OrderFormScreen';
-import CompleteScreen from './src/screen/order/CompleteScreen';
+import OrderCompleteScreen from './src/screen/order/OrderCompleteScreen';
 import LoginScreen from './src/screen/authentication/LoginScreen';
 import MemberApplicateScreen from './src/screen/authentication/MemberApplicateScreen';
 import OrderHistoryScreen from './src/screen/orderHistory/OrderHistoryScreen';
@@ -65,7 +65,7 @@ const App = () => {
         />
         <Stack.Screen
           name="Complete"
-          component={CompleteScreen}
+          component={OrderCompleteScreen}
           options={{
             title: '注文完了',
             headerLeft: () => <HeaderBackButton style={styles.leftButton} />,
