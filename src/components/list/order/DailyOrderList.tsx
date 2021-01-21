@@ -11,6 +11,7 @@ const DailyOrderList = (props: any) => {
   };
 
   const renderItems = ({ item }: { item: OrderHistory }) => {
+    console.log(item);
     return (
       <View style={styles.button}>
         <Button

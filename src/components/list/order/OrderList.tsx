@@ -7,6 +7,8 @@ import Api from '../../../api/Api';
 const OrderList = () => {
   const navigation = useNavigation();
   const [orderHistory, setOrderHistory] = useState([]);
+
+  console.log(orderHistory);
   useEffect(() => {
     Api.get('/api/member/order/history', setOrderHistory);
   }, []);
