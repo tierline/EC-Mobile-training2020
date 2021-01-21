@@ -1,18 +1,18 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { H2 } from 'native-base';
+import { Container, Content, H2 } from 'native-base';
 import OrderForm from '../../components/form/OrderForm';
 
 const OrderFormScreen = () => {
   return (
-    <View style={styles.body}>
-      <View style={styles.head}>
-        <H2 style={styles.heading}>お届け先</H2>
-      </View>
-      <View>
+    <Container style={styles.body}>
+      <Content>
+        <View style={styles.head}>
+          <H2 style={styles.heading}>お届け先</H2>
+        </View>
         <OrderForm />
-      </View>
-    </View>
+      </Content>
+    </Container>
   );
 };
 

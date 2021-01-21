@@ -5,6 +5,9 @@ export type OrderHistory = {
 
 export type RouteForOrderHistory = {
   route: {
-    params: OrderHistory;
+    params: {
+      orderId: number;
+      date: string;
+    };
   };
 };

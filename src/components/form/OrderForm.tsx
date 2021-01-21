@@ -21,7 +21,7 @@ const OrderForm = () => {
     navigation.navigate('OrderConfirmation', { orderFormData: data });
   };
 
-  // TOREVIEW : <Form>コンポーネントで返したい。labelではなくplaceholderに書いても良さそう。インラインのstyleを消す。
+  // TOREVIEW :
   // アイコン検討
   return (
     <Form style={styles.form}>
@@ -277,6 +277,7 @@ const styles = StyleSheet.create({
   form: {
     // justifyContent: 'center',
     // alignItems: 'center',
+    // flex: 5,
   },
   input: {
     flexDirection: 'row',
@@ -285,7 +286,9 @@ const styles = StyleSheet.create({
   },
   inputHeading: { flex: 2, alignItems: 'flex-end' },
   inputBody: { flex: 8 },
-  button: {},
+  button: {
+    paddingTop: 15,
+  },
 });
 
 export default OrderForm;

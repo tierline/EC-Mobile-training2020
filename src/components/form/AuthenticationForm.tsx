@@ -12,7 +12,8 @@ import Api from '../../api/Api';
 
 // screen の auth の下まで。
 // 共通化されないものはコンポーネントではなく...。
-const AuthenticationForm = (props: PropForAuthForm) => {
+
+const AuthenticationForm = (props: PropForAuthenticationForm) => {
   const {
     apiUrl,
     errorMessage,
@@ -38,8 +39,13 @@ const AuthenticationForm = (props: PropForAuthForm) => {
     }
   };
 
+  type MemberAuthenticationFormData = {
+    email: string;
+    password: string;
+  };
+
   // formData にバリデーションなどが必要になったら、型定義を考える。
-  const onSubmit = (formData: any) => {
+  const onSubmit = (formData: MemberAuthenticationFormData) => {
     const member = new Member(formData.email, formData.password);
     Api.post(apiUrl, member, callback);
   };

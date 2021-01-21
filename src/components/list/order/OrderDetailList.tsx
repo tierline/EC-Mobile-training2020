@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, List, ListItem, Body, Left } from 'native-base';
 
-const OrderDetailList = (prop: PropForOrderFormData) => {
+const OrderDetailList = (prop: { orderFormData: OrderFormData }) => {
   const orderFormData = prop.orderFormData;
   return (
     <List>

@@ -5,16 +5,18 @@ import UrlApi from '../../api/UrlApi';
 import NavBarBottom from '../../components/nav/NavBarBottom';
 import Api from '../../api/Api';
 import { RouteForOrderHistory } from '../../domain/OrderHistory';
+import { OrderItem } from '../../domain/OrderItem';
 
 const OrderItemDetailScreen = ({ route }: RouteForOrderHistory) => {
   const { orderId, date } = route.params;
   const [orderedItems, setOrderedItem] = useState([]);
+  console.log(orderedItems);
 
   useEffect(() => {
     Api.get(`/api/member/order/history/item/${orderId}`, setOrderedItem);
   }, [orderId]);
 
-  const renderItems = ({ item }: { item: OrderedItem }) => {
+  const renderItems = ({ item }: { item: OrderItem }) => {
     return (
       <View>
         <Card>

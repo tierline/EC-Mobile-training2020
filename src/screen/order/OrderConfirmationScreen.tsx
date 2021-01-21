@@ -27,7 +27,7 @@ const OrderConfirmationScreen = ({ route }: RouteForOrderFormData) => {
     Api.get('/api/member/cart/', callBack);
   }, []);
 
-  const navi = (orderId: any) => {
+  const navi = (orderId: number) => {
     navigation.navigate('Complete', { orderId: orderId });
   };
 
