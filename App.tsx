@@ -44,7 +44,7 @@ const App = () => {
           name="Home"
           component={HomeScreen}
           options={{
-            title: 'T&K',
+            title: 'T&Kスーパーショップ',
             headerLeft: () => <HeaderBackButton style={styles.leftButton} />,
           }}
         />

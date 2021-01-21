@@ -6,7 +6,7 @@ import AuthenticationForm from '../../components/form/AuthenticationForm';
 const ApplicateScreen = () => {
   return (
     <Container>
-      <H1 style={styles.h1}>新規登録</H1>
+      <H1 style={styles.h1}>T＆Kスーパーショップ</H1>
       <Content style={styles.content}>
         <AuthenticationForm
           apiUrl={'/api/member/applicate'}

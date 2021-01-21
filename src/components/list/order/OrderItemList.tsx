@@ -6,7 +6,7 @@ import UrlApi from '../../../api/UrlApi';
 import { CartItem } from '../../../domain/CartItem';
 
 // propの型は変更はできるが、OrderConfirmationScreenで警告が出るので注意
-const OrderedItemList = (prop: any) => {
+const OrderItemList = (prop: any) => {
   const { cartItem } = prop;
 
   const renderItems = ({ item }: { item: CartItem }) => {
@@ -47,4 +47,4 @@ const styles = StyleSheet.create({
     height: 100,
   },
 });
-export default OrderedItemList;
+export default OrderItemList;
