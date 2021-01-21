@@ -18,7 +18,7 @@ const OrderForm = () => {
     Api.get('/api/member/session', reset);
   }, [reset]);
 
-  const onSubmit = (data: OrderFormData) => {
+  const onSubmit = (data: OrderFormData): void => {
     navigation.navigate('OrderConfirmation', { orderFormData: data });
   };
 

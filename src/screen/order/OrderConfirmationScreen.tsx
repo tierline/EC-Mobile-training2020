@@ -18,7 +18,7 @@ const OrderConfirmationScreen = ({ route }: RouteForOrderFormData) => {
   const [cartItem, setOrderItems] = useState();
   const [totalAmount, setTotalAmount] = useState();
 
-  const callBack = (response: any) => {
+  const callBack = (response: any): void => {
     setOrderItems(response.items);
     setTotalAmount(response.totalAmount);
   };
@@ -27,11 +27,11 @@ const OrderConfirmationScreen = ({ route }: RouteForOrderFormData) => {
     Api.get('/api/member/cart/', callBack);
   }, []);
 
-  const navi = (orderId: number) => {
+  const navi = (orderId: number): void => {
     navigation.navigate('Complete', { orderId: orderId });
   };
 
-  const onSubmit = () => {
+  const onSubmit = (): void => {
     Api.post('/api/member/order/save', orderFormData, navi);
   };
   return (

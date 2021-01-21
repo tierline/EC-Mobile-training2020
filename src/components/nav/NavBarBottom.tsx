@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const NavBarBottom = () => {
   const navigation = useNavigation();
 
-  const logoutConfirmation = () => {
+  const logoutConfirmation = (): void => {
     Alert.alert('ログアウトしますか？', '', [
       { text: 'ログアウトする', onPress: () => logout() },
       {
@@ -21,7 +21,7 @@ const NavBarBottom = () => {
     ]);
   };
 
-  const logout = () => {
+  const logout = (): void => {
     Api.get('/member/logout');
     Storage.setIsAuthenticated(false);
     Alert.alert('ログアウトしました');

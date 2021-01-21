@@ -11,8 +11,8 @@ import {
 } from 'native-base';
 import { FlatList, Image, StyleSheet } from 'react-native';
 import UrlApi from '../../../api/UrlApi';
-import { flashMessage } from '../../flashMessage/FlashMessage';
 import { useNavigation } from '@react-navigation/native';
+import { flashMessage } from '../../flashMessage/FlashMessage';
 import Api from '../../../api/Api';
 import { CartItem } from '../../../domain/CartItem';
 import LargeButton from '../../../components/button/LargeButton';
@@ -20,16 +20,16 @@ import NumericInput from 'react-native-numeric-input';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const CartItemList = () => {
-  const navigation = useNavigation();
   const [cartItems, setItems] = useState([]);
   const [count, setCount] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0);
+  const navigation = useNavigation();
 
-  const navi = () => {
+  const navi = (): void => {
     navigation.navigate('OrderForm');
   };
 
-  const callBack = (res: any) => {
+  const callBack = (res: any): void => {
     setTotalAmount(res.totalAmount);
     setItems(res.items);
   };
@@ -41,7 +41,7 @@ const CartItemList = () => {
   const removeParticularProduct = async (
     productId: number,
     productName: string,
-  ) => {
+  ): Promise<void> => {
     await Api.post(`/api/member/cart/remove/${productId}`, setItems);
     flashMessage(productName, '削除しました', 500, 'red');
     setCount(count + 1);

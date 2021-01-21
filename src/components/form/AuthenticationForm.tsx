@@ -10,9 +10,6 @@ import SimpleInput from '../input/SimpleInput';
 import SimpleButton from '../button/SimpleButton';
 import Api from '../../api/Api';
 
-// screen の auth の下まで。
-// 共通化されないものはコンポーネントではなく...。
-
 const AuthenticationForm = (props: PropForAuthenticationForm) => {
   const {
     apiUrl,
@@ -26,7 +23,7 @@ const AuthenticationForm = (props: PropForAuthenticationForm) => {
   const { control, handleSubmit, errors } = useForm();
   const navigation = useNavigation();
 
-  const navi = () => {
+  const navi = (): void => {
     navigation.navigate('Home');
   };
 
@@ -45,7 +42,7 @@ const AuthenticationForm = (props: PropForAuthenticationForm) => {
   };
 
   // formData にバリデーションなどが必要になったら、型定義を考える。
-  const onSubmit = (formData: MemberAuthenticationFormData) => {
+  const onSubmit = (formData: MemberAuthenticationFormData): void => {
     const member = new Member(formData.email, formData.password);
     Api.post(apiUrl, member, callback);
   };

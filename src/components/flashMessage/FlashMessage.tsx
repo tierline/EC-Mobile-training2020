@@ -7,7 +7,7 @@ export const flashMessage = (
   description: string,
   duration: number,
   backgroundColor: string,
-) => {
+): void => {
   showMessage({
     message: message,
     description: description,

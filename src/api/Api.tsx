@@ -31,7 +31,6 @@ export default class Api {
     callback?: Function,
   ): Promise<void> {
     const url = Url.get(request);
-
     axios
       .post(url, data)
       .then((res) => {

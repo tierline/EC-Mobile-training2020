@@ -10,7 +10,6 @@ import { OrderItem } from '../../domain/OrderItem';
 const OrderItemDetailScreen = ({ route }: RouteForOrderHistory) => {
   const { orderId, date } = route.params;
   const [orderedItems, setOrderedItem] = useState([]);
-  console.log(orderedItems);
 
   useEffect(() => {
     Api.get(`/api/member/order/history/item/${orderId}`, setOrderedItem);

@@ -19,12 +19,12 @@ const ProductList = () => {
     Api.get('/api/product', setItems);
   }, []);
 
-  const addProduct = (productId: number, productName: string) => {
+  const addProduct = (productId: number, productName: string): void => {
     flashMessage(`${productName}を`, 'カートに追加しました', 500, '#f4511e');
     Api.post(`/api/member/cart/add/${productId}`);
   };
 
-  const navi = (product: Product) => {
+  const navi = (product: Product): void => {
     navigation.navigate('ProductDetail', {
       id: product.id,
       name: product.name,

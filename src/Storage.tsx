@@ -4,8 +4,6 @@ class Storage {
   // グローバル変数ではなく Storage クラスを入れているため一応セーフ
   // 型定義は正確に
   // Emailクラスなどを定義したいところ
-  // return の値にも型定義
-  // Mapのkeyは大文字で。クラス、定数で使ったりする。
   private memory: Map<string, any>;
   constructor() {
     this.memory = new Map();
@@ -17,10 +15,10 @@ class Storage {
     return this.memory.get('AUTHENTICATION');
   }
   setEmail(email: string): void {
-    this.memory.set('Email', email);
+    this.memory.set('EMAIL', email);
   }
   getEmail(): string {
-    return this.memory.get('Email');
+    return this.memory.get('EMAIL');
   }
 }
 

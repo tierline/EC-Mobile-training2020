@@ -6,7 +6,7 @@ import { OrderHistory } from '../../../domain/OrderHistory';
 const DailyOrderList = (props: any) => {
   const { navi, orderHistory } = props;
 
-  const day = (date: string) => {
+  const day = (date: string): string => {
     return date.slice(8, 10);
   };
 
