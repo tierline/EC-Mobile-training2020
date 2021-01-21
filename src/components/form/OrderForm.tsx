@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import Api from '../../api/Api';
 import LargeButton from '../button/LargeButton';
 import SimpleInput from '../input/SimpleInput';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const FormContext = createContext({ label: '', max: 0 });
 
@@ -22,7 +23,6 @@ const OrderForm = () => {
   };
 
   // TOREVIEW :
-  // アイコン検討
   return (
     <Form style={styles.form}>
       {/* 姓 */}
@@ -80,7 +80,7 @@ const OrderForm = () => {
       {/* メールアドレス */}
       <View style={styles.input}>
         <View style={styles.inputHeading}>
-          <Text>Eメール</Text>
+          <Icon name="envelope-o" size={20} />
         </View>
         <View style={styles.inputBody}>
           <SimpleInput
@@ -114,7 +114,7 @@ const OrderForm = () => {
       {/* 電話番号 */}
       <View style={styles.input}>
         <View style={styles.inputHeading}>
-          <Text>電話番号</Text>
+          <Icon name="phone" size={22} />
         </View>
         <View style={styles.inputBody}>
           <SimpleInput
@@ -275,9 +275,7 @@ const OrderForm = () => {
 
 const styles = StyleSheet.create({
   form: {
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // flex: 5,
+    justifyContent: 'center',
   },
   input: {
     flexDirection: 'row',
@@ -287,7 +285,7 @@ const styles = StyleSheet.create({
   inputHeading: { flex: 2, alignItems: 'flex-end' },
   inputBody: { flex: 8 },
   button: {
-    paddingTop: 15,
+    paddingTop: 50,
   },
 });
 

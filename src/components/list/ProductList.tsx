@@ -12,7 +12,6 @@ import { flashMessage } from '../flashMessage/FlashMessage';
 import Api from '../../api/Api';
 import { Product } from '../../domain/Product';
 
-// TOREVIEW : リストもコンポーネントに切り出したい
 const ProductList = () => {
   const navigation = useNavigation();
   const [items, setItems] = useState([]);

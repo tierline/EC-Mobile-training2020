@@ -11,10 +11,6 @@ const OrderList = () => {
     Api.get('/api/member/order/history', setOrderHistory);
   }, []);
 
-  // TOREVIEW
-  // androidだとこの部分で
-  // VirtualizedList: Encountered an error while measuring a list's offset from its containing VirtualizedList.
-  // iosだと出ない
   const dataArray = () => {
     const list = [];
     for (let key in orderHistory) {

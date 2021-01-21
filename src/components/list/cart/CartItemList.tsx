@@ -19,7 +19,6 @@ import LargeButton from '../../../components/button/LargeButton';
 import NumericInput from 'react-native-numeric-input';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-// TOREVIEW : リストもコンポーネントに切り出したい
 const CartItemList = () => {
   const navigation = useNavigation();
   const [cartItems, setItems] = useState([]);

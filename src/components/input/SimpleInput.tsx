@@ -15,7 +15,6 @@ const SimpleInput = (props: PropForSimpleInput) => {
     placeholder,
   } = props;
 
-  // TOREVIEW : input に label が必要かどうか
   return (
     <View style={styles.view}>
       <Controller

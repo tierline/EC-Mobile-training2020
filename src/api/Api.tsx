@@ -24,22 +24,23 @@ export default class Api {
   }
 
   // TOREVIEW :
-  static post(request: string, data?: any, callback?: Function) {
+  // cartItemList で await を使用しているので、async関数にした。
+  static async post(
+    request: string,
+    data?: any,
+    callback?: Function,
+  ): Promise<void> {
     const url = Url.get(request);
 
-    if (callback) {
-      axios
-        .post(url, data)
-        .then((res) => {
+    axios
+      .post(url, data)
+      .then((res) => {
+        if (callback) {
           callback(res.data);
-        })
-        .catch((error) => {
-          Alert.alert('post error:' + error);
-        });
-    } else {
-      axios.post(url).catch((error) => {
+        }
+      })
+      .catch((error) => {
         Alert.alert('post error:' + error);
       });
-    }
   }
 }
