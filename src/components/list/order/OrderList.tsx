@@ -13,7 +13,7 @@ const OrderList = () => {
     Api.get('/api/member/order/history', setOrderHistory);
   }, []);
 
-  const dataArray = (): any => {
+  const dataArray = (): any[] => {
     const list = [];
     for (let key in orderHistory) {
       const data = {
