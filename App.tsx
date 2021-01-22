@@ -4,9 +4,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import CartScreen from './src/screen/cart/CartScreen';
 import HomeScreen from './src/screen/HomeScreen';
 import OrderFormScreen from './src/screen/order/OrderFormScreen';
-import CompleteScreen from './src/screen/order/CompleteScreen';
-import LoginScreen from './src/screen/auth/LoginScreen';
-import MemberApplicateScreen from './src/screen/auth/MemberApplicateScreen';
+import OrderCompleteScreen from './src/screen/order/OrderCompleteScreen';
+import LoginScreen from './src/screen/authentication/LoginScreen';
+import MemberApplicateScreen from './src/screen/authentication/MemberApplicateScreen';
 import OrderHistoryScreen from './src/screen/orderHistory/OrderHistoryScreen';
 import ProductDetailScreen from './src/screen/ProductDetailScreen';
 import OrderItemDetailScreen from './src/screen/orderHistory/OrderItemDetailScreen';
@@ -14,6 +14,7 @@ import { HeaderBackButton } from '@react-navigation/stack';
 import { StyleSheet } from 'react-native';
 import FlashMessage from 'react-native-flash-message';
 import OrderConfirmationScreen from './src/screen/order/OrderConfirmationScreen';
+
 const App = () => {
   const Stack = createStackNavigator();
   return (
@@ -43,7 +44,7 @@ const App = () => {
           name="Home"
           component={HomeScreen}
           options={{
-            title: 'T&K',
+            title: 'T&Kスーパーショップ',
             headerLeft: () => <HeaderBackButton style={styles.leftButton} />,
           }}
         />
@@ -64,7 +65,7 @@ const App = () => {
         />
         <Stack.Screen
           name="Complete"
-          component={CompleteScreen}
+          component={OrderCompleteScreen}
           options={{
             title: '注文完了',
             headerLeft: () => <HeaderBackButton style={styles.leftButton} />,
@@ -97,4 +98,5 @@ const styles = StyleSheet.create({
     display: 'none',
   },
 });
+
 export default App;

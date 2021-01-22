@@ -6,4 +6,6 @@ class Member {
     this.password = password;
   }
 }
+
+// full name のメソッドなど。
 export default Member;

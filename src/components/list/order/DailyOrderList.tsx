@@ -1,35 +1,43 @@
 import React from 'react';
 import { FlatList, StyleSheet } from 'react-native';
-import { Button, Text, View } from 'native-base';
+import { ListItem, Text } from 'native-base';
+import { OrderHistory } from '../../../domain/OrderHistory';
+import Icon from 'react-native-vector-icons/FontAwesome';
+// angle-right
 
 const DailyOrderList = (props: any) => {
   const { navi, orderHistory } = props;
 
-  const day = (date: string) => {
-    return date.slice(8, 10);
+  const format = (formatDate: string): string => {
+    const dateAndTime = formatDate.split('T');
+    const [year, month, day] = dateAndTime[0].split('-');
+    const [hour, minute] = dateAndTime[1].split(':');
+    return `${year}年${month}月${day}日 ${hour}時${minute}分`;
   };
 
   const renderItems = ({ item }: { item: OrderHistory }) => {
+    console.log(item);
     return (
-      <View style={styles.button}>
-        <Button
-          rounded
-          success
-          onPress={() => {
-            navi.navigate('OrderItemDetail', {
-              orderId: item.orderId,
-              orderDate: item.date,
-            });
-          }}>
-          <Text>{day(item.date)}日</Text>
-        </Button>
-      </View>
+      <ListItem
+        button
+        onPress={() => {
+          navi.navigate('OrderItemDetail', {
+            orderId: item.orderId,
+            orderDate: item.date,
+          });
+        }}>
+        <Icon name="angle-right" size={20} style={styles.icon} />
+        <Text>
+          注文番号【
+          {item.orderId}】{format(item.date)}
+        </Text>
+      </ListItem>
     );
   };
+
   return (
     <FlatList
-      style={styles.list}
-      horizontal={true}
+      // horizontal={true}
       showsHorizontalScrollIndicator={false}
       data={orderHistory}
       renderItem={renderItems}
@@ -37,12 +45,10 @@ const DailyOrderList = (props: any) => {
     />
   );
 };
+
 const styles = StyleSheet.create({
-  button: {
-    marginRight: 5,
-  },
-  list: {
-    margin: 5,
+  icon: {
+    paddingRight: 10,
   },
 });
 

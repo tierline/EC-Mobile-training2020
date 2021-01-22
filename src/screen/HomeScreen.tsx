@@ -11,7 +11,7 @@ const HomeScreen = () => {
   return (
     <Container style={styles.container}>
       <ItemList />
-      {Storage.getAuth() ? (
+      {Storage.getIsAuthenticated() ? (
         <NavBarBottom />
       ) : (
         <Button

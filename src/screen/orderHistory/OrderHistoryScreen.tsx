@@ -3,6 +3,8 @@ import { StyleSheet, View } from 'react-native';
 import NavBarBottom from '../../components/nav/NavBarBottom';
 import OrderList from '../../components/list/order/OrderList';
 
+// お届け先情報を表示する
+// ボタンの緑色は変更する。
 const OrderHistoryScreen = () => {
   return (
     <View style={styles.container}>
