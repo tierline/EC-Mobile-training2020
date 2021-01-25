@@ -25,7 +25,7 @@ const OrderItemList = (prop: any) => {
           </Body>
           <Right>
             <Text>{item.productPrice}円</Text>
-            <Text>{item.quantity}個</Text>
+            <Text>{item.quantity.value}個</Text>
           </Right>
         </ListItem>
       </List>

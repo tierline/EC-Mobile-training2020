@@ -99,7 +99,7 @@ const CartItemList = () => {
                 maxValue={30}
                 rounded
                 onChange={(quantity: number) => func(item.productId, quantity)}
-                initValue={item.quantity}
+                initValue={item.quantity.value}
                 totalWidth={90}
                 editable={false}
               />

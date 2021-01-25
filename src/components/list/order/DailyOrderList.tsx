@@ -3,7 +3,6 @@ import { FlatList, StyleSheet } from 'react-native';
 import { ListItem, Text } from 'native-base';
 import { OrderHistory } from '../../../domain/OrderHistory';
 import Icon from 'react-native-vector-icons/FontAwesome';
-// angle-right
 
 const DailyOrderList = (props: any) => {
   const { navi, orderHistory } = props;
@@ -37,7 +36,6 @@ const DailyOrderList = (props: any) => {
 
   return (
     <FlatList
-      // horizontal={true}
       showsHorizontalScrollIndicator={false}
       data={orderHistory}
       renderItem={renderItems}

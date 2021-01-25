@@ -148,7 +148,7 @@ const OrderForm = () => {
       {/* 郵便番号 */}
       <View style={styles.input}>
         <View style={styles.inputHeading}>
-          <Text>郵便番号</Text>
+          <Text style={styles.postcode}>〒</Text>
         </View>
         <View style={styles.inputBody}>
           <SimpleInput
@@ -281,6 +281,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  postcode: {
+    fontSize: 22,
   },
   inputHeading: { flex: 2, alignItems: 'flex-end' },
   inputBody: { flex: 8 },
