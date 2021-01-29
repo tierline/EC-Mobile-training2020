@@ -17,15 +17,15 @@ const OrderItemList = (prop: any) => {
             <Image
               style={styles.image}
               resizeMode={'contain'}
-              source={{ uri: UrlApi.image(item.productImage) }}
+              source={{ uri: UrlApi.image(item.imagePath) }}
             />
           </Left>
           <Body>
-            <Text>{item.productName}</Text>
+            <Text>{item.name}</Text>
           </Body>
           <Right>
-            <Text>{item.productPrice}円</Text>
-            <Text>{item.quantity.value}個</Text>
+            <Text>{item.price}円</Text>
+            <Text>{item.quantity}個</Text>
           </Right>
         </ListItem>
       </List>

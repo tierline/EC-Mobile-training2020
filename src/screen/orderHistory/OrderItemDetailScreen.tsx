@@ -7,12 +7,17 @@ import Api from '../../api/Api';
 import { RouteForOrderHistory } from '../../domain/OrderHistory';
 import { OrderItem } from '../../domain/OrderItem';
 
+/**
+ * 注文IDに紐づいた注文商品リストを表示した画面
+ *
+ * @param param0
+ */
 const OrderItemDetailScreen = ({ route }: RouteForOrderHistory) => {
   const { orderId, date } = route.params;
   const [orderedItems, setOrderedItem] = useState([]);
 
   useEffect(() => {
-    Api.get(`/api/member/order/history/item/${orderId}`, setOrderedItem);
+    Api.get(`/api/member/order/orderedItemList/${orderId}`, setOrderedItem);
   }, [orderId]);
 
   const renderItems = ({ item }: { item: OrderItem }) => {

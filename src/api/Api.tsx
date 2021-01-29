@@ -3,9 +3,12 @@ import { Alert } from 'react-native';
 import Url from './UrlApi';
 
 export default class Api {
-  // // TOREVIEW:
-  // // async/await から then に。
-  // authメソッドを共通化
+  /**
+   * サーバーにGETリクエストを送信する。
+   *
+   * @param request URL
+   * @param callBack コールバック関数
+   */
   static get(request: string, callBack?: Function) {
     const url = Url.get(request);
     axios
@@ -21,7 +24,13 @@ export default class Api {
       });
   }
 
-  // cartItemList で await を使用しているので、async関数にした。
+  /**
+   * サーバにPOSTリクエストを送信する。
+   *
+   * @param request URL
+   * @param data リクエストボディ
+   * @param callback コールバック関数
+   */
   static async post(
     request: string,
     data?: any,

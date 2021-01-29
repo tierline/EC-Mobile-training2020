@@ -33,7 +33,6 @@ const CartItemList = () => {
   };
 
   const callBack = (res: any): void => {
-    console.log(res.items);
     setTotalAmount(res.totalPrice);
     setItems(res.items);
   };
