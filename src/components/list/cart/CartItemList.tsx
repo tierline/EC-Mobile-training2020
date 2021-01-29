@@ -19,7 +19,6 @@ const CartItemList = (prop: { setHasItem: Function }) => {
       mounted = false;
     };
   }, [cartItems]);
-
   // TOREVIEW　: 綺麗にしたい
   const removeParticularProduct = async (
     productId: number,
