@@ -18,7 +18,7 @@ import { RouteForProduct } from '../domain/Product';
 
 const ProductDetailScreen = ({ route }: RouteForProduct) => {
   const { id, name, price, description, imagePath } = route.params;
-  const addProduct = (productId: number, productName: string) => {
+  const addProduct = (productId: number, productName: string): void => {
     flashMessage(`${productName}を`, 'カートに追加しました', 500, '#f4511e');
     Api.post(`/api/member/cart/add/${productId}`);
   };

@@ -3,9 +3,10 @@ import { Image, StyleSheet } from 'react-native';
 import { Text, List, ListItem, Body, Left, Right } from 'native-base';
 import { FlatList } from 'react-native';
 import UrlApi from '../../../api/UrlApi';
-import { CartItem, PropForCartItem } from '../../../domain/CartItem';
+import { CartItem } from '../../../domain/CartItem';
 
-const OrderedItemList = (prop: PropForCartItem) => {
+// propの型は変更はできるが、OrderConfirmationScreenで警告が出るので注意
+const OrderItemList = (prop: any) => {
   const { cartItem } = prop;
 
   const renderItems = ({ item }: { item: CartItem }) => {
@@ -24,7 +25,7 @@ const OrderedItemList = (prop: PropForCartItem) => {
           </Body>
           <Right>
             <Text>{item.productPrice}円</Text>
-            <Text>{item.quantity}個</Text>
+            <Text>{item.quantity.value}個</Text>
           </Right>
         </ListItem>
       </List>
@@ -46,4 +47,4 @@ const styles = StyleSheet.create({
     height: 100,
   },
 });
-export default OrderedItemList;
+export default OrderItemList;

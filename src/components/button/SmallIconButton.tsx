@@ -16,7 +16,6 @@ const SmallIconButton = (props: PropForIconButton) => {
 
 const styles = StyleSheet.create({
   button: {
-    // TOREVIEW : rounded か radius か
     borderRadius: 10,
     padding: 5,
     backgroundColor: '#70372c',

@@ -1,28 +1,33 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Container, Content, H2, Body } from 'native-base';
+import { Container, Content, H2 } from 'native-base';
 import OrderForm from '../../components/form/OrderForm';
 
 const OrderFormScreen = () => {
   return (
-    <Container>
+    <Container style={styles.body}>
       <Content>
-        <View style={styles.orderForm}>
-          <Body>
-            <H2>お届け先</H2>
-          </Body>
+        <View style={styles.head}>
+          <H2 style={styles.heading}>お届け先</H2>
         </View>
-        <View style={styles.orderForm}>
-          <OrderForm />
-        </View>
+        <OrderForm />
       </Content>
     </Container>
   );
 };
 
 const styles = StyleSheet.create({
+  body: {
+    // flex: 1,
+  },
+  head: {
+    paddingTop: '8%',
+  },
+  heading: {
+    textAlign: 'center',
+  },
   orderForm: {
-    paddingTop: '3%',
+    // flex: 1,
   },
 });
 export default OrderFormScreen;

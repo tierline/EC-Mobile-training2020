@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Container, Text } from 'native-base';
+import { Container, Content, H1, Text } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
-import OrderedItemList from '../../components/list/order/OrderedItemList';
+import OrderItemList from '../../components/list/order/OrderItemList';
 import OrderDetailList from '../../components/list/order/OrderDetailList';
 import Api from '../../api/Api';
 import LargeButton from '../../components/button/LargeButton';
 
+// TOREVIEW
 // お届け先の表示順
 // お届け先と注文商品の間のスペース
 // 単価の合計金額
@@ -18,65 +19,66 @@ const OrderConfirmationScreen = ({ route }: RouteForOrderFormData) => {
   const [cartItem, setOrderItems] = useState();
   const [totalAmount, setTotalAmount] = useState();
 
-  useEffect(() => {
-    let mounted = true;
-    Api.get('/api/member/cart/list', setOrderItems, mounted, setTotalAmount);
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
-  const navi = (orderId: { orderId: number }) => {
-    navigation.navigate('Complete', orderId);
+  const callBack = (response: any): void => {
+    setOrderItems(response.items);
+    setTotalAmount(response.totalAmount);
   };
 
-  const onSubmit = () => {
+  useEffect(() => {
+    Api.get('/api/member/cart/', callBack);
+  }, []);
+
+  const navi = (orderId: number): void => {
+    navigation.navigate('Complete', { orderId: orderId });
+  };
+
+  const onSubmit = (): void => {
     Api.post('/api/member/order/save', orderFormData, navi);
   };
   return (
-    <Container style={styles.container}>
-      <View style={styles.order}>
-        <Text style={styles.orderItemText}>お届け先</Text>
-        <OrderDetailList orderFormData={orderFormData} />
-      </View>
-      <View style={styles.orderItem}>
-        <Text style={styles.orderItemText}>注文商品</Text>
-        <OrderedItemList cartItem={cartItem} />
-        <View style={styles.totalPrice}>
-          <Text>合計金額{totalAmount}円</Text>
+    <Container>
+      <Content>
+        <View>
+          <View style={styles.heading}>
+            <H1 style={styles.headerText}>お届け先</H1>
+          </View>
+          <View style={styles.orderDetailListArea}>
+            <OrderDetailList orderFormData={orderFormData} />
+          </View>
         </View>
-        <LargeButton text={'注文する'} onPress={onSubmit} />
-      </View>
+        <View>
+          <View style={styles.heading}>
+            <H1 style={styles.headerText}>注文商品</H1>
+          </View>
+          <OrderItemList cartItem={cartItem} />
+          <View style={styles.totalAmountArea}>
+            <Text style={styles.totalAmount}>合計金額{totalAmount}円</Text>
+          </View>
+          <LargeButton text={'注文する'} onPress={onSubmit} />
+        </View>
+      </Content>
     </Container>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  heading: {
+    paddingTop: 20,
   },
-  order: {
-    flex: 1,
+  headerText: {
+    marginLeft: 15,
   },
-  orderItem: {
-    flex: 1.2,
+  orderDetailListArea: {
+    paddingTop: 14,
   },
-  orderItemText: {
-    fontSize: 20,
-    marginLeft: '5%',
-  },
-  h1content: {
-    paddingTop: '2%',
-    paddingLeft: '5%',
-  },
-  h2content: {
-    paddingTop: '4%',
-    paddingLeft: '5%',
-  },
-  totalPrice: {
-    alignItems: 'center',
+  totalAmountArea: {
+    padding: 8,
     backgroundColor: '#eee',
-    padding: 5,
+  },
+  totalAmount: {
+    fontSize: 26,
+    textAlign: 'center',
+    textDecorationLine: 'underline',
   },
 });
 

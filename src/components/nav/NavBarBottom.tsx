@@ -2,20 +2,28 @@ import React from 'react';
 import { Alert, StyleSheet } from 'react-native';
 import { Footer, FooterTab, Button, Text } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
+import Storage from '../../Storage';
 import Api from '../../api/Api';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const NavBarBottom = () => {
   const navigation = useNavigation();
 
-  const logoutConfirmation = () => {
+  const logoutConfirmation = (): void => {
     Alert.alert('ログアウトしますか？', '', [
       { text: 'ログアウトする', onPress: () => logout() },
-      { text: 'やめる', onPress: () => console.log() },
+      {
+        text: 'やめる',
+        onPress: () => {
+          return;
+        },
+      },
     ]);
   };
-  const logout = () => {
-    Api.logout('/member/logout');
+
+  const logout = (): void => {
+    Api.get('/api/member/logout');
+    Storage.setIsAuthenticated(false);
     Alert.alert('ログアウトしました');
     navigation.navigate('Login');
   };

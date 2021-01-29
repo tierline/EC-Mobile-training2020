@@ -3,27 +3,52 @@ import { StyleSheet } from 'react-native';
 import { Form, View } from 'native-base';
 import { useForm } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
+import { flashMessage } from '../flashMessage/FlashMessage';
+import Storage from '../../Storage';
 import Member from '../../domain/Member';
 import SimpleInput from '../input/SimpleInput';
 import SimpleButton from '../button/SimpleButton';
 import Api from '../../api/Api';
 
-// screen の auth の下まで。
-// 共通化されないものはコンポーネントではなく...。
-const AuthForm = (props: PropForAuthForm) => {
-  const { apiUrl, message, buttonText1, buttonText2, navDestination } = props;
+const AuthenticationForm = (props: PropForAuthenticationForm) => {
+  const {
+    apiUrl,
+    errorMessage,
+    description,
+    buttonText1,
+    buttonText2,
+    navDestination,
+  } = props;
 
   const { control, handleSubmit, errors } = useForm();
   const navigation = useNavigation();
 
-  const navi = () => {
+  const navi = (): void => {
     navigation.navigate('Home');
   };
 
+  const callback = (isSucceeded: boolean): void => {
+    if (isSucceeded) {
+      Storage.setIsAuthenticated(true);
+      navi();
+    } else {
+      flashMessage(errorMessage, description, 3000, 'red');
+    }
+  };
+
+  type MemberAuthenticationFormData = {
+    email: string;
+    password: string;
+  };
+
   // formData にバリデーションなどが必要になったら、型定義を考える。
-  const onSubmit = (formData: any) => {
-    const member = new Member(formData.email, formData.password);
-    Api.auth(apiUrl, member, navi, message);
+  const onSubmit = (formData: MemberAuthenticationFormData): void => {
+    // const member = new Member(formData.email, formData.password);
+    const member = new URLSearchParams();
+    member.append('email', formData.email);
+    member.append('password', formData.password);
+
+    Api.post(apiUrl, member, callback);
   };
 
   return (
@@ -86,4 +111,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AuthForm;
+export default AuthenticationForm;

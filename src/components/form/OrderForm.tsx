@@ -1,37 +1,36 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, { createContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Text, View } from 'native-base';
+import { Form, Text, View } from 'native-base';
 import { StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Storage from '../../Storage';
 import Api from '../../api/Api';
 import LargeButton from '../button/LargeButton';
 import SimpleInput from '../input/SimpleInput';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const FormContext = createContext({ label: '', max: 0 });
 
 const OrderForm = () => {
   const { control, handleSubmit, errors, reset } = useForm();
   const navigation = useNavigation();
+
   useEffect(() => {
     Api.get('/api/member/session', reset);
   }, [reset]);
 
-  const onSubmit = (data: OrderFormData) => {
+  const onSubmit = (data: OrderFormData): void => {
     navigation.navigate('OrderConfirmation', { orderFormData: data });
   };
 
-  // TOREVIEW : <Form>コンポーネントで返したい。labelではなくplaceholderに書いても良さそう。インラインのstyleを消す。
-  // アイコン検討
+  // TOREVIEW :
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <Form style={styles.form}>
       {/* 姓 */}
-      <View style={styles.form}>
-        <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
+      <View style={styles.input}>
+        <View style={styles.inputHeading}>
           <Text>姓</Text>
         </View>
-        <View style={{ flex: 0.8 }}>
+        <View style={styles.inputBody}>
           <SimpleInput
             label={''}
             errors={errors}
@@ -53,11 +52,11 @@ const OrderForm = () => {
       </View>
 
       {/* 名 */}
-      <View style={styles.form}>
-        <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
+      <View style={styles.input}>
+        <View style={styles.inputHeading}>
           <Text>名</Text>
         </View>
-        <View style={{ flex: 0.8 }}>
+        <View style={styles.inputBody}>
           <SimpleInput
             label={''}
             errors={errors}
@@ -79,17 +78,20 @@ const OrderForm = () => {
       </View>
 
       {/* メールアドレス */}
-      <View style={styles.form}>
-        <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
-          <Text>Eメール</Text>
+      <View style={styles.input}>
+        <View style={styles.inputHeading}>
+          <Icon name="envelope-o" size={20} />
         </View>
-        <View style={{ flex: 0.8 }}>
+        <View style={styles.inputBody}>
           <SimpleInput
             label={''}
             errors={errors}
             errorType={[
               { type: 'required', errorMessage: '入力は必須です' },
-              { type: 'maxLength', errorMessage: 'メールアドレスが長すぎます' },
+              {
+                type: 'maxLength',
+                errorMessage: 'メールアドレスが長すぎます',
+              },
               {
                 type: 'pattern',
                 errorMessage: 'Eメールの形式が間違っています',
@@ -110,11 +112,11 @@ const OrderForm = () => {
       </View>
 
       {/* 電話番号 */}
-      <View style={styles.form}>
-        <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
-          <Text>電話番号</Text>
+      <View style={styles.input}>
+        <View style={styles.inputHeading}>
+          <Icon name="phone" size={22} />
         </View>
-        <View style={{ flex: 0.8 }}>
+        <View style={styles.inputBody}>
           <SimpleInput
             label={''}
             errors={errors}
@@ -144,11 +146,11 @@ const OrderForm = () => {
       </View>
 
       {/* 郵便番号 */}
-      <View style={styles.form}>
-        <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
-          <Text>郵便番号</Text>
+      <View style={styles.input}>
+        <View style={styles.inputHeading}>
+          <Text style={styles.postcode}>〒</Text>
         </View>
-        <View style={{ flex: 0.8 }}>
+        <View style={styles.inputBody}>
           <SimpleInput
             label={''}
             errors={errors}
@@ -179,11 +181,11 @@ const OrderForm = () => {
       </View>
 
       {/* 住所 */}
-      <View style={styles.form}>
-        <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
+      <View style={styles.input}>
+        <View style={styles.inputHeading}>
           <Text>都道府県</Text>
         </View>
-        <View style={{ flex: 0.8 }}>
+        <View style={styles.inputBody}>
           <SimpleInput
             label={''}
             errors={errors}
@@ -208,11 +210,11 @@ const OrderForm = () => {
       </View>
 
       {/* 市区町村 */}
-      <View style={styles.form}>
-        <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
+      <View style={styles.input}>
+        <View style={styles.inputHeading}>
           <Text>市区町村</Text>
         </View>
-        <View style={{ flex: 0.8 }}>
+        <View style={styles.inputBody}>
           <SimpleInput
             label={''}
             errors={errors}
@@ -237,11 +239,11 @@ const OrderForm = () => {
       </View>
 
       {/* 番地 */}
-      <View style={styles.form}>
-        <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
+      <View style={styles.input}>
+        <View style={styles.inputHeading}>
           <Text>番地</Text>
         </View>
-        <View style={{ flex: 0.8 }}>
+        <View style={styles.inputBody}>
           <SimpleInput
             label={''}
             errors={errors}
@@ -264,16 +266,30 @@ const OrderForm = () => {
           />
         </View>
       </View>
-      <LargeButton text={'注文確認画面へ'} onPress={handleSubmit(onSubmit)} />
-    </View>
+      <View style={styles.button}>
+        <LargeButton text={'注文確認画面へ'} onPress={handleSubmit(onSubmit)} />
+      </View>
+    </Form>
   );
 };
 
 const styles = StyleSheet.create({
   form: {
+    justifyContent: 'center',
+  },
+  input: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  postcode: {
+    fontSize: 22,
+  },
+  inputHeading: { flex: 2, alignItems: 'flex-end' },
+  inputBody: { flex: 8 },
+  button: {
+    paddingTop: 50,
+  },
 });
+
 export default OrderForm;

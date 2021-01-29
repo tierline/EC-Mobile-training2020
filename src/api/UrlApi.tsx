@@ -18,6 +18,7 @@ export default class Url {
       return android;
     }
   }
+
   static image(imagePath: string): string {
     return this.baseUrl() + '/image/' + imagePath;
   }

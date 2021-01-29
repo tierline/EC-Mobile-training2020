@@ -12,20 +12,19 @@ import { flashMessage } from '../flashMessage/FlashMessage';
 import Api from '../../api/Api';
 import { Product } from '../../domain/Product';
 
-// TOREVIEW : リストもコンポーネントに切り出したい
 const ProductList = () => {
   const navigation = useNavigation();
   const [items, setItems] = useState([]);
   useEffect(() => {
-    Api.get('/api/product', setItems);
+    Api.get('/api/product/', setItems);
   }, []);
 
-  const addProduct = (productId: number, productName: string) => {
+  const addProduct = (productId: number, productName: string): void => {
     flashMessage(`${productName}を`, 'カートに追加しました', 500, '#f4511e');
     Api.post(`/api/member/cart/add/${productId}`);
   };
 
-  const navi = (product: Product) => {
+  const navi = (product: Product): void => {
     navigation.navigate('ProductDetail', {
       id: product.id,
       name: product.name,
@@ -36,7 +35,6 @@ const ProductList = () => {
   };
 
   const renderItems = ({ item }: { item: Product }) => {
-    // ProductImageComponent 的な。
     return (
       <Card style={styles.card}>
         <CardItem>
@@ -55,7 +53,7 @@ const ProductList = () => {
             source={{ uri: UrlApi.image(item.imagePath) }}
           />
         </CardItem>
-        {Storage.getAuth() ? (
+        {Storage.getIsAuthenticated() ? (
           <CardItem>
             <Left>
               <MediumIconButton

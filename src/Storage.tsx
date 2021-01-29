@@ -4,25 +4,21 @@ class Storage {
   // グローバル変数ではなく Storage クラスを入れているため一応セーフ
   // 型定義は正確に
   // Emailクラスなどを定義したいところ
-  // return の値にも型定義
-  // Mapのkeyは大文字で。クラス、定数で使ったりする。
   private memory: Map<string, any>;
   constructor() {
     this.memory = new Map();
   }
-  setAuth(value: boolean, key = 'auth') {
-    this.memory.set(key, value);
+  setIsAuthenticated(value: boolean): void {
+    this.memory.set('AUTHENTICATION', value);
   }
-  getAuth(key = 'auth') {
-    return this.memory.get(key);
+  getIsAuthenticated(): boolean {
+    return this.memory.get('AUTHENTICATION');
   }
-  setEmail(email: string, key = 'email') {
-    this.memory.set(key, email);
+  setEmail(email: string): void {
+    this.memory.set('EMAIL', email);
   }
-  // 引数なしでも呼べてしまう
-  // （キャスト。強制的な型変換。　- typescriptでは？）
-  getEmail(key = 'email'): string {
-    return this.memory.get(key);
+  getEmail(): string {
+    return this.memory.get('EMAIL');
   }
 }
 

@@ -4,15 +4,18 @@ import { CardItem, Left, Body, Thumbnail, Card } from 'native-base';
 import UrlApi from '../../api/UrlApi';
 import NavBarBottom from '../../components/nav/NavBarBottom';
 import Api from '../../api/Api';
+import { RouteForOrderHistory } from '../../domain/OrderHistory';
+import { OrderItem } from '../../domain/OrderItem';
 
 const OrderItemDetailScreen = ({ route }: RouteForOrderHistory) => {
-  const { orderId, orderDate } = route.params;
+  const { orderId, date } = route.params;
   const [orderedItems, setOrderedItem] = useState([]);
+
   useEffect(() => {
     Api.get(`/api/member/order/history/item/${orderId}`, setOrderedItem);
   }, [orderId]);
 
-  const renderItems = ({ item }: { item: OrderedItem }) => {
+  const renderItems = ({ item }: { item: OrderItem }) => {
     return (
       <View>
         <Card>
@@ -38,7 +41,7 @@ const OrderItemDetailScreen = ({ route }: RouteForOrderHistory) => {
   return (
     <View style={styles.container}>
       <View style={styles.orderList}>
-        <Text>{orderDate}</Text>
+        <Text>{date}</Text>
         <FlatList
           data={orderedItems}
           renderItem={renderItems}
