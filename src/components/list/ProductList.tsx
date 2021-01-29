@@ -12,6 +12,9 @@ import { flashMessage } from '../flashMessage/FlashMessage';
 import Api from '../../api/Api';
 import { Product } from '../../domain/Product';
 
+/**
+ * 商品リスト
+ */
 const ProductList = () => {
   const navigation = useNavigation();
   const [items, setItems] = useState([]);

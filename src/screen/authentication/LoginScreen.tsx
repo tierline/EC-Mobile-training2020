@@ -3,6 +3,9 @@ import { Container, Content, H1 } from 'native-base';
 import AuthenticationForm from '../../components/form/AuthenticationForm';
 import { StyleSheet } from 'react-native';
 
+/**
+ * 会員ログイン画面
+ */
 const LoginScreen = () => {
   return (
     <Container>

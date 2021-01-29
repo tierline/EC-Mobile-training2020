@@ -6,6 +6,9 @@ import Storage from '../../Storage';
 import Api from '../../api/Api';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+/**
+ * ボトムナビゲーションバー
+ */
 const NavBarBottom = () => {
   const navigation = useNavigation();
 

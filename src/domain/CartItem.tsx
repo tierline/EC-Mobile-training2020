@@ -1,3 +1,6 @@
+/**
+ * カート内の商品
+ */
 export type CartItem = {
   quantity: number;
   empty: boolean;

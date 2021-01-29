@@ -7,6 +7,11 @@ import OrderDetailList from '../../components/list/order/OrderDetailList';
 import Api from '../../api/Api';
 import LargeButton from '../../components/button/LargeButton';
 
+/**
+ * 注文内容確認画面
+ *
+ * @param param
+ */
 const OrderConfirmationScreen = ({ route }: RouteForOrderFormData) => {
   const navigation = useNavigation();
   const orderFormData = route.params.orderFormData;

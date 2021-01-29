@@ -1,3 +1,6 @@
+/**
+ * 会員
+ */
 class Member {
   private email: string;
   private password: string;

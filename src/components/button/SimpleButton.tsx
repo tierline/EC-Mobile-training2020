@@ -2,6 +2,11 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Button, Text } from 'native-base';
 
+/**
+ * ボタンの共通コンポーネント
+ *
+ * @param props
+ */
 const SimpleButton = (props: PropForButton) => {
   const { text, onPress } = props;
 

@@ -11,6 +11,11 @@ type RouteForOrderId = {
   };
 };
 
+/**
+ * 注文完了画面
+ *
+ * @param param
+ */
 const OrderCompleteScreen = ({ route }: RouteForOrderId) => {
   const navigation = useNavigation();
   const { order } = route.params;

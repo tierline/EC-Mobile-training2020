@@ -1,3 +1,6 @@
+/**
+ * カート
+ */
 export type Cart = {
   items: [];
   totalAmount: number;

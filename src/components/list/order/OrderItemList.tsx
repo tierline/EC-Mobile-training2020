@@ -5,6 +5,11 @@ import { FlatList } from 'react-native';
 import UrlApi from '../../../api/UrlApi';
 import { CartItem } from '../../../domain/CartItem';
 
+/**
+ * 注文商品のリスト
+ *
+ * @param prop
+ */
 // propの型は変更はできるが、OrderConfirmationScreenで警告が出るので注意
 const OrderItemList = (prop: any) => {
   const { cartItem } = prop;

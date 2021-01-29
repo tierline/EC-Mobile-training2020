@@ -10,6 +10,11 @@ import SimpleInput from '../input/SimpleInput';
 import SimpleButton from '../button/SimpleButton';
 import Api from '../../api/Api';
 
+/**
+ * 認証フォームのコンポーネント
+ *
+ * @param props
+ */
 const AuthenticationForm = (props: PropForAuthenticationForm) => {
   const {
     apiUrl,

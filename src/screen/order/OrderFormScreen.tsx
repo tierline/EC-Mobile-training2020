@@ -3,6 +3,9 @@ import { StyleSheet, View } from 'react-native';
 import { Container, Content, H2 } from 'native-base';
 import OrderForm from '../../components/form/OrderForm';
 
+/**
+ * 注文フォーム画面
+ */
 const OrderFormScreen = () => {
   return (
     <Container style={styles.body}>
