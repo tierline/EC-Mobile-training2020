@@ -4,6 +4,11 @@ import { ListItem, Text } from 'native-base';
 import { OrderHistory } from '../../../domain/OrderHistory';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+/**
+ * 注文IDの注文商品リスト
+ *
+ * @param props
+ */
 const DailyOrderList = (props: any) => {
   const { navi, orderHistory } = props;
 
@@ -15,7 +20,6 @@ const DailyOrderList = (props: any) => {
   };
 
   const renderItems = ({ item }: { item: OrderHistory }) => {
-    console.log(item);
     return (
       <ListItem
         button

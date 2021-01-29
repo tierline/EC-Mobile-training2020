@@ -1,5 +1,5 @@
 export type CartItem = {
-  quantity: { empty: boolean; value: number };
+  quantity: number;
   empty: boolean;
   totalAmount: number;
   productImage: string;

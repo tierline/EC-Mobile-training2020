@@ -19,7 +19,9 @@ const OrderForm = () => {
   }, [reset]);
 
   const onSubmit = (data: OrderFormData): void => {
-    navigation.navigate('OrderConfirmation', { orderFormData: data });
+    navigation.navigate('OrderConfirmation', {
+      orderFormData: data,
+    });
   };
 
   // TOREVIEW :
@@ -266,6 +268,22 @@ const OrderForm = () => {
           />
         </View>
       </View>
+
+      {/* 会員ID（画面には表示しない） */}
+      <View style={styles.memberId}>
+        <SimpleInput
+          label={''}
+          errors={errors}
+          errorType={[]}
+          control={control}
+          name={'memberId'}
+          rules={{}}
+          secureTextEntry={false}
+          defaultValue={''}
+          placeholder={''}
+        />
+      </View>
+
       <View style={styles.button}>
         <LargeButton text={'注文確認画面へ'} onPress={handleSubmit(onSubmit)} />
       </View>
@@ -287,6 +305,9 @@ const styles = StyleSheet.create({
   },
   inputHeading: { flex: 2, alignItems: 'flex-end' },
   inputBody: { flex: 8 },
+  memberId: {
+    display: 'none',
+  },
   button: {
     paddingTop: 50,
   },

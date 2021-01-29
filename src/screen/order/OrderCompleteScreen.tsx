@@ -6,14 +6,14 @@ import { useNavigation } from '@react-navigation/native';
 type RouteForOrderId = {
   route: {
     params: {
-      orderId: number;
+      order: any;
     };
   };
 };
 
 const OrderCompleteScreen = ({ route }: RouteForOrderId) => {
   const navigation = useNavigation();
-  const { orderId } = route.params;
+  const { order } = route.params;
 
   return (
     <Container>
@@ -25,7 +25,7 @@ const OrderCompleteScreen = ({ route }: RouteForOrderId) => {
         </Content>
         <Content style={styles.h3}>
           <Body>
-            <H3>注文番号:{orderId}</H3>
+            <H3>注文番号:{order.id}</H3>
           </Body>
         </Content>
         <Content style={styles.button}>

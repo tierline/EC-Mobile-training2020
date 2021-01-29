@@ -4,6 +4,9 @@ import { useNavigation } from '@react-navigation/native';
 import DailyOrderList from './DailyOrderList';
 import Api from '../../../api/Api';
 
+/**
+ * 月別の注文履歴のリスト
+ */
 const OrderList = () => {
   const navigation = useNavigation();
   const [orderHistory, setOrderHistory] = useState([]);
