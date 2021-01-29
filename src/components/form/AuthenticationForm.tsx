@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
 import { flashMessage } from '../flashMessage/FlashMessage';
 import Storage from '../../Storage';
-import Member from '../../domain/Member';
 import SimpleInput from '../input/SimpleInput';
 import SimpleButton from '../button/SimpleButton';
 import Api from '../../api/Api';

@@ -1,5 +1,3 @@
-import Email from './Email';
-
 class Member {
   private email: string;
   private password: string;
