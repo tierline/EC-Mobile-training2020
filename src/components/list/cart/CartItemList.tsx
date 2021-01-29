@@ -19,6 +19,9 @@ import LargeButton from '../../../components/button/LargeButton';
 import NumericInput from 'react-native-numeric-input';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+/**
+ * カート内の商品リスト
+ */
 const CartItemList = () => {
   const [cartItems, setItems] = useState([]);
   const [count, setCount] = useState(0);
@@ -30,7 +33,7 @@ const CartItemList = () => {
   };
 
   const callBack = (res: any): void => {
-    setTotalAmount(res.totalAmount);
+    setTotalAmount(res.totalAmount.value);
     setItems(res.items);
   };
 
@@ -38,6 +41,12 @@ const CartItemList = () => {
     Api.get('/api/member/cart/', callBack);
   }, [count]);
 
+  /**
+   * カートの中のひとつの商品を削除する。
+   *
+   * @param productId 商品ID
+   * @param productName 商品名
+   */
   const removeParticularProduct = async (
     productId: number,
     productName: string,

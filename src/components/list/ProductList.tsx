@@ -16,7 +16,7 @@ const ProductList = () => {
   const navigation = useNavigation();
   const [items, setItems] = useState([]);
   useEffect(() => {
-    Api.get('/api/product', setItems);
+    Api.get('/api/product/', setItems);
   }, []);
 
   const addProduct = (productId: number, productName: string): void => {
@@ -35,7 +35,6 @@ const ProductList = () => {
   };
 
   const renderItems = ({ item }: { item: Product }) => {
-    // ProductImageComponent 的な。
     return (
       <Card style={styles.card}>
         <CardItem>
