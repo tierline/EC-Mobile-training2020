@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
 import { flashMessage } from '../flashMessage/FlashMessage';
 import Storage from '../../Storage';
-import Member from '../../domain/Member';
 import SimpleInput from '../input/SimpleInput';
 import SimpleButton from '../button/SimpleButton';
 import Api from '../../api/Api';
@@ -48,7 +47,11 @@ const AuthenticationForm = (props: PropForAuthenticationForm) => {
 
   // formData にバリデーションなどが必要になったら、型定義を考える。
   const onSubmit = (formData: MemberAuthenticationFormData): void => {
-    const member = new Member(formData.email, formData.password);
+    // const member = new Member(formData.email, formData.password);
+    const member = new URLSearchParams();
+    member.append('email', formData.email);
+    member.append('password', formData.password);
+
     Api.post(apiUrl, member, callback);
   };
 

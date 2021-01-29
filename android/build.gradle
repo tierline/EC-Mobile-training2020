@@ -2,7 +2,7 @@
 
 buildscript {
     ext {
-        buildToolsVersion = "29.0.2"
+        // buildToolsVersion = "29.0.2"
         minSdkVersion = 16
         compileSdkVersion = 29
         targetSdkVersion = 29
@@ -12,10 +12,12 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:3.5.3")
+        classpath("com.android.tools.build:gradle:4.1.0")
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        classpath 'com.google.gms:google-services:3.2.1'//apk作成のために追記
     }
+
 }
 
 allprojects {
@@ -35,3 +37,40 @@ allprojects {
         maven { url 'https://www.jitpack.io' }
     }
 }
+subprojects{//apk作成のために追記
+    afterEvaluate {
+        if(it.hasProperty('android')){
+            android {
+    signingConfigs {
+        release {
+            if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
+                storeFile file(MYAPP_RELEASE_STORE_FILE)
+                storePassword MYAPP_RELEASE_STORE_PASSWORD
+                keyAlias MYAPP_RELEASE_KEY_ALIAS
+                keyPassword MYAPP_RELEASE_KEY_PASSWORD
+
+        //         keyAlias keystoreProperties['keyAlias']
+        // keyPassword keystoreProperties['keyPassword']
+        // storeFile file(keystoreProperties['storeFile'])
+        // storePassword keystoreProperties['storePassword']
+            }
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+// compileSdkVersion 17
+// buildToolsVersion '29.0.2'
+}
+dependencies {
+// compile files('app/libs/junit-4.12-JavaDoc.jar')
+}
+apply plugin: 'maven'
+               // your content here
+            }
+        }
+    }
+}
+
+

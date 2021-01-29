@@ -40,6 +40,7 @@ export default class Api {
     axios
       .post(url, data)
       .then((res) => {
+        console.log('res', res);
         if (callback) {
           callback(res.data);
         }

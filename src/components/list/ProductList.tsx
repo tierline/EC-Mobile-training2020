@@ -49,6 +49,7 @@ const ProductList = () => {
           </Right>
         </CardItem>
         <CardItem cardBody>
+          {/* コンポーネント化 */}
           <Image
             style={styles.image}
             resizeMode={'contain'}
