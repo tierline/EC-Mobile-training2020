@@ -24,7 +24,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
  */
 const CartItemList = () => {
   const [cartItems, setItems] = useState([]);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0); // カート内商品を更新するための臨時カウント変数(カウントの値をプラスすることで再レンダリングしている)
   const [totalAmount, setTotalAmount] = useState(0);
   const navigation = useNavigation();
 
@@ -33,7 +33,8 @@ const CartItemList = () => {
   };
 
   const callBack = (res: any): void => {
-    setTotalAmount(res.totalAmount.value);
+    console.log(res.items);
+    setTotalAmount(res.totalPrice);
     setItems(res.items);
   };
 
@@ -77,7 +78,7 @@ const CartItemList = () => {
         <CardItem header bordered>
           <Left>
             <H3 style={styles.headerText}>
-              {item.productName} {item.productPrice}円
+              {item.name} {item.price}円
             </H3>
           </Left>
           <Right>
@@ -85,9 +86,7 @@ const CartItemList = () => {
               danger
               small
               style={styles.button}
-              onPress={() =>
-                removeParticularProduct(item.productId, item.productName)
-              }>
+              onPress={() => removeParticularProduct(item.id, item.name)}>
               <Icon name="remove" size={20} style={styles.icon} />
             </Button>
           </Right>
@@ -96,7 +95,7 @@ const CartItemList = () => {
           <Image
             style={styles.image}
             resizeMode={'contain'}
-            source={{ uri: UrlApi.image(item.productImage) }}
+            source={{ uri: UrlApi.image(item.imagePath) }}
           />
           <Right>
             <View>
@@ -107,8 +106,8 @@ const CartItemList = () => {
                 minValue={1}
                 maxValue={30}
                 rounded
-                onChange={(quantity: number) => func(item.productId, quantity)}
-                initValue={item.quantity.value}
+                onChange={(quantity: number) => func(item.id, quantity)}
+                initValue={item.quantity}
                 totalWidth={90}
                 editable={false}
               />
