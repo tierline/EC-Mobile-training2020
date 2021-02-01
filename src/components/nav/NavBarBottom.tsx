@@ -27,7 +27,6 @@ const NavBarBottom = () => {
   const logout = (): void => {
     Api.get('/api/member/logout');
     Storage.setIsAuthenticated(false);
-    Alert.alert('ログアウトしました');
     navigation.navigate('Login');
   };
 

@@ -21,7 +21,8 @@ export default class Api {
         return res.data;
       })
       .catch((error) => {
-        Alert.alert('get error:' + error);
+        console.log('----------error---------', error);
+        Alert.alert('get error:' + error.response.data.message);
       });
   }
 
