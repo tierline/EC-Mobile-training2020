@@ -11,6 +11,7 @@ export default class Api {
    */
   static get(request: string, callBack?: Function) {
     const url = Url.get(request);
+    console.log(url);
     axios
       .get(url)
       .then((res) => {
@@ -35,17 +36,21 @@ export default class Api {
     request: string,
     data?: any,
     callback?: Function,
+    // errorMessage?: Function,
   ): Promise<void> {
     const url = Url.get(request);
     axios
       .post(url, data)
       .then((res) => {
-        console.log('res', res);
         if (callback) {
           callback(res.data);
         }
       })
       .catch((error) => {
+        // if (errorMessage) {
+        //   errorMessage(error);
+        // }
+        console.log('post error:', error.response.data);
         Alert.alert('post error:' + error);
       });
   }

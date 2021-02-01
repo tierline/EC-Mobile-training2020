@@ -34,6 +34,13 @@ const AuthenticationForm = (props: PropForAuthenticationForm) => {
       flashMessage(errorMessage, description, 3000, 'red');
     }
   };
+  /*
+   *認証失敗時のエラー処理
+   */
+  // const error = (message: any) => {
+  //   const res = message.response.data;
+  //   flashMessage(`ステータスコード:${res.status}`, res.message, 4000, 'red');
+  // };
 
   type MemberAuthenticationFormData = {
     email: string;
