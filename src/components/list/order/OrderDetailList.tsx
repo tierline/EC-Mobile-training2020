@@ -1,6 +1,11 @@
 import React from 'react';
 import { Text, List, ListItem, Body, Left } from 'native-base';
 
+/**
+ * 注文明細のリスト
+ *
+ * @param prop
+ */
 const OrderDetailList = (prop: { orderFormData: OrderFormData }) => {
   const orderFormData = prop.orderFormData;
   return (

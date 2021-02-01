@@ -10,6 +10,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const FormContext = createContext({ label: '', max: 0 });
 
+/**
+ * 注文フォームの共通コンポーネント
+ */
 const OrderForm = () => {
   const { control, handleSubmit, errors, reset } = useForm();
   const navigation = useNavigation();

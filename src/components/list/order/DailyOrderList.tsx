@@ -5,7 +5,7 @@ import { OrderHistory } from '../../../domain/OrderHistory';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 /**
- * 注文IDの注文商品リスト
+ * 注文番号ごとの注文リスト
  *
  * @param props
  */

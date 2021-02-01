@@ -3,6 +3,11 @@ import { StyleSheet } from 'react-native';
 import { Button, Text } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+/**
+ * アイコンボタン（中）の共通コンポーネント
+ *
+ * @param props
+ */
 const MediumIconButton = (props: PropForIconButton) => {
   const { text, onPress, iconName } = props;
 

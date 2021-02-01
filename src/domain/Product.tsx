@@ -1,3 +1,6 @@
+/**
+ * 商品
+ */
 export interface Product {
   id: number;
   name: string;

@@ -16,6 +16,11 @@ import { flashMessage } from '../components/flashMessage/FlashMessage';
 import Api from '../api/Api';
 import { RouteForProduct } from '../domain/Product';
 
+/**
+ * 商品詳細画面
+ *
+ * @param param
+ */
 const ProductDetailScreen = ({ route }: RouteForProduct) => {
   const { id, name, price, description, imagePath } = route.params;
   const addProduct = (productId: number, productName: string): void => {

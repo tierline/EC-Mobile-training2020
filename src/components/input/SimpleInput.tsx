@@ -3,6 +3,11 @@ import { StyleSheet } from 'react-native';
 import { Input, Item, Text, View } from 'native-base';
 import { Controller } from 'react-hook-form';
 
+/**
+ * インプットの共通コンポーネント
+ *
+ * @param props
+ */
 const SimpleInput = (props: PropForSimpleInput) => {
   const {
     errors,
