@@ -4,6 +4,29 @@ import Url from './UrlApi';
 
 export default class Api {
   /**
+   * 新規登録、ログイン
+   * @param request URL
+   * @param callBack
+   */
+  static authentication(
+    request: string,
+    data: URLSearchParams,
+    callback: Function,
+    errorMessage: Function,
+  ) {
+    const url = Url.get(request);
+    axios
+      .post(url, data)
+      .then((res) => {
+        if (res.status === 200) {
+          callback(res.status);
+        }
+      })
+      .catch(() => {
+        errorMessage();
+      });
+  }
+  /**
    * サーバーにGETリクエストを送信する。
    *
    * @param request URL
@@ -22,7 +45,7 @@ export default class Api {
       })
       .catch((error) => {
         console.log('----------error---------', error);
-        Alert.alert('get error:' + error.response.data.message);
+        Alert.alert('get error:' + error);
       });
   }
 
@@ -37,7 +60,6 @@ export default class Api {
     request: string,
     data?: any,
     callback?: Function,
-    // errorMessage?: Function,
   ): Promise<void> {
     const url = Url.get(request);
     axios
@@ -48,10 +70,6 @@ export default class Api {
         }
       })
       .catch((error) => {
-        // if (errorMessage) {
-        //   errorMessage(error);
-        // }
-        console.log('post error:', error.response.data);
         Alert.alert('post error:' + error);
       });
   }

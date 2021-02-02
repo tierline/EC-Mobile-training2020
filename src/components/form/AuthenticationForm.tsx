@@ -31,21 +31,16 @@ const AuthenticationForm = (props: PropForAuthenticationForm) => {
     navigation.navigate('Home');
   };
 
-  const callback = (isSucceeded: boolean): void => {
-    if (isSucceeded) {
-      Storage.setIsAuthenticated(true);
-      navi();
-    } else {
-      flashMessage(errorMessage, description, 3000, 'red');
-    }
+  const callback = (): void => {
+    Storage.setIsAuthenticated(true);
+    navi();
   };
   /*
-   *認証失敗時のエラー処理
+   *認証失敗時のエラー表示
    */
-  // const error = (message: any) => {
-  //   const res = message.response.data;
-  //   flashMessage(`ステータスコード:${res.status}`, res.message, 4000, 'red');
-  // };
+  const error = () => {
+    flashMessage(errorMessage, description, 3000, 'red');
+  };
 
   type MemberAuthenticationFormData = {
     email: string;
@@ -54,12 +49,10 @@ const AuthenticationForm = (props: PropForAuthenticationForm) => {
 
   // formData にバリデーションなどが必要になったら、型定義を考える。
   const onSubmit = (formData: MemberAuthenticationFormData): void => {
-    // const member = new Member(formData.email, formData.password);
     const member = new URLSearchParams();
     member.append('email', formData.email);
     member.append('password', formData.password);
-
-    Api.post(apiUrl, member, callback);
+    Api.authentication(apiUrl, member, callback, error);
   };
 
   return (
