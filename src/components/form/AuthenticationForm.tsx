@@ -26,6 +26,10 @@ const AuthenticationForm = (props: PropForAuthenticationForm) => {
 
   const { control, handleSubmit, errors } = useForm();
   const navigation = useNavigation();
+  /**
+   * セッションが切れた際にログインページに遷移させるため
+   */
+  Storage.setNavigation(navigation);
 
   const navi = (): void => {
     navigation.navigate('Home');

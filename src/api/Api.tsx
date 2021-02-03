@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Alert } from 'react-native';
+import Storage from '../Storage';
 import Url from './UrlApi';
 
 export default class Api {
@@ -44,8 +45,7 @@ export default class Api {
         return res.data;
       })
       .catch((error) => {
-        console.log('----------error---------', error);
-        Alert.alert('get error:' + error);
+        this.errorHandler(error);
       });
   }
 
@@ -70,7 +70,16 @@ export default class Api {
         }
       })
       .catch((error) => {
-        Alert.alert('post error:' + error);
+        this.errorHandler(error);
       });
+  }
+  /**
+   * エラー時の処理
+   * @param error
+   */
+  static errorHandler(error: any) {
+    Storage.navi().navigate('Login');
+    console.log('----------error---------', error);
+    Alert.alert('予期せぬエラー。もう一度最初からお試しください。');
   }
 }

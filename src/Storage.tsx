@@ -20,6 +20,12 @@ class Storage {
   getEmail(): string {
     return this.memory.get('EMAIL');
   }
+  setNavigation(navigation: any): void {
+    this.memory.set('NAVIGATION', navigation);
+  }
+  navi(): any {
+    return this.memory.get('NAVIGATION');
+  }
 }
 
 export default new Storage();

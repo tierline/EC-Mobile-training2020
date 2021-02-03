@@ -2,6 +2,8 @@ import React from 'react';
 import { Container, Content, H1 } from 'native-base';
 import AuthenticationForm from '../../components/form/AuthenticationForm';
 import { StyleSheet } from 'react-native';
+import Storage from '../../Storage';
+import { useNavigation } from '@react-navigation/native';
 
 /**
  * 会員ログイン画面
