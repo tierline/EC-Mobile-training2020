@@ -77,9 +77,15 @@ export default class Api {
    * エラー時の処理
    * @param error
    */
+  //ステータスコードをみて修正する
   static errorHandler(error: any) {
+    if (error.response.status === 401) {
+      console.log('----------error---------', error);
+      Alert.alert('セッションが切れました。もう一度最初からお試しください。');
+    } else {
+      console.log('----------error---------', error);
+      Alert.alert('予期せぬエラー。もう一度最初からお試しください。');
+    }
     Storage.navi().navigate('Login');
-    console.log('----------error---------', error);
-    Alert.alert('予期せぬエラー。もう一度最初からお試しください。');
   }
 }
